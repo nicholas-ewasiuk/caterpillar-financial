@@ -39,15 +39,9 @@ h1 {
 .greensock-test {
   width: 300px;
   height: 300px;
-  background: rgb(238, 174, 202);
   background: linear-gradient(
     145deg,
     rgba(238, 174, 202, 0.5) 0%,
     rgba(148, 187, 233, 0.5) 100%
   );
-}
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
