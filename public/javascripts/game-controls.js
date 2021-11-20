@@ -11,6 +11,7 @@ let rect2x = 0;
 let rect2y = 0;
 
 function keyDownHandler(event) {
+  event.preventDefault();
   if(event.keyCode == 39) {
     rightPressed = true;
   }
@@ -26,6 +27,7 @@ function keyDownHandler(event) {
 }
 
 function keyUpHandler(event) {
+  event.preventDefault();
   if(event.keyCode == 39) {
     rightPressed = false;
   }
@@ -43,22 +45,22 @@ function keyUpHandler(event) {
 function draw() {
   if(rightPressed) {
     rect2x += 1;
-    rect2.transform = `translate(${rect2x} ${rect2y})`;
+    rect2.setAttribute('transform', `translate(${rect2x} ${rect2y})`);
     console.log('right');
   }
   else if(leftPressed) {
     rect2x -= 1;
-    rect2.transform = `translate(${rect2x} ${rect2y})`;
+    rect2.setAttribute('transform', `translate(${rect2x} ${rect2y})`);
     console.log('left');
   }
   if(downPressed) {
     rect2y += 1;
-    rect2.transform = `translate(${rect2x} ${rect2y})`;
+    rect2.setAttribute('transform', `translate(${rect2x} ${rect2y})`);
     console.log('down');
   }
   else if(upPressed) {
     rect2y -= 1;
-    rect2.transform = `translate(${rect2x} ${rect2y})`;
+    rect2.setAttribute('transform', `translate(${rect2x} ${rect2y})`);
     console.log('up');
   }
   window.requestAnimationFrame(draw);
