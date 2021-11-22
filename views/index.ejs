@@ -21,7 +21,7 @@
     <!-- fonts awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <title></title>
+    <title>Home</title>
   </head>
 
   <body>
@@ -36,8 +36,10 @@
         <h3><a href="http://localhost:3000/">Life of Chpy<i class="fas fa-angle-double-right"></i></a></h3>
         <img src="/images/chpy-blk-01.svg" style="width: 100px; height: 100px; margin-top: 20px; margin-bottom: 50px;"/>
       </div>
+      <!-- content-wrap -->
       <footer><i class="fas fa-chevron-down"></i></footer>
       </div>
+      <!-- content -->
     
       <div class="content-side">
         <nav><i class="fas fa-bars"></i></nav>
@@ -51,8 +53,27 @@
         <br>
         <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
       </div>
+      <!-- content-side -->
+    </div>
+    <!-- container -->
+
+    <div class="map-container">
+     <div class="globe"></div>
+     <div class="globe-controls">
+      <i class="fas fa-globe-americas"></i>
+      <i class="fas fa-globe-americas"></i>
+      <i class="fas fa-globe-americas"></i>
+      <i class="fas fa-globe-americas"></i>
+     </div>
     </div>
 
-    <div class="map-container"></div>
+
   </body>
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+      integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="javascripts/main.js"></script>
+    <script type="module" src="javascripts/game-controls.js"></script>
 </html>
