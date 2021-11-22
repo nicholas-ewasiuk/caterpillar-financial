@@ -1,91 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       type="text/css"
       href="stylesheets/style.css"
       media="all"
     />
-    <title>test</title>
+    <!-- google fonts -->
+    <!-- poppins: 100 - 900 /w italic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- fonts awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title></title>
   </head>
+
   <body>
     <div class="container">
-      <nav>
-        <p>Just a placeholder paragraph</p>
-      </nav>
-      <main>
-        <h1 class="test">Maybe a header?</h1>
-        <p>Some more text here I guess</p>
-      </main>
 
-      <div class="greensock-test">
-        <img src="/images/test-2.png">
+      <div class="content">
+        <div class="content-wrap">
+        <h2>Data  –  <i class="fas fa-globe-americas"></i><br> Visualizer</h2>
+        <p>
+          A visual and data driven experience about the production life cycle of a simple everyday micro chip.
+        </p>
+        <h3><a href="http://localhost:3000/">Life of Chpy<i class="fas fa-angle-double-right"></i></a></h3>
+        <img src="/images/chpy-blk-01.svg" style="width: 100px; height: 100px; margin-top: 20px; margin-bottom: 50px;"/>
       </div>
-      
-
-      <footer>
-        <h2>Welcome to the fooottterrr!!</h2>
-      </footer>
-
-      <svg
-         width="800"
-         height="600"
-         viewBox="0 0 211.66666 158.75"
-         version="1.1"
-         id="meltingpot"
-         xmlns="http://www.w3.org/2000/svg"
-         xmlns:svg="http://www.w3.org/2000/svg">
-        <defs></defs>
-        <g
-           id="crucible">
-          <path
-             style="fill:#797773;fill-opacity:1;stroke:#4a4844;stroke-width:2.11667;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 71.105585,60.831233 v 29.794578 l 5.231624,4.941628 h 32.227911 l 5.23163,-4.941628 V 60.831233"
-             id="path14041" />
-        </g>
-        <g
-          id="liquid">
-          <rect
-            style="fill:#e56426;fill-opacity:1;stroke:none;stroke-width:1.82311;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-            id="level"
-            width="40.574657"
-            height="23.114058"
-            x="72.161606"
-            y="66.60321" />
-          <path
-            style="fill:#e56426;fill-opacity:1;stroke:none;stroke-width:1.81551;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-            d="m 72.161605,89.524879 v 0.646813 l 4.600388,4.339651 h 31.383577 l 4.5929,-4.342977 v -0.649089 z"
-            id="path30116" />
-        </g>
-      </svg>
-
-      <svg
-        width="400"
-        height="300">
-      <g>
-      <rect
-        style="fill:#e56426;fill-opacity:1;stroke:none;stroke-width:1.82311;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-        id="rect2"
-        width="40.574657"
-        height="23.114058"
-        x="100"
-        y="66.60321" />
-      </g>
-      </svg>
-
+      <footer><i class="fas fa-chevron-down"></i></footer>
+      </div>
+    
+      <div class="content-side">
+        <nav><i class="fas fa-bars"></i></nav>
+        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
+        <br>
+        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
+        <br>
+        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
+        <br>
+        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
+        <br>
+        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
+      </div>
     </div>
 
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
-      integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo="
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="javascripts/main.js"></script>
-    <script type="module" src="javascripts/game-controls.js"></script>
+    <div class="map-container"></div>
   </body>
 </html>
