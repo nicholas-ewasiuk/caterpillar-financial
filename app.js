@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter(db));
 app.use('/users', usersRouter(db));
-app.use('/visualizer', visualRouter(db));
+app.use('/visualizer', visualRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
