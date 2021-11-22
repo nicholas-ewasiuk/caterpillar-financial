@@ -4,11 +4,21 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+// Separated Routes for each Resource
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const visualRouter = require('./routes/visualizer');
 
 const app = express();
+
+// load .env data into process.env
+require("dotenv").config();
+
+// PG database client/connection setup
+const { Pool } = require("pg");
+const dbParams = require("./lib/db.js");
+const db = new Pool(dbParams);
+db.connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,9 +30,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+<<<<<<< HEAD
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/visualizer', visualRouter);
+=======
+
+
+app.use('/', indexRouter(db));
+app.use('/users', usersRouter(db));
+>>>>>>> fb1deac1000e2030d53dd6d3a7601559a16f9c6d
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
