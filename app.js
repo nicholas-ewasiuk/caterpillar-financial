@@ -30,16 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/visualizer', visualRouter);
-=======
-
-
 app.use('/', indexRouter(db));
 app.use('/users', usersRouter(db));
->>>>>>> fb1deac1000e2030d53dd6d3a7601559a16f9c6d
+app.use('/visualizer', visualRouter(db));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
