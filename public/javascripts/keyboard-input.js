@@ -42,7 +42,7 @@ function keyUpHandler(event) {
 
 function draw() {
   if(rightPressed) {
-    rect2.transform = `translate(${rect2.x + 1}``;
+    rect2.transform = `translate(${rect2.x + 1}`;
     console.log('right');
   }
   else if(leftPressed) {
