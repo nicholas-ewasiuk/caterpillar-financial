@@ -7,7 +7,6 @@ const logger = require('morgan');
 // Separated Routes for each Resource
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const visualRouter = require('./routes/visualizer');
 
 const app = express();
 
@@ -32,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter(db));
 app.use('/users', usersRouter(db));
-app.use('/visualizer', visualRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
