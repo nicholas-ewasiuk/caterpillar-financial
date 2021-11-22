@@ -124,7 +124,6 @@ a {
 .map-container {
   width:  100vw;
   height: 100vh;
-  background-color: var(--color-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,13 +132,20 @@ a {
 .globe {
   height: 500px;
   width: 500px;
-  background-color: violet;
+  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+  margin-bottom: 40px;
+  border-radius: 50%;
 }
 .globe-controls {
   width: 500px;
   padding-top: 20px;
-  color: white;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: lightgray;
   font-size: var(--fontsize-header);
+  border: 3px solid lightgray;
+  border-radius: 0 5px 5px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
