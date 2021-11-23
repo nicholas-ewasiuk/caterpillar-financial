@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>user page</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/table.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/user.css" media="all" />
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/javascripts/app.js"></script>
+
+  <!-- google fonts -->
+  <!-- poppins: 100 - 900 /w italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet" />
+  <!-- fonts awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+  <title>User</title>
 </head>
+
 <body>
   <h1>User Page</h1>
+<div class="container">
 
-  <form action="/user" method="POST" class="user-form">
+<div id="input-wrapper">
+  <form action="/users" method="POST" class="user-form">
     <div class="revenues">
-      <div class="title/value">
-        <input type="text" placeholder="">
+      <div class="title-value-revenue">
+        <input type="text" placeholder="revenue type" id="revenue">
+        <input type="number" placeholder="value" id="revenue-value">
+        <i class="fas fa-plus-circle add-revenue"></i>
       </div>
+      <!-- <div class="title/value">
+        <input type="text" placeholder="revenue type">
+        <input type="number" placeholder="value">
+      </div> -->
     </div>
     <div class="expanses">
-
+      <div class="title-value">
+        <input type="text" placeholder="expanse type">
+        <input type="number" placeholder="value">
+        <i class="fas fa-plus-circle add-expanse"></i>
+      </div>
     </div>
-    <input type="submit">
+    <button type="submit" id="submit-button">Submit</button>
   </form>
-  
+</div>
+<!-- input-wrapper -->
+</div>
+<!-- container -->
 </body>
 </html>

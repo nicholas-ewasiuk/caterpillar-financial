@@ -1,10 +1,10 @@
-let toggle = false;
-let resize = false;
+// let toggle = false;
+// let resize = false;
 
-gsap.set('#level', { 
-    scaleY: 0,
-    transformOrigin: '50% 100%' 
-});
+// gsap.set('#level', { 
+//     scaleY: 0,
+//     transformOrigin: '50% 100%' 
+// });
 
 // document.addEventListener('click', function(event) {
 //     const target = event.target;
@@ -20,20 +20,20 @@ gsap.set('#level', {
 // });
 
 
-document.addEventListener('click', function(event) {
-    const target = event.target.closest('svg');
-    resize = !resize;
+// document.addEventListener('click', function(event) {
+//     const target = event.target.closest('svg');
+//     resize = !resize;
 
-    if (target.id === 'second-col' && resize) {
-        gsap.to('#level', {duration: 3, scaleY: 1, ease: 'elastic(1, 0.8)'});
-        console.log('innnermeltclick');
-    }
+//     if (target.id === 'second-col' && resize) {
+//         gsap.to('#level', {duration: 3, scaleY: 1, ease: 'elastic(1, 0.8)'});
+//         console.log('innnermeltclick');
+//     }
 
-    if (target.id === 'second-col' && !resize) {
-        gsap.to('#level', {duration: 3, scaleY: 0, ease: 'power1.in'});
-    }
-    console.log(target);
-});
+//     if (target.id === 'second-col' && !resize) {
+//         gsap.to('#level', {duration: 3, scaleY: 0, ease: 'power1.in'});
+//     }
+//     console.log(target);
+// });
 
 // *****************************************************************************************
 // TEST SCRIPT FOR TOGGLE
