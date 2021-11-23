@@ -12,11 +12,14 @@ html {
   --dur: .3s;
   --color-dark: #2f2f2f;
   --color-white: #fff;
-
+  --color-step-one: #d4fbc4;
+  --color-step-two:#d8f1c4;
+  --color-step-three:#e1dec1;
+  --color-step-four:#e6d2c0;
+  --color-step-five:#ecc5bf;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
   --font-family: "Poppins", "helvetica", sans-serif;
-
   --font-regular: 400;
   --font-medium: 500;
   --font-semi: 600;
@@ -99,11 +102,17 @@ a {
   height: 100vh;
   padding-top: 90px;
   font-family: var(--font-family);
-  background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+  background: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-size: 500% auto;
+  animation: gradient 3s linear infinite;
+}
+@keyframes gradient { 
+  0%{background-position:0 0}
+  100%{background-position:100% 0}
 }
 .content-side nav {
   height: 80px;
@@ -130,19 +139,18 @@ a {
   justify-content: center;
 }
 .graph {
-  height: 500px;
-  width: 500px;
-  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
-  margin-bottom: 40px;
-  border-radius: 50%;
+  height: 66%;
+  width: 66%;
+  margin-bottom: 30px;
+
 }
-.input-controls {
+.input-fields {
   width: 500px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  color: lightgray;
+  color: black;
   font-size: var(--fontsize-header);
   border: 3px solid lightgray;
   border-radius: 0 5px 5px 0;
@@ -151,3 +159,4 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
