@@ -7,11 +7,16 @@ const router = new Router();
 module.exports = (db) => {
   /* GET home page. */
   router.get('/', function(req, res, next) {
+    console.log(req.body)
     res.render('index', { title: 'Express' });
   });
 
+  router.get('/login', function(req, res) {
+    res.render('login');
+  })
+
   router.post('/login', function(req, res) {
-    db.query(`SELECT * FROM users WHERE email LIKE '${req.body.email}'`)
+    db.query(`SELECT * FROM users `)
       .then(data => {
         const user_id = data.rows[0].id;
 
