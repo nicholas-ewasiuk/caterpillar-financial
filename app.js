@@ -7,7 +7,6 @@ const logger = require('morgan');
 // Separated Routes for each Resource
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
 const app = express();
 
 // load .env data into process.env
@@ -23,7 +22,7 @@ db.connect();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

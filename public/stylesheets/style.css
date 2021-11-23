@@ -51,15 +51,15 @@ a {
   justify-content: center;
 }
 .content {
+  margin-top: 90px;
   width: 65%;
   height: 100vh;
   font-family: var(--font-family);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   justify-items: left;
-  
 }
 .content-wrap {
   padding-left: 30%;
@@ -90,6 +90,7 @@ a {
   align-content: center;
 }
 .fa-chevron-down {
+  margin-top: 15%;
   animation: bounce 1.5s infinite;
 }
 @keyframes bounce {
@@ -102,7 +103,7 @@ a {
   height: 100vh;
   padding-top: 90px;
   font-family: var(--font-family);
-  background: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+  background-color: var(--color-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +127,7 @@ a {
   align-items: flex-end;
 }
 .content-side nav i {
-  color: var(--color-dark);
+  color: var(--color-white);
   font-size: 2.5em;
 }
 
