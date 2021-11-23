@@ -22,26 +22,15 @@ db.connect();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-
-
-app.use('/', indexRouter(db));
-app.use('/users', usersRouter(db));
-=======
 app.use('/', indexRouter(db));
 app.use('/users', usersRouter(db));
 
->>>>>>> 3722015cad1631e918761b4e0379918914a626a6
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
