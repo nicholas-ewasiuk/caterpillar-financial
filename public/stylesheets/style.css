@@ -76,7 +76,7 @@ a {
 }
 .content p {
   width: 66%;
-  margin-top: 20px;
+  margin-top: 150px;
 }
 .content footer {
   width: 65%;
@@ -99,11 +99,17 @@ a {
   height: 100vh;
   padding-top: 90px;
   font-family: var(--font-family);
-  background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+  background: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-size: 500% auto;
+  animation: gradient 3s linear infinite;
+}
+@keyframes gradient { 
+  0%{background-position:0 0}
+  100%{background-position:100% 0}
 }
 .content-side nav {
   height: 80px;
@@ -121,27 +127,34 @@ a {
   font-size: 2.5em;
 }
 
-.map-container {
+.graph-container {
   width:  100vw;
   height: 100vh;
-  background-color: var(--color-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.globe {
+.graph {
   height: 500px;
   width: 500px;
-  background-color: violet;
+  background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+  margin-bottom: 40px;
+
 }
-.globe-controls {
+.input-fields {
   width: 500px;
   padding-top: 20px;
-  color: white;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: black;
   font-size: var(--fontsize-header);
+  border: 3px solid lightgray;
+  border-radius: 0 5px 5px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
