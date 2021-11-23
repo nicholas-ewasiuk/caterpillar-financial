@@ -16,7 +16,8 @@ module.exports = (db) => {
   })
 
   router.post('/login', function(req, res) {
-    db.query(`SELECT * FROM users `)
+    
+    db.query(`SELECT * FROM users WHERE email LIKE '${req.body.email}'`)
       .then(data => {
         const user_id = data.rows[0].id;
 
@@ -30,7 +31,7 @@ module.exports = (db) => {
     res.render('user');
   });
 
-  
+
 
   return router;
 }
