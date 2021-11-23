@@ -139,18 +139,42 @@ a {
   justify-content: center;
 }
 .graph {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  height: 500px;
+  width: 500px;
+  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+  margin-bottom: 40px;
+  border-radius: 50%;
+}
+.input-controls {
+=======
+>>>>>>> camila-branch
   height: 66%;
   width: 66%;
   margin-bottom: 30px;
 
 }
 .input-fields {
+<<<<<<< HEAD
+=======
+>>>>>>> origin/colin-test
+>>>>>>> camila-branch
   width: 500px;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
+<<<<<<< HEAD
   color: black;
+=======
+<<<<<<< HEAD
+  color: lightgray;
+=======
+  color: black;
+>>>>>>> origin/colin-test
+>>>>>>> camila-branch
   font-size: var(--fontsize-header);
   border: 3px solid lightgray;
   border-radius: 0 5px 5px 0;

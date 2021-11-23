@@ -43,10 +43,14 @@
 // function draw() {
 //   if(rightPressed) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 //     rect2.transform = `translate(${rect2.x + 1}``;
 =======
 //     rect2.transform = `translate(${rect2.x + 1}`;
 >>>>>>> cec8a30ebc966330a42904030a550801a096e185
+=======
+//     rect2.transform = `translate(${rect2.x + 1}`;
+>>>>>>> camila-branch
 //     console.log('right');
 //   }
 //   else if(leftPressed) {
