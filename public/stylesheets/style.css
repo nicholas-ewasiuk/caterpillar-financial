@@ -12,11 +12,14 @@ html {
   --dur: .3s;
   --color-dark: #2f2f2f;
   --color-white: #fff;
-
+  --color-step-one: #d4fbc4;
+  --color-step-two:#d8f1c4;
+  --color-step-three:#e1dec1;
+  --color-step-four:#e6d2c0;
+  --color-step-five:#ecc5bf;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
   --font-family: "Poppins", "helvetica", sans-serif;
-
   --font-regular: 400;
   --font-medium: 500;
   --font-semi: 600;
@@ -136,10 +139,9 @@ a {
   justify-content: center;
 }
 .graph {
-  height: 500px;
-  width: 500px;
-  background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
-  margin-bottom: 40px;
+  height: 66%;
+  width: 66%;
+  margin-bottom: 30px;
 
 }
 .input-fields {
