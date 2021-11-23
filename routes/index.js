@@ -7,7 +7,7 @@ const router = new Router();
 module.exports = (db) => {
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    console.log(req.body)
+    
     res.render('index', { title: 'Express' });
   });
 
@@ -25,11 +25,15 @@ module.exports = (db) => {
       })
   });
 
-  router.get('/users/:id', function(req, res) {
-    const user_id = req.params.id;
+  // router.get('/users/:id', function(req, res) {
+  //   const user_id = req.params.id;
 
-    res.render('user');
-  });
+  //   res.render('user');
+  // });
+
+  // router.post('/users/:id', function(req, res) {
+  //   console.log("reqbody",req.body)
+  // });
 
 
 
