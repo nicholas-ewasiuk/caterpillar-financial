@@ -42,7 +42,11 @@
 
 // function draw() {
 //   if(rightPressed) {
+<<<<<<< HEAD
 //     rect2.transform = `translate(${rect2.x + 1}``;
+=======
+//     rect2.transform = `translate(${rect2.x + 1}`;
+>>>>>>> origin/colin-test
 //     console.log('right');
 //   }
 //   else if(leftPressed) {

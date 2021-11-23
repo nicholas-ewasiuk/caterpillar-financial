@@ -1,68 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/table.css" media="all" />
-
-  <!-- google fonts -->
-  <!-- poppins: 100 - 900 /w italic -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-  <!-- fonts awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-  <title>Home</title>
-</head>
-
-<body>
-  <div class="container">
-    <div class="content">
-      <div class="content-wrap">
-        <h2>
-          Data &nbsp;– &nbsp;<i class="far fa-file"></i><br />
-          Visualizer
-        </h2>
-        <p>
-          A <b>bespoke</b> visual and dynamic experience for your company's
-          financial data.
-        </p>
-        <h3>
-          <a href="http://localhost:3000/">Try it for yourself<i class="fas fa-angle-double-right"></i></a>
-        </h3>
-      </div>
-      <!-- content-wrap -->
-      <footer><i class="fas fa-chevron-down"></i></footer>
-    </div>
-    <!-- content -->
-    <div class="content-side">
-      <nav><i class="fas fa-bars"></i></nav>
-      <form action="/login" method="POST" class="login-form">
-        <input id="login" type="text" placeholder="e-mail" />
-        <input id="password" type="password" placeholder="password" />
-        <input type="submit">
-      </form>
-    </div>
-    <!-- content-side -->
-  </div>
-  <!-- container -->
-
-
-
-
-
-
-  <!-- USER CODE -->
-  <div class="graph-container">
-    <div class="graph">
-      <!-- <img src="/svg/circle-graph-grouping-01.svg" alt="" /> -->
-      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 700 700" enable-background="new 0 0 700 700" xml:space="preserve"    id="graph">
 <g id="sixth-col">
 	<circle fill="#F2B9BE" cx="380.6" cy="545.9" r="77.2"/>
@@ -77,7 +15,7 @@
 	<circle fill="#E1DEC1" cx="294.7" cy="386.9" r="88.5"/>
 </g>
 <g id="second-col">
-	<circle fill="#D8F1C4" cx="372.4" cy="214.1" r="77.2" id="level"/>
+	<circle fill="#D8F1C4" cx="372.4" cy="214.1" r="77.2"/>
 </g>
 <g id="first-col">
 	<circle fill="#D4FBC4" cx="157" cy="204.8" r="127.9"/>
@@ -115,97 +53,3 @@
 	</g>
 </g>
 </svg>
-    </div>
-
-    <!-- <div class="input-fields">
-      <div class="user-data-input">
-        <form id="data-form">
-          <input type="text" id="data-input" placeholder="revenue" />
-          <button type="submit" class="submit">
-            <i class="fas fa-caret-right"></i>
-          </button>
-        </form>
-      </div>
-      <form method="GET" action=""></form>
-    </div>
-    input-fields
-  </div>
-  graph-container -->
-
-  <!-- ** this could be a partial ** -->
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>Company Name</th>
-        <th>2019</th>
-        <th>2020</th>
-        <th>2021</th>
-        <th>2022</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tbody class="labels">
-        <tr>
-          <td colspan="5">
-            <label for="accounting">Revenue</label>
-            <input type="checkbox" name="accounting" id="accounting" data-toggle="toggle">
-          </td>
-        </tr>
-      </tbody>
-      <tbody class="hide">
-        <tr style="background-color: #d4fbc4;">
-          <td>Australia</td>
-          <td>$7,685.00</td>
-          <td>$3,544.00</td>
-          <td>$5,834.00</td>
-          <td>$10,583.00</td>
-        </tr>
-        <tr style="background-color: #d8f1c4;">
-          <td>Central America</td>
-          <td>$7,685.00</td>
-          <td>$3,544.00</td>
-          <td>$5,834.00</td>
-          <td>$10,583.00</td>
-        </tr>
-      </tbody>
-      <tbody class="labels">
-        <tr>
-          <td colspan="5">
-            <label for="management">Management</label>
-            <input type="checkbox" name="management" id="management" data-toggle="toggle">
-          </td>
-        </tr>
-      </tbody>
-      <tbody class="hide">
-        <tr style="background-color: #e1dec1;">
-          <td>Australia</td>
-          <td>$7,685.00</td>
-          <td>$3,544.00</td>
-          <td>$5,834.00</td>
-          <td>$10,583.00</td>
-        </tr>
-        <tr style="background-color: #e6d2c0;">
-          <td>Central America</td>
-          <td>$7,685.00</td>
-          <td>$3,544.00</td>
-          <td>$5,834.00</td>
-          <td>$10,583.00</td>
-        </tr>
-        <tr style="background-color: #ecc5bf;">
-          <td>Europe</td>
-          <td>$7,685.00</td>
-          <td>$3,544.00</td>
-          <td>$5,834.00</td>
-          <td>$10,583.00</td>
-        </tr>
-      </tbody>		
-    </tbody>
-  </table>
-  end of table -->
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
-  integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo=" crossorigin="anonymous"></script>
-<script type="module" src="javascripts/main.js"></script>
-<script type="module" src="javascripts/game-controls.js"></script>
-<!-- USER CODE -->
-</html>
