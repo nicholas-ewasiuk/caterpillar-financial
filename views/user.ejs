@@ -29,28 +29,25 @@
 <body>
   <h1>User Page</h1>
 <div class="container">
-
+  <h3 class="username"><%=username %></h3>
 <div id="input-wrapper">
   <form action="/users" method="POST" class="user-form">
+    <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
     <div class="revenues">
       <div class="title-value-revenue">
-        <input type="text" placeholder="revenue type" id="revenue">
-        <input type="number" placeholder="value" id="revenue-value">
+        <input type="text" placeholder="revenue type" name="text-revenue0" id="text-revenue0">
+        <input type="number" placeholder="value" name="num-revenue0" id="num-revenue0">
         <i class="fas fa-plus-circle add-revenue"></i>
       </div>
-      <!-- <div class="title/value">
-        <input type="text" placeholder="revenue type">
-        <input type="number" placeholder="value">
-      </div> -->
     </div>
-    <div class="expanses">
+    <div class="expenses">
       <div class="title-value">
-        <input type="text" placeholder="expanse type">
-        <input type="number" placeholder="value">
-        <i class="fas fa-plus-circle add-expanse"></i>
+        <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
+        <input type="number" placeholder="value" name="num-expense0" id="num-expense0">
+        <i class="fas fa-plus-circle add-expense"></i>
       </div>
     </div>
-    <button type="submit" id="submit-button">Submit</button>
+    <button type="submit" id="submit-button">Save</button>
   </form>
 </div>
 <!-- input-wrapper -->
