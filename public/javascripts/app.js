@@ -94,9 +94,6 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     })
-
-
   });
-
 });
 
