@@ -94,6 +94,7 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     })
+<<<<<<< HEAD
 
   });
 
@@ -117,5 +118,8 @@ $(document).ready(function () {
 
   })
 
+=======
+  });
+>>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
 });
 

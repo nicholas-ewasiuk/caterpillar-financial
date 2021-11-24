@@ -1,92 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="stylesheets/style.css"
-      media="all"
-    />
-    <!-- google fonts -->
-    <!-- poppins: 100 - 900 /w italic -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- fonts awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <title>Home</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="login">
-        <form action="/login" method="POST" class="login-form">
-          <h2>Login</h2>
-          <label for="email">
-            <input type="text" name="email" placeholder="e-mail">
-          </label>
-          <label for="password"> 
-            <input type="password" name="password" placeholder="password">
-          </label>
-          <input type="submit">
-        </form>
-      </div>
-      <div class="content">
-        <div class="content-wrap">
-        <h2>Data  –  <i class="fas fa-globe-americas"></i><br> Visualizer</h2>
-        <p>
-          A <b>bespoke</b> visual and dynamic experience for your company's financial data.
-        </p>
-        <h3><a href="http://localhost:3000/">Try it for yourself<i class="fas fa-angle-double-right"></i></a></h3>
-        <img src="/images/chpy-blk-01.svg" style="width: 100px; height: 100px; margin-top: 20px; margin-bottom: 50px;"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="all" />
+  <!-- google fonts -->
+  <!-- poppins: 100 - 900 /w italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <!-- fonts awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <title>login</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="content-wrap">
+        <div class="login">
+          <form action="/login" method="POST" class="login-form">
+            <h2>Login</h2>
+            <label for="email">
+              <input type="text" name="email" placeholder="e-mail">
+            </label>
+            <label for="password">
+              <input type="password" name="password" placeholder="password">
+            </label>
+            <input type="submit">
+          </form>
+        </div>
+
       </div>
       <!-- content-wrap -->
-      <footer><i class="fas fa-chevron-down"></i></footer>
-      </div>
-      <!-- content -->
-      <div class="content-side">
-        <nav><i class="fas fa-bars"></i></nav>
-        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
-        <br>
-        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
-        <br>
-        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
-        <br>
-        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
-        <br>
-        <img src="/images/Earth_placehold.svg" style="width: 60px; height: 60px;">
-      </div>
-      <!-- content-side -->
     </div>
-    <!-- container -->
+    <!-- content -->
+</bdy>
 
-    <div class="graph-container">
-     <div class="graph"></div>
-     <div class="input-controls">
-      <form method="post" action="">
-        <button>submit</button>
-      </form> 
-      <i class="fas fa-globe-americas"></i>
-      <i class="fas fa-globe-americas"></i>
-      <i class="fas fa-globe-americas"></i>
-     </div>
-    </div>
-
-
-  </body>
-  <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
-      integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo="
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" src="javascripts/main.js"></script>
-    <script type="module" src="javascripts/game-controls.js"></script>
 </html>

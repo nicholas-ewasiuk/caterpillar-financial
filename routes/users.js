@@ -1,34 +1,29 @@
 const Router = require('express-promise-router');
-
-
 const router = new Router();
 
 //'/users' Routes
 module.exports = (db) => {
 
   router.get('/:id', function(req, res) {
-
     db.query(`SELECT username FROM users WHERE id='${req.params.id}'`)
       .then(data => {
         const username = data.rows[0].username;
-
         db.query(`SELECT dataset_name FROM datasets WHERE user_id='${req.params.id}'`)
         .then(datasetNames => {
-          
           const templateVars = { username: username, datasetTitles: datasetNames.rows }
-
           res.render('user', templateVars);
         })
 
       })
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   });
  
   router.post('/:id', function(req, res) {
     // console.log("reqbody-------------",req.body)
-
-
     const revData = req.body["revenuesData[]"];
     const expData = req.body["expensesData[]"];
     const username = req.body.usernameData;
@@ -67,11 +62,8 @@ module.exports = (db) => {
           })
 
       })
-
-    
    
   });
-
 
   return router;
 }
