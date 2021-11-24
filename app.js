@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 // Separated Routes for each Resource
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const visualRouter = require('./routes/visualizer');
 
 const app = express();
 
