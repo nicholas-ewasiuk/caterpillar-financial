@@ -51,7 +51,6 @@ a {
   justify-content: center;
 }
 .content {
-  margin-top: 90px;
   width: 65%;
   height: 100vh;
   font-family: var(--font-family);
@@ -101,7 +100,7 @@ a {
 .content-side {
   width: 35%;
   height: 100vh;
-  padding-top: 90px;
+
   font-family: var(--font-family);
   background-color: var(--color-dark);
   display: flex;

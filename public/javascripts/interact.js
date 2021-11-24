@@ -27,8 +27,7 @@ $(document).ready(function () {
   });
 
   // attempt to get some window to popup in the graph vewbox
-
-  const positionPopupOnPage = function (e) {
+  const positionInVb = function (e) {
     const VPWH = [];                  // viewbox width / height
     const intVPW, intVPH;             // viewbox width / height
     const intCoordX = e.clientX;
@@ -56,7 +55,7 @@ $(document).ready(function () {
   // .InfoWindow({
   //   content: contentString,
   // });
-  
+
 // const circleGraph is the location logic above
   circleGraph.addListener("click", () => {
     infowindow.open({
