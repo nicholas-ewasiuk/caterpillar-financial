@@ -77,6 +77,10 @@ nav i {
   align-items: center;
   justify-content: center;
 }
+
+/*
+ will try to get a an animated gradient to loop as bg of drawers 
+ */
 .content-wrap {
   display: flex;
   flex-direction: column;
@@ -106,3 +110,4 @@ nav i {
   align-items: center;
   justify-content: center;
 }
+
