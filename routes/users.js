@@ -10,7 +10,6 @@ module.exports = (db) => {
 
     db.query(`SELECT username FROM users WHERE id='${req.params.id}'`)
       .then(data => {
-<<<<<<< HEAD
         const username = data.rows[0].username;
 
         db.query(`SELECT dataset_name FROM datasets WHERE user_id='${req.params.id}'`)
@@ -29,18 +28,6 @@ module.exports = (db) => {
  
   router.post('/:id', function(req, res) {
     // console.log("reqbody-------------",req.body)
-=======
-        const templateVars = { username: data.rows[0].username }
-        
-        console.log(templateVars)
-        res.render('user', templateVars);
-      })
-
-  });
- 
-  router.post('/:id', function(req, res) {
-    console.log("reqbody-------------",req.body)
->>>>>>> 66b20241c6dd8fd84bca89b873e25f7e14e2b4f5
 
 
     const revData = req.body["revenuesData[]"];
