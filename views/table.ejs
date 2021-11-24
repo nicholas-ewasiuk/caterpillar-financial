@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <!-- TABLE -->
+	<div id="user" class="user datatables" >
+    <h1>input data</h1>
+    <div class="first-input" id="input-box-area">
+      <div id="input-wrapper">
+        <input type="text" name="input1" id="inputattachone1" placeholder="expense name" />
+        <input type="text" name="input2" id="inputattachtwo1" placeholder="amount" />
+        <i class="far fa-minus-square"id="delete" title="remove  input box"></i>
+        <i class="fas fa-plus-square" id="add" title="add new input box"></i>
+<!-- <p>( At leas- one should be there)</p> -->
+      </div>		
+    </div>
+    <div id="added-input"></div>
+  </div>
+</body>
+</html>
+
+<!-- 
+$(document).ready(function () {
+  var count = 1;
+  if ($('#inputboxsec').children().length <= 1) {
+      $('#inputboxsec').find('.fa-minus-square').css('display', 'none')
+  }
+  else {
+      $("#input-box-area div:first-child").find(".fa-minus-square").css('display', 'inline-block')
+  }
+  $("#input-box-area").on("click", "#add", function (e) {
+      count = count + 1;
+      var mainsection = $("#input-box-area");
+      var submainsec = $("<div>", {
+          'id': "input-wrapper" + count,
+      });
+      mainsection.append(submainsec);
+      submainsec.append($("<input>", {
+          'type': "text",
+          'id': "inputattachone" + count,
+          'name': "inputattach[]",
+          'class': 'added-input',
+          'placeholder': "expense name",
+          'required': ""
+      })).append($("<input>", {
+          'type': "text",
+          'id': "inputattachotwo" + count,
+          'name': "inputattach[]",
+          'class': 'added-input',
+          'placeholder': "amount",
+          'required': ""
+      })).append($("<i>", {
+          'id': "delete" + count,
+          'class': "fa-minus-square",
+          'title': "remove new input box"
+
+      })).append($("#addnewinput"));
+      $("#input-box-area div:first-child").find("fa-minus-square").css('display', 'inline-block');
+  })
+
+  $("#inputboxsec").on("click", "fa-minus-square", function (e) {
+      var prevele = $(e.target).parent().prev()
+      if ($(e.target).next().length > 0) {
+          $(prevele).append($("#addnewinput"))
+          $(e.target).parent().remove()
+          if ($('#inputboxsec').children().length <= 1) {
+              $(prevele).find('.fa-minus-square').css("display", "none")
+          }
+      }
+      else {
+          $(e.target).parent().remove();
+          if ($('#inputboxsec').children().length <= 1) {
+              $('#inputboxsec').find('.fa-minus-square').css("display", "none")
+          }
+      }
+  })
+}) -->

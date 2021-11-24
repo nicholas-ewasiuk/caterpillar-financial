@@ -49,3 +49,69 @@ td, th {
 [data-toggle="toggle"] {
 	display: none;
 }
+
+#user {
+  padding-left: 50px;
+}
+
+/* TEST */
+/* .clientspage h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 10px 40px;
+  color: #fff;
+  background: #03A9F4;
+}
+
+.clientspage p{
+font-size :1.2em;
+font-weight:normal;
+display:inline-block;
+padding : 0px 20px;
+color:red ;
+}
+
+div.clientspage {
+  width: 60%;
+  margin: 0 auto;
+  padding: 0px 0px 40px 0px;
+  border: 1px solid #c7c3c3;
+}
+
+div#inputboxsec {
+  margin: 10px 40px;
+}
+
+#inputboxsec input {
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+#inputboxsec .ion-ios-minus {
+  font-size: 26px;
+  color: #f13333;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#inputboxsec i#addnewinput {
+  font-size: 25px;
+  color: #1d82bd;
+  cursor: pointer;
+}
+
+.ion-ios-minus:before {
+  content: "\f464";
+}
+
+.ion-ios-plus-empty:before {
+  content: "\f489";
+} */
+
+/* body {
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+background: linear-gradient(to right, #25c481, #25b7c4);
+font-family: 'Roboto', sans-serif;
+} */
