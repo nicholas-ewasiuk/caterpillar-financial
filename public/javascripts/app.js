@@ -94,7 +94,6 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     })
-<<<<<<< HEAD
 
   });
 
@@ -110,7 +109,39 @@ $(document).ready(function () {
       data: datasetName
     }).then((result) => {
       //result is an array where array[0] is the revenues data and array[1] is the expense data
-      
+
+      let revCounter = result[0].length - 1;
+      let expCounter = result[1].length - 1;
+
+      while (revCounter > 0) {
+        const idText = "text-revenue" + revenueCounter;
+        const idNum = "num-revenue" + revenueCounter;
+
+        appendRevenueInputElements(idText, idNum);
+
+        revenuesArray.push(idText, idNum);
+
+        revenueCounter++;
+
+        revCounter--;
+      }
+
+      while (expCounter > 0) {
+        const idText = "text-expense" + expenseCounter;
+        const idNum = "num-expense" + expenseCounter;
+
+        appendExpenseInputElements(idText, idNum);
+
+        expensesArray.push(idText, idNum);
+
+        expenseCounter++;
+
+        expCounter--;
+      }
+
+      for (let i = 0; i < result[0].length; i ++) {
+
+      }
       console.log("result", result)
     }).catch((err) => {
       console.log("catch error", err)
@@ -118,8 +149,5 @@ $(document).ready(function () {
 
   })
 
-=======
-  });
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
 });
 

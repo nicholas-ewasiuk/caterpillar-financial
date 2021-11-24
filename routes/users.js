@@ -15,11 +15,8 @@ module.exports = (db) => {
         })
 
       })
-<<<<<<< HEAD
 
     
-=======
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   });
  
   router.post('/:id', function(req, res) {
