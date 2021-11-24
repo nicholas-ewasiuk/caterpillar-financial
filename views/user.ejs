@@ -30,12 +30,15 @@
   <h1>User Page</h1>
 <div class="container">
   <h3 class="username"><%=username %></h3>
+<<<<<<< HEAD
   <select name="drop-down-datasets" id="drop-down-datasets">
     <option value="" disable select hidden>Previous datasets</option>
     <% for (let i = 0; i < datasetTitles.length; i++) { %>
       <option><%= datasetTitles[i].dataset_name %></option>
     <% } %>
   </select>
+=======
+>>>>>>> 66b20241c6dd8fd84bca89b873e25f7e14e2b4f5
 <div id="input-wrapper">
   <form action="/users" method="POST" class="user-form">
     <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
