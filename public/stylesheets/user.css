@@ -19,7 +19,7 @@
 }
 /*^ global ^*/
 nav {
-  background-color:var(--color-dark);
+  background-color: var(--color-dark);
   height: 80px;
   width: 100vw;
   position: fixed;
