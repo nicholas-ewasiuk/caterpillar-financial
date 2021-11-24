@@ -1,12 +1,16 @@
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/table.css" media="all" />
   <link rel="stylesheet" type="text/css" href="stylesheets/user.css" media="all" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -17,50 +21,79 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-  href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-  rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
   <!-- fonts awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 
-  <title>User</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
+    integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo=" crossorigin="anonymous"></script>
+
+  <script type="module" src="javascripts/main.js"></script>
+  <!-- <script type="module" src="javascripts/interact.js"></script> -->
+
+  <!-- ----------X add scripts here X---------- -->
+
+  <title><h3 class="username"><%=username %></h3></title>
 </head>
 
 <body>
-  <h1>User Page</h1>
-<div class="container">
-  <h3 class="username"><%=username %></h3>
-<<<<<<< HEAD
-  <select name="drop-down-datasets" id="drop-down-datasets">
-    <option value="" disable select hidden>Previous datasets</option>
-    <% for (let i = 0; i < datasetTitles.length; i++) { %>
-      <option><%= datasetTitles[i].dataset_name %></option>
-    <% } %>
-  </select>
-=======
->>>>>>> 66b20241c6dd8fd84bca89b873e25f7e14e2b4f5
-<div id="input-wrapper">
-  <form action="/users" method="POST" class="user-form">
-    <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-    <div class="revenues">
-      <div class="title-value-revenue">
-        <input type="text" placeholder="revenue type" name="text-revenue0" id="text-revenue0">
-        <input type="number" placeholder="value" name="num-revenue0" id="num-revenue0">
-        <i class="fas fa-plus-circle add-revenue"></i>
+  <nav>
+    <i class="fas fa-bars"></i>
+    <div class="drop-down">
+      <div class="created-graphs">
+
+        <form action="/users" method="GET" class="drop-down-form">
+          <select name="drop-down-datasets" id="drop-down-datasets">
+            <option value="" disable select hidden>Previous datasets</option>
+            <% for (let i = 0; i < datasetTitles.length; i++) { %>
+              <option><%= datasetTitles[i].dataset_name %></option>
+            <% } %>
+          </select>
+          <button type="submit" id="drop-down-button">Load</button>
+        </form>
+
       </div>
     </div>
-    <div class="expenses">
-      <div class="title-value">
-        <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
-        <input type="number" placeholder="value" name="num-expense0" id="num-expense0">
-        <i class="fas fa-plus-circle add-expense"></i>
+    <button id="logout">Logout</button>
+  </nav>
+
+  <!-- ^^ nav ^^  -->
+
+  <div class="container">
+    <div class="input-fields">
+      <div id="data">
+        <div id="input-wrapper">
+          <form action="/users" method="POST" class="user-form">
+            <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
+            <div class="revenues">
+              <div class="title-value-revenue">
+                <input type="text" placeholder="revenue type" name="text-revenue0" id="text-revenue0">
+                <input type="number" placeholder="value" name="num-revenue0" id="num-revenue0">
+                <i class="fas fa-plus-circle add-revenue"></i>
+              </div>
+            </div>
+            <div class="expenses">
+              <div class="title-value">
+                <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
+                <input type="number" placeholder="value" name="num-expense0" id="num-expense0">
+                <i class="fas fa-plus-circle add-expense"></i>
+              </div>
+            </div>
+            <button type="submit" id="submit-button">Save</button>
+          </form>
       </div>
     </div>
-    <button type="submit" id="submit-button">Save</button>
-  </form>
-</div>
-<!-- input-wrapper -->
-</div>
-<!-- container -->
+    <div class="cotent">
+      <!-- CIRCLE GRAPH svg viewbox and logic here -->
+    </div>
+  </div>
+
+  <div class="right-hand-drawer">
+    <!-- incase we need a sliding right hand drawer -->
+  </div>
+  </div>
 </body>
+
 </html>

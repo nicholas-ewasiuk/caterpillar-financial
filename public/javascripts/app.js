@@ -63,7 +63,7 @@ $(document).ready(function () {
   })
 
   
-  $('.user-form').submit(function (event) {
+  $('.user-form').submit(function(event) {
     event.preventDefault();
 
     let revenuesValues = [];
@@ -97,6 +97,9 @@ $(document).ready(function () {
 
 
   });
+
+
+  $('.drop-down-form').submit(function(event))
 
 });
 
