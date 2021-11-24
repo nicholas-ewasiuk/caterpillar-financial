@@ -155,3 +155,8 @@ a {
   align-items: center;
 }
 
+/* t3st paper */
+canvas[resize] {
+  width: 30%;
+  height: 30%;
+}

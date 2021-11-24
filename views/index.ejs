@@ -18,6 +18,14 @@
   <!-- fonts awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+
+      <!-- paper.js -->
+      <script type="module" src="javascripts/papr.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js"
+    integrity="sha512-ovjLI1ZcZe6bw+ImQ21r+sv8q/Vwob2kq7tFidK6E1LWfi0T4uobbmpfEU1//a9h9o5Kkt+MnMWf6rWlg0EiMw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
   <title>Home</title>
 </head>
 
@@ -36,16 +44,19 @@
         <h3>
           <a href="http://localhost:3000/">Try it for yourself <i class="fas fa-angle-double-right"></i></a>
         </h3>
+        <div class="content">
       </div>
       <!-- content-wrap -->
       <!-- <footer><i class="fas fa-chevron-down"></i></footer> -->
     </div>
+    <canvas id="myCanvas" resize></canvas>
+
     <!-- content -->
-    <div class="content-side">
+    <!-- <div class="content-side">
       <nav><i class="fas fa-bars"></i></nav>
       <input id="login" type="text" placeholder="login" />
       <input id="password" type="password" placeholder="password" />
-    </div>
+    </div> -->
     <!-- content-side -->
   </div>
   <!-- container -->

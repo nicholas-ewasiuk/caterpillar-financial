@@ -18,6 +18,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "paper": "^0.12.15",
+    "paper-jsdom-canvas": "^0.12.15",
     "pg": "^8.7.1"
   },
   "devDependencies": {
