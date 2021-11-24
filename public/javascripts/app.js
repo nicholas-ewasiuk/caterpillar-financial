@@ -95,11 +95,27 @@ $(document).ready(function () {
       }
     })
 
-
   });
 
 
-  $('.drop-down-form').submit(function(event))
+  $('.drop-down-form').submit(function(event) {
+    event.preventDefault();
+
+    const datasetName = $('#drop-down-datasets').val();
+
+    $.ajax({
+      url: 'http://localhost:3000/datasets',
+      method: 'GET',
+      data: datasetName
+    }).then((result) => {
+      //result is an array where array[0] is the revenues data and array[1] is the expense data
+      
+      console.log("result", result)
+    }).catch((err) => {
+      console.log("catch error", err)
+    })
+
+  })
 
 });
 
