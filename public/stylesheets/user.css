@@ -40,16 +40,22 @@ a {
   color: var(--color-dark);
   text-decoration: none;
 }
-
-.container {
-  width: 100%;
-  height: 100vh;
-  font: var(--font-fam);
+nav {
+  height: 80px;
+  position: fixed;
+  top: 0;
+  z-index: 10;  
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
 }
+nav i {
+  color: var(--color-white);
+  font-size: 2.5em;
+}
+
 .content {
   margin-top: 90px;
   width: 65%;
@@ -61,8 +67,17 @@ a {
   justify-content: center;
   justify-items: left;
 }
+.input-fields {
+  width: 20%;
+  padding-top: 90px;
+  font-family: var(--font-family);
+  background-color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .content-wrap {
-  padding-left: 30%;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -81,26 +96,8 @@ a {
   width: 66%;
   margin-top: 150px;
 }
-.content footer {
-  width: 65%;
-  height: 60px;
-  padding-left: 30%;
-  font-size:3em;
-  display: flex;
-  align-content: center;
-}
-.fa-chevron-down {
-  margin-top: 15%;
-  animation: bounce 1.5s infinite;
-}
-@keyframes bounce {
-  0%, 100% {-webkit-transform: translateY(0);}
-  50% {-webkit-transform: translateY(-25px);}
-}
-
-.content-side {
-  width: 35%;
-  height: 100vh;
+.right-hand-drawer {
+  width: 20%;
   padding-top: 90px;
   font-family: var(--font-family);
   background-color: var(--color-dark);
@@ -109,50 +106,3 @@ a {
   align-items: center;
   justify-content: center;
 }
-
-.content-side nav {
-  height: 80px;
-  position: fixed;
-  top: 0;
-  z-index: 10;  
-  padding-left: 5%;
-  padding-right: 5%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-}
-.content-side nav i {
-  color: var(--color-white);
-  font-size: 2.5em;
-}
-
-.graph-container {
-  width:  100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.graph {
-  height: 66%;
-  width: 66%;
-  margin-bottom: 30px;
-
-}
-.input-fields {
-  width: 500px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: black;
-  font-size: var(--fontsize-header);
-  border: 3px solid lightgray;
-  border-radius: 0 5px 5px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
