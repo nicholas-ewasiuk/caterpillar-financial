@@ -17,7 +17,9 @@
   --font-bold: 800;
   --font-black: 900;
 }
+
 /*^ global ^*/
+
 nav {
   background-color: var(--color-dark);
   height: 80px;
@@ -99,7 +101,6 @@ a {
 }
 .content {
   width: 80%;
-  background-color: violet;
   font-family: var(--font-family);
   display: flex;
   align-items: center;
