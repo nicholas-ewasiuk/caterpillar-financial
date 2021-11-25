@@ -18,8 +18,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 
-  <script type="module" src="javascripts/main.js"></script>
-  <!-- <script type="module" src="javascripts/interact.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script type="module" src="javascripts/interact.js"></script>
 
   <title>Home</title>
 </head>
@@ -28,35 +28,34 @@
   <div class="container">
     <div class="content">
       <div class="content-wrap">
-        <h2>
-          Data &nbsp;– &nbsp;<i class="far fa-file"></i><br />
-          Visualizer
-        </h2>
+        <i class="far fa-circle" style="font-size: 66px; color: #2f2f2f;"></i>
+        <i class="fas fa-circle" style="font-size: 33px; color: #2f2f2f;"></i>
+        <h2>Data</i><br />Visualizer</h2>
         <p>
           A <b>bespoke</b> visual and dynamic experience for your company's
           financial data.
         </p>
-        <h3>
-          <a href="">Try it for yourself</a>
-        </h3>
-        <div class="content">
-        </div>
-        <!-- content-wrap -->
-
-        <!-- <footer><i class="fas fa-chevron-down"></i></footer> -->
+        <h3>Try it for yourself</h3>
+        <button id="toggle">toggler</button>
+  
       </div>
+      <!-- content-wrap -->
+
+    </div>
       <!-- content -->
+      <!-- <div id="drawer">
+      </div> -->
+      <!-- drawer -->
+        <div class="content-side">
+          <nav><i class="fas fa-times"></i></nav>
+          <a href="/login">
+            <i class="far fa-arrow-alt-circle-right"></i>
+          </a>
+        </div>
+        <!-- content-side -->
 
-
-      <div class="content-side">
-        <nav><i class="fas fa-bars"></i></nav>
-       <a href="/login">
-         <i class="fas fa-chevron-down"></i>
-       </a>
-      </div>
-      <!-- content-side -->
     </div>
     <!-- container -->
-</body>
 
+</body>
 </html>
