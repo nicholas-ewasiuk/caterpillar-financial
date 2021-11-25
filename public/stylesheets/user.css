@@ -17,7 +17,7 @@
   --font-bold: 800;
   --font-black: 900;
 }
-
+/*^ global ^*/
 nav {
   background-color: var(--color-dark);
   height: 80px;
