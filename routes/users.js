@@ -15,6 +15,8 @@ module.exports = (db) => {
         })
 
       })
+
+    
   });
  
   router.post('/:id', function(req, res) {

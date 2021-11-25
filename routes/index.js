@@ -25,16 +25,29 @@ module.exports = (db) => {
       })
   });
 
-  // router.get('/users/:id', function(req, res) {
-  //   const user_id = req.params.id;
 
-  //   res.render('user');
-  // });
+  router.get('/datasets', function(req, res) {
+    const datasetName = decodeURIComponent(req.url.split('?')[1]);
 
-  // router.post('/users/:id', function(req, res) {
-  //   console.log("reqbody",req.body)
-  // });
+    db.query(`SELECT id FROM datasets WHERE dataset_name='${datasetName}'`)
+      .then(data => {
+        const datasetId = data.rows[0].id;
+        
+        db.query(`SELECT revenue_name, amount FROM revenues WHERE dataset_id='${datasetId}'`)
+          .then(revData => {
+            const revenuesData = revData.rows;
 
+            db.query(`SELECT expense_name, amount FROM expenses WHERE dataset_id='${datasetId}'`)
+              .then(expData => {
+                const expensesData = expData.rows;
+
+                const dataArray = [ revenuesData, expensesData ];
+
+                res.send(dataArray);
+              })
+          })
+      })
+  })
 
 
   return router;
