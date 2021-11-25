@@ -112,6 +112,9 @@ a {
 }
 
 /* #drawer {
+  display:none;
+position:fixed;
+
 
 } */
 
@@ -127,6 +130,7 @@ a {
   align-items: center;
   justify-content: center;
 }
+/* box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color]; */
 
 .content-side nav {
   height: 80px;
