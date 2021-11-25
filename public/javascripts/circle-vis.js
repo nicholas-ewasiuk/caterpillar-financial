@@ -16,12 +16,12 @@ function updateCircle(event) {
   let circleRadius;
 
   for (let i = 0; i < revenueCount; i++) {
-    inputNumber = document.getElementById(`number-revenue-${i+1}`)
+    inputNumber = document.getElementById(`num-revenue${i+1}`)
     amount = Number(inputNumber.value);
     totalRevenue += amount;
   }
   for (let i = 0; i < expenseCount; i++) {
-    inputNumber = document.getElementById(`number-expense-${i+1}`)
+    inputNumber = document.getElementById(`num-expense${i+1}`)
     amount = Number(inputNumber.value);
     totalExpense += amount;
   }

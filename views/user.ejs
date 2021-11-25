@@ -24,6 +24,8 @@
     crossorigin="anonymous"></script>
 
     <script type="module" src="/javascripts/app.js"></script>
+    <script type="module" src="/javascripts/circle-vis.js"></script>
+
   <title>USER</title>
 </head>
 
@@ -54,15 +56,14 @@
   <div class="container">
 
     <div class="input-fields">
-
+<!-- 
         <div id="error">
           <span class="error-msg">
             <h2>ERROR</h2>
             <p>Cannot save: title is already in use.</p>
-            <!-- <span class="error-msg-exit"></span> -->
           </span>
           <i class="fas fa-times"></i>
-        </div>
+        </div> -->
 
 
       <form action="/users" method="POST" class="user-form">
@@ -101,9 +102,18 @@
         </div>
     </div>
     <div class="content">
-      <img src="/svg/circle-placeholder-01.svg" alt="">
+      <svg 
+        version="1.0" 
+        xmlns="http://www.w3.org/2000/svg" 
+        xmlns:xlink="http://www.w3.org/1999/xlink" 
+        x="0px" 
+        y="0px"
+        viewBox="0 0 100 100" 
+        enable-background="new 0 0 100 100" 
+        xml:space="preserve">
+        <circle id="circle-visual" fill="#D4FBC4" cx="50" cy="50" r="25"/>
+      </svg>
     </div>
-
     <div class="right-hand-drawer">
       <!-- incase we need a sliding right hand drawer -->
     </div>
