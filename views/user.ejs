@@ -29,7 +29,7 @@
 
 <body>
   <nav>
-    <i class="fas fa-bars"></i>
+    <h3 class="username"><%= username %></h3>
     <div class="drop-down">
       <div class="created-graphs">
         <form action="/users/datasets" method="GET" class="drop-down-form">
@@ -51,6 +51,7 @@
   <!-- ^^ nav ^^  -->
 
   <div class="container">
+
     <div class="input-fields">
       <form action="/users" method="POST" class="user-form">
         <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
