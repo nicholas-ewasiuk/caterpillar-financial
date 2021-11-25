@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-html {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-:root {
-  --rad: .7rem;
-  --dur: .3s;
-  --color-dark: #2f2f2f;
-  --color-white: #fff;
-  --color-step-one: #d4fbc4;
-  --color-step-two:#d8f1c4;
-  --color-step-three:#e1dec1;
-  --color-step-four:#e6d2c0;
-  --color-step-five:#ecc5bf;
-=======
 :root {
   --rad: 0.7rem;
   --dur: 0.3s;
@@ -29,7 +8,6 @@ html {
   --color-step-three: #e1dec1;
   --color-step-four: #e6d2c0;
   --color-step-five: #ecc5bf;
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
   --font-family: "Poppins", "helvetica", sans-serif;
@@ -39,11 +17,6 @@ html {
   --font-bold: 800;
   --font-black: 900;
 }
-<<<<<<< HEAD
-
-/* ^ global stuff ^ */
-
-=======
 /*^ global ^*/
 nav {
   background-color:var(--color-dark);
@@ -59,7 +32,6 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
 body {
   font-family: var(--font-family);
   margin: 0;
@@ -71,73 +43,6 @@ a {
   color: var(--color-dark);
   text-decoration: none;
 }
-<<<<<<< HEAD
-nav {
-  height: 80px;
-  position: fixed;
-  top: 0;
-  z-index: 10;  
-  padding-left: 5%;
-  padding-right: 5%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-}
-nav i {
-  color: var(--color-white);
-  font-size: 2.5em;
-}
-
-.content {
-  margin-top: 90px;
-  width: 65%;
-  height: 100vh;
-  font-family: var(--font-family);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  justify-items: left;
-}
-.input-fields {
-  width: 20%;
-  padding-top: 90px;
-  font-family: var(--font-family);
-  background-color: var(--color-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/*
- will try to get a an animated gradient to loop as bg of drawers 
- */
-.content-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-}
-.content h2 {
-  color: var(--color-dark);
-  font-size: var(--fontsize-header);
-  font-weight: var(--font-black);
-}
-.content h3 {
-  color: var(--color-dark);
-  font-size: var(--fontsize-sub);
-  font-weight: var(--font-bold);
-}
-.content p {
-  width: 66%;
-  margin-top: 150px;
-}
-.right-hand-drawer {
-  width: 20%;
-  padding-top: 90px;
-  font-family: var(--font-family);
-  background-color: var(--color-dark);
-=======
 .containter {
   width: 100vw;
   height: 100vh;
@@ -162,15 +67,12 @@ nav i {
     #3d1635 84%,
     #1c1a27 100%
   );
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-<<<<<<< HEAD
-=======
 #input-wrapper {
   display: flex;
   flex-direction: column;
@@ -239,4 +141,3 @@ nav i {
   flex-direction: row;
   justify-content: flex-start;
 }
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
