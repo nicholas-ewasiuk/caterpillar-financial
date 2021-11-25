@@ -111,26 +111,26 @@ $(document).ready(function () {
       //result is an array where array[0] is the revenues data and array[1] is the expense data
 
       for (let i = 2; i < revenuesArray.length; i++) {
-        let tmpValueId = "#" + revenuesArray[i];
+        let tmpValueId = revenuesArray[i];
 
         $(`${tmpValueId}`).remove();
       }
 
       for (let i = 2; i < expensesArray.length; i++) {
-        let tmpValueId = "#" + expensesArray[i];
+        let tmpValueId = expensesArray[i];
 
         $(`${tmpValueId}`).remove();
       }
 
-      expensesArray = ["#text-expense0", "#num-expense0"];
-      revenuesArray = ["#text-revenue0", "#num-revenue0"];
+      expensesArray = ["text-expense0", "num-expense0"];
+      revenuesArray = ["text-revenue0", "num-revenue0"];
 
       let revCounter = result[0].length - 1;
       let expCounter = result[1].length - 1;
 
       while (revCounter > 0) {
-        const idText = "#text-revenue" + revenueCounter;
-        const idNum = "#num-revenue" + revenueCounter;
+        const idText = "text-revenue" + revenueCounter;
+        const idNum = "num-revenue" + revenueCounter;
 
         appendRevenueInputElements(idText, idNum);
 
@@ -142,8 +142,8 @@ $(document).ready(function () {
       }
 
       while (expCounter > 0) {
-        const idText = "#text-expense" + expenseCounter;
-        const idNum = "#num-expense" + expenseCounter;
+        const idText = "text-expense" + expenseCounter;
+        const idNum = "num-expense" + expenseCounter;
 
         appendExpenseInputElements(idText, idNum);
 
@@ -221,7 +221,7 @@ $(document).ready(function () {
 
     circle.setAttribute('r', `${circleRadius}`);
 
-    console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius}`);
+    console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
   }
 });
 
