@@ -62,12 +62,12 @@ $(document).ready(function () {
     expenseCounter++;
   })
 
-  
-  $('.user-form').submit(function(event) {
+
+  $('.user-form').submit(function (event) {
     event.preventDefault();
 
     let revenuesValues = [];
-    let expensesValues = []; 
+    let expensesValues = [];
 
     for (let i = 0; i < revenuesArray.length; i++) {
       let tmpValueId = "#" + revenuesArray[i];
@@ -98,7 +98,7 @@ $(document).ready(function () {
   });
 
 
-  $('.drop-down-form').submit(function(event) {
+  $('.drop-down-form').submit(function (event) {
     event.preventDefault();
 
     const datasetName = $('#drop-down-datasets').val();
@@ -139,8 +139,8 @@ $(document).ready(function () {
         expCounter--;
       }
 
-      for (let i = 0; i < result[0].length; i ++) {
-        
+      for (let i = 0; i < result[0].length; i++) {
+
       }
       console.log("result", result)
     }).catch((err) => {
@@ -149,5 +149,49 @@ $(document).ready(function () {
 
   })
 
+
+
+  document.addEventListener('input', updateCircle);
+
+  function updateCircle(event) {
+    console.clear();
+    const scale = 25;
+
+    let totalRevenue = 0;
+    let totalExpense = 0;
+
+    let inputNumber;
+    let amount = 0;
+
+    let circleRadius;
+    const circle = document.getElementById('circle-visual');
+    const balance = document.getElementById('balance');
+
+    for (let i = 0; i < revenueCounter; i++) {
+      inputNumber = document.getElementById(`num-revenue${i}`)
+      amount = Number(inputNumber.value);
+      totalRevenue += amount;
+    }
+
+    for (let i = 0; i < expenseCounter; i++) {
+      inputNumber = document.getElementById(`num-expense${i}`)
+      amount = Number(inputNumber.value);
+      totalExpense += amount;
+    }
+
+    if (totalExpense > totalRevenue) {
+      circle.setAttribute('fill', 'chocolate');
+      balance.innerHTML=(totalExpense - totalRevenue);
+      circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
+    } else if (totalRevenue > totalExpense) {
+      circle.setAttribute('fill', 'green');
+      balance.innerHTML=(totalExpense - totalRevenue);
+      circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
+    }
+
+    circle.setAttribute('r', `${circleRadius}`);
+
+    console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius}`);
+  }
 });
 

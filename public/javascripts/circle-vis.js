@@ -4,9 +4,6 @@ function updateCircle(event) {
   console.clear();
   const scale = 100;
 
-  let revenueCount = 3;
-  let expenseCount = 3;
-
   let totalRevenue = 0;
   let totalExpense = 0;
 
@@ -15,13 +12,14 @@ function updateCircle(event) {
 
   let circleRadius;
 
-  for (let i = 0; i < revenueCount; i++) {
-    inputNumber = document.getElementById(`num-revenue${i+1}`)
+  for (let i = 0; i < revenueCounter; i++) {
+    inputNumber = document.getElementById(`num-revenue${i-1}`)
     amount = Number(inputNumber.value);
     totalRevenue += amount;
   }
-  for (let i = 0; i < expenseCount; i++) {
-    inputNumber = document.getElementById(`num-expense${i+1}`)
+
+  for (let i = 0; i < expenseCounter; i++) {
+    inputNumber = document.getElementById(`num-expense${i-1}`)
     amount = Number(inputNumber.value);
     totalExpense += amount;
   }
