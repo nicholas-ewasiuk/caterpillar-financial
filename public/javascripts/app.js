@@ -85,7 +85,7 @@ $(document).ready(function () {
     const datasetTitle = $('#dataset-title').val();
 
     $.ajax({
-      url: 'http://localhost:3000/users/datasets',
+      url: 'http://localhost:3001/users/datasets',
       method: 'POST',
       data: {
         revenuesData: revenuesValues,
@@ -104,18 +104,33 @@ $(document).ready(function () {
     const datasetName = $('#drop-down-datasets').val();
 
     $.ajax({
-      url: 'http://localhost:3000/datasets',
+      url: 'http://localhost:3001/datasets',
       method: 'GET',
       data: datasetName
     }).then((result) => {
       //result is an array where array[0] is the revenues data and array[1] is the expense data
 
+      for (let i = 2; i < revenuesArray.length; i++) {
+        let tmpValueId = "#" + revenuesArray[i];
+
+        $(`${tmpValueId}`).remove();
+      }
+
+      for (let i = 2; i < expensesArray.length; i++) {
+        let tmpValueId = "#" + expensesArray[i];
+
+        $(`${tmpValueId}`).remove();
+      }
+
+      expensesArray = ["#text-expense0", "#num-expense0"];
+      revenuesArray = ["#text-revenue0", "#num-revenue0"];
+
       let revCounter = result[0].length - 1;
       let expCounter = result[1].length - 1;
 
       while (revCounter > 0) {
-        const idText = "text-revenue" + revenueCounter;
-        const idNum = "num-revenue" + revenueCounter;
+        const idText = "#text-revenue" + revenueCounter;
+        const idNum = "#num-revenue" + revenueCounter;
 
         appendRevenueInputElements(idText, idNum);
 
@@ -127,8 +142,8 @@ $(document).ready(function () {
       }
 
       while (expCounter > 0) {
-        const idText = "text-expense" + expenseCounter;
-        const idNum = "num-expense" + expenseCounter;
+        const idText = "#text-expense" + expenseCounter;
+        const idNum = "#num-expense" + expenseCounter;
 
         appendExpenseInputElements(idText, idNum);
 
@@ -139,10 +154,25 @@ $(document).ready(function () {
         expCounter--;
       }
 
-      for (let i = 0; i < result[0].length; i ++) {
 
+      for (let i = 0; i < revenuesArray.length; i++) {
+        
+        if (i % 2 === 0) {
+          $(`${revenuesArray[i]}`).val(`${result[0][i / 2].revenue_name}`);
+          $(`${revenuesArray[i + 1]}`).val(`${result[0][i / 2].amount}`);
+        }
       }
-      console.log("result", result)
+
+      for (let i = 0; i < expensesArray.length; i++) {
+
+        if (i % 2 === 0) {
+          $(`${expensesArray[i]}`).val(`${result[1][i / 2].expense_name}`);
+          $(`${expensesArray[i + 1]}`).val(`${result[1][i / 2].amount}`);
+        }
+      }
+
+      $('#dataset-title').val($("#drop-down-datasets").val())
+
     }).catch((err) => {
       console.log("catch error", err)
     })
@@ -151,3 +181,10 @@ $(document).ready(function () {
 
 });
 
+
+
+// [
+//   { revenuetype: "asdasd", amount: 1231231 },
+//   { revenuetype: "sdfs", amount: 1242143231 },
+//   { revenuetype: "asdasdsfasfd", amount: 1223431 }
+// ]
