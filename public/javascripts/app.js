@@ -140,7 +140,7 @@ $(document).ready(function () {
       }
 
       for (let i = 0; i < result[0].length; i ++) {
-
+        
       }
       console.log("result", result)
     }).catch((err) => {

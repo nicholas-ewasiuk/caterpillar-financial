@@ -5,24 +5,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="stylesheets/user.css" media="all" />
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="/javascripts/app.js"></script>
-
-=======
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="all" />
   <link rel="stylesheet" type="text/css" href="/stylesheets/user.css" media="all" />
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   <!-- google fonts -->
   <!-- poppins: 100 - 900 /w italic -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,21 +17,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
-<<<<<<< HEAD
-  <!-- fonts awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"
-    integrity="sha256-oUJV5o/Jn8W0qLMjwTBwrGf0J3WRdwb9OxR7Q2gQpdo=" crossorigin="anonymous"></script>
-
-  <script type="module" src="javascripts/main.js"></script>
-  <!-- <script type="module" src="javascripts/interact.js"></script> -->
-
-  <!-- ----------X add scripts here X---------- -->
-
-  <title><h3 class="username"><%=username %></h3></title>
-=======
 
   <!-- fonts awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -57,7 +29,6 @@
 
     <script type="module" src="/javascripts/app.js"></script>
   <title>USER</title>
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
 </head>
 
 <body>
@@ -65,15 +36,6 @@
     <i class="fas fa-bars"></i>
     <div class="drop-down">
       <div class="created-graphs">
-<<<<<<< HEAD
-
-        <form action="/datasets" method="GET" class="drop-down-form">
-          <select name="drop-down-datasets" id="drop-down-datasets">
-            <option value="" disable select hidden>Previous datasets</option>
-            <% for (let i = 0; i < datasetTitles.length; i++) { %>
-              <option><%= datasetTitles[i].dataset_name %></option>
-            <% } %>
-=======
         <form action="/users/datasets" method="GET" class="drop-down-form">
           <select name="drop-down-datasets" id="drop-down-datasets">
             <option value="" disable select hidden>Previous datasets</option>
@@ -82,7 +44,6 @@
                 <%= datasetTitles[i].dataset_name %>
               </option>
               <% } %>
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
           </select>
           <button type="submit" id="drop-down-button">Load</button>
         </form>
@@ -91,46 +52,10 @@
     </div>
     <button id="logout">Logout</button>
   </nav>
-<<<<<<< HEAD
-
-=======
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   <!-- ^^ nav ^^  -->
 
   <div class="container">
     <div class="input-fields">
-<<<<<<< HEAD
-      <div id="data">
-        <div id="input-wrapper">
-          <form action="/users" method="POST" class="user-form">
-            <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-            <div class="revenues">
-              <div class="title-value-revenue">
-                <input type="text" placeholder="revenue type" name="text-revenue0" id="text-revenue0">
-                <input type="number" placeholder="value" name="num-revenue0" id="num-revenue0">
-                <i class="fas fa-plus-circle add-revenue"></i>
-              </div>
-            </div>
-            <div class="expenses">
-              <div class="title-value">
-                <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
-                <input type="number" placeholder="value" name="num-expense0" id="num-expense0">
-                <i class="fas fa-plus-circle add-expense"></i>
-              </div>
-            </div>
-            <button type="submit" id="submit-button">Save</button>
-          </form>
-      </div>
-    </div>
-    <div class="cotent">
-      <!-- CIRCLE GRAPH svg viewbox and logic here -->
-    </div>
-  </div>
-
-  <div class="right-hand-drawer">
-    <!-- incase we need a sliding right hand drawer -->
-  </div>
-=======
       <form action="/users" method="POST" class="user-form">
         <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
         <!-- TITLE -->
@@ -171,7 +96,6 @@
     <div class="right-hand-drawer">
       <!-- incase we need a sliding right hand drawer -->
     </div>
->>>>>>> a56253eb2418ad1395b3206343a3e49831a8a8df
   </div>
 </body>
 
