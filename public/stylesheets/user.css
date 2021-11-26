@@ -174,3 +174,8 @@ a {
   flex-direction: row;
   justify-content: flex-start;
 }
+
+#canvas {
+  width: 100%;
+  height: 100%;
+}
