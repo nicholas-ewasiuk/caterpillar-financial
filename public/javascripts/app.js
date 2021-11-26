@@ -62,12 +62,12 @@ $(document).ready(function () {
     expenseCounter++;
   })
 
-  
-  $('.user-form').submit(function(event) {
+
+  $('.user-form').submit(function (event) {
     event.preventDefault();
 
     let revenuesValues = [];
-    let expensesValues = []; 
+    let expensesValues = [];
 
     for (let i = 0; i < revenuesArray.length; i++) {
       let tmpValueId = "#" + revenuesArray[i];
@@ -98,7 +98,7 @@ $(document).ready(function () {
   });
 
 
-  $('.drop-down-form').submit(function(event) {
+  $('.drop-down-form').submit(function (event) {
     event.preventDefault();
 
     const datasetName = $('#drop-down-datasets').val();
@@ -111,26 +111,26 @@ $(document).ready(function () {
       //result is an array where array[0] is the revenues data and array[1] is the expense data
 
       for (let i = 2; i < revenuesArray.length; i++) {
-        let tmpValueId = "#" + revenuesArray[i];
+        let tmpValueId = revenuesArray[i];
 
         $(`${tmpValueId}`).remove();
       }
 
       for (let i = 2; i < expensesArray.length; i++) {
-        let tmpValueId = "#" + expensesArray[i];
+        let tmpValueId = expensesArray[i];
 
         $(`${tmpValueId}`).remove();
       }
 
-      expensesArray = ["#text-expense0", "#num-expense0"];
-      revenuesArray = ["#text-revenue0", "#num-revenue0"];
+      expensesArray = ["text-expense0", "num-expense0"];
+      revenuesArray = ["text-revenue0", "num-revenue0"];
 
       let revCounter = result[0].length - 1;
       let expCounter = result[1].length - 1;
 
       while (revCounter > 0) {
-        const idText = "#text-revenue" + revenueCounter;
-        const idNum = "#num-revenue" + revenueCounter;
+        const idText = "text-revenue" + revenueCounter;
+        const idNum = "num-revenue" + revenueCounter;
 
         appendRevenueInputElements(idText, idNum);
 
@@ -142,8 +142,8 @@ $(document).ready(function () {
       }
 
       while (expCounter > 0) {
-        const idText = "#text-expense" + expenseCounter;
-        const idNum = "#num-expense" + expenseCounter;
+        const idText = "text-expense" + expenseCounter;
+        const idNum = "num-expense" + expenseCounter;
 
         appendExpenseInputElements(idText, idNum);
 
@@ -179,6 +179,50 @@ $(document).ready(function () {
 
   })
 
+
+
+  document.addEventListener('input', updateCircle);
+
+  function updateCircle(event) {
+    console.clear();
+    const scale = 25;
+
+    let totalRevenue = 0;
+    let totalExpense = 0;
+
+    let inputNumber;
+    let amount = 0;
+
+    let circleRadius;
+    const circle = document.getElementById('circle-visual');
+    const balance = document.getElementById('balance');
+
+    for (let i = 0; i < revenueCounter; i++) {
+      inputNumber = document.getElementById(`num-revenue${i}`)
+      amount = Number(inputNumber.value);
+      totalRevenue += amount;
+    }
+
+    for (let i = 0; i < expenseCounter; i++) {
+      inputNumber = document.getElementById(`num-expense${i}`)
+      amount = Number(inputNumber.value);
+      totalExpense += amount;
+    }
+
+    if (totalExpense > totalRevenue) {
+      circle.setAttribute('fill', '#ecc5bf');
+      balance.innerHTML=(totalExpense - totalRevenue);
+      circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
+    } else if (totalRevenue > totalExpense) {
+      circle.setAttribute('fill', '#d4fbc4');
+      balance.innerHTML=(totalExpense - totalRevenue);
+      circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
+    }
+
+    circle.setAttribute('r', `${circleRadius}`);
+
+    console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
+  }
 });
 
 
