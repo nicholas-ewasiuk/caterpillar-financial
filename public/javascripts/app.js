@@ -233,33 +233,34 @@ $(document).ready(function () {
   const c = canvas.getContext('2d');
 
   console.log(canvas);
-
-  document.addEventListener('input', generateCircle);
-  const input = {
-    input: document.getElementById("num-revenue0")
-  }
-
-  function resize(e) {
-    console.log("input event", input);
-
-  }
-  resize();
   const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
-  const radius = 10
 
-  // const colorRandom = color[Math.floor(Math.random() * color.length)];
-  // const x = Math.random() * (innerWidth - radius * 2) + radius;
-  // const y = Math.random() * (innerHeight - radius * 2) + radius;
+  const randomColor = Math.floor(Math.random() * color.length);
+  var radius=50;
 
-  function generateCircle() {
-    // Get the radius of the base 
-    c.beginPath();
-    c.arc(300, 300, 20, 0, Math.PI * 2, false);
-    c.fillStyle = colorRandom;
-    c.fill();
+  var $radius=document.getElementById('num-revenue0');
+  $radius.value=radius;
+
+  draw();
+  
+  $radius.addEventListener("keyup", function(){
+      radius=this.value;
+      draw();
+  }, false);
+  
+  $radius.addEventListener("keyup", function(){
+      radius=this.value;
+      draw();
+  }, false);
+  
+  
+  function draw(){
+      c.clearRect(0,0,canvas.width,canvas.height);
+      c.arc(300, 300, radius, 0, Math.PI * 2, false);
+      c.fillStyle = color[randomColor];
+      c.fill();
+      // c.fillRect(40,40,width,height);
   }
-
-  generateCircle();
 
   // const mousePosition = {
   //   x: undefined,
