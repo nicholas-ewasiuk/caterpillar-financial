@@ -156,18 +156,18 @@ $(document).ready(function () {
 
 
       for (let i = 0; i < revenuesArray.length; i++) {
-        
+
         if (i % 2 === 0) {
-          $(`${revenuesArray[i]}`).val(`${result[0][i / 2].revenue_name}`);
-          $(`${revenuesArray[i + 1]}`).val(`${result[0][i / 2].amount}`);
+          $(`#${revenuesArray[i]}`).val(`${result[0][i / 2].revenue_name}`);
+          $(`#${revenuesArray[i + 1]}`).val(`${result[0][i / 2].amount}`);
         }
       }
 
       for (let i = 0; i < expensesArray.length; i++) {
 
         if (i % 2 === 0) {
-          $(`${expensesArray[i]}`).val(`${result[1][i / 2].expense_name}`);
-          $(`${expensesArray[i + 1]}`).val(`${result[1][i / 2].amount}`);
+          $(`#${expensesArray[i]}`).val(`${result[1][i / 2].expense_name}`);
+          $(`#${expensesArray[i + 1]}`).val(`${result[1][i / 2].amount}`);
         }
       }
 
@@ -226,9 +226,3 @@ $(document).ready(function () {
 });
 
 
-
-// [
-//   { revenuetype: "asdasd", amount: 1231231 },
-//   { revenuetype: "sdfs", amount: 1242143231 },
-//   { revenuetype: "asdasdsfasfd", amount: 1223431 }
-// ]
