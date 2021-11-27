@@ -47,8 +47,13 @@ module.exports = (db) => {
               })
           })
       })
-  })
+  });
 
+
+  router.get('/collectall', function(req, res) {
+
+    db.query(`SELECT `)
+  })
 
   return router;
 }

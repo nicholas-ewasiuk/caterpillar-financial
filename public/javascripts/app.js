@@ -180,49 +180,137 @@ $(document).ready(function () {
   })
 
 
+  $().on('click', function(e) {
 
-  document.addEventListener('input', updateCircle);
+    const username = $('.username').text();
 
-  function updateCircle(event) {
-    console.clear();
-    const scale = 25;
+    $.ajax({
+      url: 'http://localhost:3001/collectall',
+      method: 'GET',
+      data: username
+    })    
+  }).then((result) => {
 
-    let totalRevenue = 0;
-    let totalExpense = 0;
+  })
 
-    let inputNumber;
-    let amount = 0;
+  // document.addEventListener('input', updateCircle);
 
-    let circleRadius;
-    const circle = document.getElementById('circle-visual');
-    const balance = document.getElementById('balance');
+  // function updateCircle(event) {
+  //   console.clear();
+  //   const scale = 25;
 
-    for (let i = 0; i < revenueCounter; i++) {
-      inputNumber = document.getElementById(`num-revenue${i}`)
-      amount = Number(inputNumber.value);
-      totalRevenue += amount;
-    }
+  //   let totalRevenue = 0;
+  //   let totalExpense = 0;
 
-    for (let i = 0; i < expenseCounter; i++) {
-      inputNumber = document.getElementById(`num-expense${i}`)
-      amount = Number(inputNumber.value);
-      totalExpense += amount;
-    }
+  //   let inputNumber;
+  //   let amount = 0;
 
-    if (totalExpense > totalRevenue) {
-      circle.setAttribute('fill', '#ecc5bf');
-      balance.innerHTML=(totalExpense - totalRevenue);
-      circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
-    } else if (totalRevenue > totalExpense) {
-      circle.setAttribute('fill', '#d4fbc4');
-      balance.innerHTML=(totalExpense - totalRevenue);
-      circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
-    }
+  //   let circleRadius;
+  //   const circle = document.getElementById('circle-visual');
+  //   const balance = document.getElementById('balance');
 
-    circle.setAttribute('r', `${circleRadius}`);
+  //   for (let i = 0; i < revenueCounter; i++) {
+  //     inputNumber = document.getElementById(`num-revenue${i}`)
+  //     amount = Number(inputNumber.value);
+  //     totalRevenue += amount;
+  //   }
 
-    console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
-  }
+  //   for (let i = 0; i < expenseCounter; i++) {
+  //     inputNumber = document.getElementById(`num-expense${i}`)
+  //     amount = Number(inputNumber.value);
+  //     totalExpense += amount;
+  //   }
+
+  //   if (totalExpense > totalRevenue) {
+  //     circle.setAttribute('fill', '#ecc5bf');
+  //     balance.innerHTML=(totalExpense - totalRevenue);
+  //     circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
+  //   } else if (totalRevenue > totalExpense) {
+  //     circle.setAttribute('fill', '#d4fbc4');
+  //     balance.innerHTML=(totalExpense - totalRevenue);
+  //     circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
+  //   }
+
+  //   circle.setAttribute('r', `${circleRadius}`);
+
+  //   console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
+  // }
+
+
+  // CANVAS
+  console.log('canvas reached');
+  const canvas = document.querySelector('canvas');
+  // console.log(canvas);
+
+  canvas.width = window.innerWidth - 150;
+  canvas.height = window.innerHeight;
+
+  const c = canvas.getContext('2d');
+
+  
+  $('#num-revenue0').on('keyup', function() {
+    let radius = Math.sqrt(Number($('#num-revenue0').val()));
+    c.clearRect(0, 0, innerWidth, innerHeight)
+    c.beginPath();
+    c.arc(500, 300, radius, 0, 2 * Math.PI, false);
+    c.fillStyle = "#d4fbc4";
+    c.fill();
+    c.stroke();
+    c.closePath();
+    console.log("here",radius);
+  })
+
+
+  // multiple random circles
+  // for(let i = 0; i < 3; i++){
+  //   const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
+  //   const x = Math.random() * window.innerWidth;
+  //   const y = Math.random() * window.innerHeight;
+  //   c.beginPath();
+  //   c.arc(x, y, 100, 0, Math.PI * 2, false);
+  //   c.fillStyle = "#d4fbc4"
+  //   c.fill();
+  // }
+
+
+  // let x = Math.random() * innerWidth;
+  // let y = Math.random() * innerHeight;
+  // // velocity (+ equals right on the x axis - goes right)
+  // // let xVelocity = (Math.random() - 0.5) * 12;
+  // // let yVelocity = (Math.random() - 0.5) * 12;
+  // let radius = 50;
+
+
+  // const randomCircle = function(x, y, xVelocity, yVelocity, radius) {
+  //   this.x = x;
+  //   this.y = y;
+  //   this.xVelocity = xVelocity;
+  //   this.yVelocity = yVelocity;
+  //   this.radius = radius;
+
+  //   this.draw = function() {
+  //     c.beginPath();
+  //     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+  //     c.fillStyle = "#d4fbc4"
+  //     c.fill();
+  //   }
+
+  //   this.update = function(){
+  //     if (this.x + radius > innerWidth || this.x - this.radius < 0) {
+  //       this.xVelocity = - this.xVelocity;
+  //     }
+  //     if (this.y + radius > innerHeight || this.y - this.radius < 0) {
+  //       this.yVelocity = - this.yVelocity;
+  //     }
+  //     x += this.xVelocity;
+  //     y += this.yVelocity;
+
+  //     this.draw();
+  //   }
+  // }
+  // let newCircle = new randomCircle(100, 100, 20, 20, 80);
+
+
 });
 
 
