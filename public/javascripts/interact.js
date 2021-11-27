@@ -22,7 +22,19 @@ $(document).ready(function () {
     });
   });
 
+  $("#previous-btn").click(function(){
+    $("#previous-menu-item__sub").slideToggle(300, function(){
+      console.log("slideUp + slideDown");
+    });
+  });
+  $("#create-btn").click(function(){
+    $("#graph-controls").slideToggle(300, function(){
+      console.log("slideUp + slideDown");
+    });
+  });
 
 
   // document.ready
 });
+
+// $(selector).slideToggle(speed,easing,callback)
