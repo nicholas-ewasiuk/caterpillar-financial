@@ -51,8 +51,32 @@ module.exports = (db) => {
 
 
   router.get('/collectall', function(req, res) {
+    const username = decodeURIComponent(req.url.split('?')[1]);
+    let dataArray = [];
 
-    db.query(`SELECT `)
+    db.query(`
+    SELECT dataset_id, revenue_name, amount 
+    FROM revenues 
+    JOIN datasets ON datasets.id = dataset_id
+    JOIN users ON users.id = user_id
+    WHERE users.username='${username}';
+    `)
+      .then(revenuesSets => {
+      dataArray.push(revenuesSets.rows);
+
+      db.query(`
+      SELECT dataset_id, expense_name, amount 
+      FROM expenses 
+      JOIN datasets ON datasets.id = dataset_id
+      JOIN users ON users.id = user_id
+      WHERE users.username='${username}';
+      `)
+        .then(expensesSets => {
+          dataArray.push(expensesSets.rows);
+
+          res.send(dataArray);
+        })
+    })
   })
 
   return router;
