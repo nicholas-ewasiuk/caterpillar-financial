@@ -298,12 +298,10 @@ $(document).ready(function () {
         continue;
       }
       //Randomly place the circles
-      directionRateRate = 0.002;
-      directionRate += 0.02 - directionRateRate;
-      direction += 0.2 - directionRate;
+      direction = Math.random();
 
-      angleX = Math.sin(direction * 2 * Math.PI);
-      angleY = Math.cos(direction * 2 * Math.PI);
+      angleX = Math.sin(direction * Math.PI);
+      angleY = Math.cos(direction * Math.PI);
 
       totalDist = radius + prevRadius;
 
