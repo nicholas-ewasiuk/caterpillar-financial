@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="all" />
+  <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="all" /> -->
   <link rel="stylesheet" type="text/css" href="/stylesheets/user.css" media="all" />
   <!-- google fonts -->
   <!-- poppins: 100 - 900 /w italic -->
@@ -18,20 +19,21 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
 
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
 
-    <script type="module" src="/javascripts/app.js"></script>
+  <script type="module" src="/javascripts/app.js"></script>
+  <script type="module" src="/javascripts/interact.js"></script>
 
 
   <title>USER</title>
 </head>
 
 <body>
-  <nav>
-    <h3 class="username"><%= username %></h3>
+  <!-- <nav>
+    <h3 class="username">
+      <%= username %>
+    </h3>
     <div class="drop-down">
       <div class="created-graphs">
         <form action="/users/datasets" method="GET" class="drop-down-form">
@@ -45,30 +47,152 @@
           </select>
           <button type="submit" id="drop-down-button">Load</button>
         </form>
-
       </div>
     </div>
-    <button id="logout">Logout</button>
-  </nav>
 
+    <button id="logout">Logout</button>
+  </nav> -->
+  <nav>
+    <h3 class="username"><%= username %></h3>
+
+      <i class="fas fa-sign-out-alt">Logout </i>
+      
+  </nav>
   <!-- ^^ nav ^^  -->
 
   <div class="container">
-    <div class="input-fields">
-<!-- 
-        <div id="error">
+
+  <div class="menu">
+        <!-- <li class="menu-item" id="user">
+          <a href="#user" class="btn">
+            <i class="fas fa-user-circle"></i>
+            <b><%= username %></b>
+          </a>
+          <div class="menu-item__sub">
+            <a href="#">Placeholder</a>
+            <a href="#">Placeholder</a>
+          </div>
+        </li> -->
+        
+        <li class="menu-item" id="create">
+          <a href="" class="btn" id="create-btn">
+            <i class="fas fa-plus"></i>
+            Create
+          </a>
+        </li>
+
+        <li class="menu-item" id="previous-graphs">
+          <a href="#previous-graphs" class="btn" id="previous-btn">
+            <i class="fas fa-history"></i>
+            Previous
+          </a>
+          <div class="menu-item__sub" id="previous-menu-item__sub">
+            <a href="#">Link to Previous 1</a>
+            <a href="#">Link to Previous 2</a>
+            <a href="#">Link to Previous 3</a>
+          </div>
+        </li>
+        <li class="menu-item">
+          <a href="" class="btn">
+            <i class="fas fa-search"></i>
+            View All
+          </a>
+        </li>
+  
+      </div>
+  <!-- onclick create this slides out -->
+  <div class="menu" id="graph-controls">
+    <li class="menu-item" id="back">
+      <a href="" class="btn">
+        <i class="fas fa-arrow-alt-circle-left"></i>
+        Back
+      </a>
+    </li>
+    <li class="menu-item" id="new-graph">
+      <a href="new-graph" class="btn">
+        <b class="menu-title">Title</b>
+        </label>
+      </a>
+      <div class="create-input-ctrls">
+        <label for="title" id="cntrl-title">
+          Title
+          <input type="text" placeholder="title">
+        </label>
+
+        <!-- revenue group -->
+        <label for="revenue" id="revenue-1">
+          Revenue
+          <aside>
+            <span>
+              <input type="text" placeholder="source of revenue" id="revenue-name0">
+              <input type="number" placeholder="amount" id="revenue-num0">
+            </span>
+            <span id="add-delete">
+              <i class="fas fa-plus-circle add-revenue"></i>
+            </span>
+          </aside>
+          <!-- revenue group -->
+          <aside>
+            <span>
+              <input type="text" placeholder="source of revenue" id="revenue-name0">
+              <input type="number" placeholder="amount" id="revenue-num0">
+            </span>
+            <span id="add-delete">
+              <i class="fas fa-minus-circle delete-revenue"></i>
+            </span>
+          </aside>
+        </label>
+
+        <label for="expense" id="expenses-1">
+          Expense
+          <aside>
+            <span>
+              <input type="text" placeholder="source of expenses" id="expenses-name0">
+              <input type="number" placeholder="amount" id="expense-num0">
+            </span>
+            <span id="add-delete">
+              <i class="fas fa-plus-circle add-expense"></i>
+            </span>
+          </aside>
+          <!-- expense group -->
+          <aside>
+            <span>
+              <input type="text" placeholder="source of expense" id="expense-name0">
+              <input type="number" placeholder="amount" id="expense-num0">
+            </span>
+            <span id="add-delete">
+              <i class="fas fa-minus-circle delete-expense"></i>
+            </span>
+          </aside>
+        </label>
+
+      </div>
+    </li>
+    <!-- end of input controls -->
+    <li class="menu-item" id="Save">
+      <a href="" class="btn">
+        <i class="fas fa-check-circle"></i>
+        Save
+      </a>
+    </li>
+  </div>
+
+
+
+
+
+
+
+  <!--<div class="input-fields">
+       <div id="error">
           <span class="error-msg">
             <h2>ERROR</h2>
             <p>Cannot save: title is already in use.</p>
           </span>
           <i class="fas fa-times"></i>
-        </div> -->
-
-
+        </div> 
       <form action="/users" method="POST" class="user-form">
         <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-
-        <!-- TITLE -->
         
         <div id="input-wrapper">
             <div class="revenues">
@@ -82,8 +206,6 @@
                 </aside>
             </div>
 
-            <!-- revenue -->
-
             <div class="expenses">
               <div class="title-value">
                 <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
@@ -94,34 +216,15 @@
                 <i class="fas fa-minus-circle"></i>
                 </aside>
             </div>
-            <!-- expenses -->
+          
             <button type="submit" id="submit-button">Save</button>
-            <!-- button -->
+          
           </form>
         </div>
-    </div>
-    <div class="content">
-      <canvas id="canvas">
+    </div> -->
 
-      </canvas>
-      <!-- <svg 
-        version="1.0" 
-        xmlns="http://www.w3.org/2000/svg" 
-        xmlns:xlink="http://www.w3.org/1999/xlink" 
-        x="0px" 
-        y="0px"
-        viewBox="0 0 100 100" 
-        enable-background="new 0 0 100 100" 
-        xml:space="preserve">
-        <circle id="circle-visual" fill="#D4FBC4" cx="50" cy="50" r="0"/>
-        <text id="balance" x="44" y="50" fill="#FFFFFF" font-family="Poppins" font-size="6px" font-weight="700" text-align="center" style='transform-box: fill-box; transform-origin: bottom center;'></text>
-      </svg> -->
-    </div>
-    <div class="right-hand-drawer">
-      <!-- incase we need a sliding right hand drawer -->
-    </div>
+    <div class="content"> </div>
   </div>
-  <!-- <script type="module" src="/javascripts/circle-vis.js"></script> -->
-</body>
 
+</body>
 </html>
