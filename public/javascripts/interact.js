@@ -1,4 +1,4 @@
-console.log("interact file reached");
+// console.log("interact file reached");
 
 $(document).ready(function () {
   console.log("interact file init");
@@ -37,4 +37,4 @@ $(document).ready(function () {
   // document.ready
 });
 
-// $(selector).slideToggle(speed,easing,callback)
+$(selector).slideToggle(speed,easing,callback)

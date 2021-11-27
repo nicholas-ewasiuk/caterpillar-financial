@@ -5,12 +5,20 @@ $(document).ready(function () {
   let revenuesArray = ["text-revenue0", "num-revenue0"];
 
 
+  
+
+
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
-      <div class="title/value">
-        <input type="text" placeholder="revenue type" name='${t_id}' id='${t_id}'>
-        <input type="number" placeholder="value" name='${n_id}' id='${n_id}'>
-      </div>
+      <aside class="${t_id}">
+        <span>
+          <input type="text" placeholder="source of revenue" id="${t_id}">
+          <input type="number" placeholder="amount" id="${n_id}">
+        </span>
+        <span id="add-delete">
+          <i class="fas fa-minus-circle" ></i>
+        </span>
+      </aside>
     `)
 
     return newRevenueInputs;
@@ -19,10 +27,15 @@ $(document).ready(function () {
 
   const createExpenseInputElements = function (t_id, n_id) {
     const newExpenseInputs = (`
-      <div class="title/value">
-        <input type="text" placeholder="expense type" name='${t_id}' id='${t_id}'>
-        <input type="number" placeholder="value" name='${n_id}' id='${n_id}'>
-      </div>
+      <aside class="${t_id}">
+        <span>
+          <input type="text" placeholder="source of expense" id="${t_id}">
+          <input type="number" placeholder="amount" id="${n_id}">
+        </span>
+        <span id="add-delete">
+          <i class="fas fa-minus-circle" ></i>
+        </span>
+      </aside>
     `)
 
     return newExpenseInputs;
@@ -31,17 +44,32 @@ $(document).ready(function () {
 
   const appendExpenseInputElements = function (t_id, n_id) {
     $(".expenses").append(createExpenseInputElements(t_id, n_id))
+
+    $(".fa-minus-circle").on("click", function(e) {
+      let target = e.target;
+      console.log("here",target)
+  
+      target.closest("aside").remove();
+    })
   }
 
 
   const appendRevenueInputElements = function (t_id, n_id) {
     $(".revenues").append(createRevenueInputElements(t_id, n_id));
+
+    $(".fa-minus-circle").on("click", function(e) {
+      let target = e.target;
+      console.log("here",target)
+  
+      target.closest("aside").remove();
+    })
   };
 
 
   $(".add-revenue").on("click", function (e) {
     const idText = "text-revenue" + revenueCounter;
     const idNum = "num-revenue" + revenueCounter;
+    // const idDelete = `"${revenueCounter}"`
 
     appendRevenueInputElements(idText, idNum);
 
@@ -54,7 +82,7 @@ $(document).ready(function () {
   $(".add-expense").on("click", function (e) {
     const idText = "text-expense" + expenseCounter;
     const idNum = "num-expense" + expenseCounter;
-
+    // const idDelete = `"${expenseCounter}"`
     appendExpenseInputElements(idText, idNum);
 
     expensesArray.push(idText, idNum);
@@ -113,17 +141,22 @@ $(document).ready(function () {
       for (let i = 2; i < revenuesArray.length; i++) {
         let tmpValueId = revenuesArray[i];
 
-        $(`${tmpValueId}`).remove();
+        $(`#${tmpValueId}`).remove();
+        $(`.${tmpValueId}`).remove();
       }
 
       for (let i = 2; i < expensesArray.length; i++) {
         let tmpValueId = expensesArray[i];
 
-        $(`${tmpValueId}`).remove();
+        $(`#${tmpValueId}`).remove();
+        $(`.${tmpValueId}`).remove();
       }
 
       expensesArray = ["text-expense0", "num-expense0"];
       revenuesArray = ["text-revenue0", "num-revenue0"];
+
+      revenueCounter = 1;
+      expenseCounter = 1;
 
       let revCounter = result[0].length - 1;
       let expCounter = result[1].length - 1;
@@ -131,6 +164,7 @@ $(document).ready(function () {
       while (revCounter > 0) {
         const idText = "text-revenue" + revenueCounter;
         const idNum = "num-revenue" + revenueCounter;
+        // const idDelete = `"${revenueCounter}"`
 
         appendRevenueInputElements(idText, idNum);
 
@@ -144,6 +178,7 @@ $(document).ready(function () {
       while (expCounter > 0) {
         const idText = "text-expense" + expenseCounter;
         const idNum = "num-expense" + expenseCounter;
+        const idDelete = `"${expenseCounter}"`
 
         appendExpenseInputElements(idText, idNum);
 
@@ -180,6 +215,20 @@ $(document).ready(function () {
   })
 
 
+
+
+  // $().on('click', function(e) {
+
+  //   const username = $('.username').text();
+
+  //   $.ajax({
+  //     url: 'http://localhost:3001/collectall',
+  //     method: 'GET',
+  //     data: username
+  //   })    
+  // }).then((result) => {
+
+  // })
 
   // document.addEventListener('input', updateCircle);
 
@@ -224,126 +273,80 @@ $(document).ready(function () {
   //   console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
   // }
 
-  // CANVAS
+
+  // // CANVAS
   // console.log('canvas reached');
   // const canvas = document.querySelector('canvas');
   // // console.log(canvas);
-  // canvas.width = window.innerWidth;
+
+  // canvas.width = window.innerWidth - 150;
   // canvas.height = window.innerHeight;
+
   // const c = canvas.getContext('2d');
 
-  // console.log(canvas);
-  // const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
 
-  // const randomColor = Math.floor(Math.random() * color.length);
-  // var radius=50;
+  // $('#num-revenue0').on('keyup', function() {
+  //   let radius = Math.sqrt(Number($('#num-revenue0').val()));
+  //   c.clearRect(0, 0, innerWidth, innerHeight)
+  //   c.beginPath();
+  //   c.arc(500, 300, radius, 0, 2 * Math.PI, false);
+  //   c.fillStyle = "#d4fbc4";
+  //   c.fill();
+  //   c.stroke();
+  //   c.closePath();
+  //   console.log("here",radius);
+  // })
 
-  // var $radius=document.getElementById('num-revenue0');
-  // $radius.value=radius;
 
-  // draw();
-  
-  // $radius.addEventListener("keyup", function(){
-  //     radius=this.value;
-  //     draw();
-  // }, false);
-  
-  // $radius.addEventListener("keyup", function(){
-  //     radius=this.value;
-  //     draw();
-  // }, false);
-  
-  
-  // function draw(){
-  //     c.clearRect(0,0,canvas.width,canvas.height);
-  //     c.arc(300, 300, radius, 0, Math.PI * 2, false);
-  //     c.fillStyle = color[randomColor];
-  //     c.fill();
-  //     c.strokeStyle = color[randomColor];
-  //     c.stroke();
-  //     c.closePath();
-  //     // c.fillRect(40,40,width,height);
+  // multiple random circles
+  // for(let i = 0; i < 3; i++){
+  //   const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
+  //   const x = Math.random() * window.innerWidth;
+  //   const y = Math.random() * window.innerHeight;
+  //   c.beginPath();
+  //   c.arc(x, y, 100, 0, Math.PI * 2, false);
+  //   c.fillStyle = "#d4fbc4"
+  //   c.fill();
   // }
 
-  // const mousePosition = {
-  //   x: undefined,
-  //   y: undefined
-  // }
 
-  // const maxRadius = 100;
-  // // const minRadius = 5;
+  // let x = Math.random() * innerWidth;
+  // let y = Math.random() * innerHeight;
+  // // velocity (+ equals right on the x axis - goes right)
+  // // let xVelocity = (Math.random() - 0.5) * 12;
+  // // let yVelocity = (Math.random() - 0.5) * 12;
+  // let radius = 50;
 
-  // const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
 
-  // window.addEventListener('mousemove',
-  //   function (e) {
-  //     // console.log('xX MOUSE EVENT Xx')
-  //     // console.log("mouse position", e)
-  //     mousePosition.x = e.x;
-  //     mousePosition.y = e.y;
-  //     console.log("mousePosition ", mousePosition);
-  //   })
-
-  // function Circle(x, y, vx, vy, radius) {
+  // const randomCircle = function(x, y, xVelocity, yVelocity, radius) {
   //   this.x = x;
   //   this.y = y;
-  //   this.vx = vx;
-  //   this.vy = vy;
+  //   this.xVelocity = xVelocity;
+  //   this.yVelocity = yVelocity;
   //   this.radius = radius;
-  //   this.minRadius = this.radius;
-  //   this.color = color[Math.floor(Math.random() * color.length)];
 
-  //   this.draw = function () {
+  //   this.draw = function() {
   //     c.beginPath();
   //     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-  //     c.fillStyle = this.color;
+  //     c.fillStyle = "#d4fbc4"
   //     c.fill();
   //   }
-  //   this.update = function () {
-  //     if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
-  //       this.vx = -this.vx;
-  //     }
-  //     if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
-  //       this.vy = -this.vy;
-  //     }
-  //     this.x += this.vx
-  //     this.y += this.vy
 
-  //     // interactivity
-  //     if (mousePosition.x - this.x < 50 && mousePosition.x - this.radius > - 50 &&
-  //       mousePosition.y - this.y < 50 && mousePosition.y - this.y > - 50) {
-  //       //can't grow past this limit
-  //       if (this.radius < maxRadius) {
-  //         this.radius += 1;
-  //       }
-  //       //return to original size
-  //     } else if (this.radius > this.minRadius) {
-  //       this.radius -= 1;
+  //   this.update = function(){
+  //     if (this.x + radius > innerWidth || this.x - this.radius < 0) {
+  //       this.xVelocity = - this.xVelocity;
   //     }
+  //     if (this.y + radius > innerHeight || this.y - this.radius < 0) {
+  //       this.yVelocity = - this.yVelocity;
+  //     }
+  //     x += this.xVelocity;
+  //     y += this.yVelocity;
 
   //     this.draw();
   //   }
   // }
+  // let newCircle = new randomCircle(100, 100, 20, 20, 80);
 
-  // const circleArray = [];
-  // for (let i = 0; i < 500; i++) {
-  //   const radius = Math.random() * 4 + 1;
-  //   const x = Math.random() * (innerWidth - radius * 2) + radius;
-  //   const y = Math.random() * (innerWidth - radius * 2) + radius;
-  //   const vx = (Math.random() - 0.5);
-  //   const vy = (Math.random() - 0.5);
-  //   circleArray.push(new Circle(x, y, vx, vy, radius));
-  // }
-
-  // function animate() {
-  //   requestAnimationFrame(animate);
-  //   c.clearRect(0, 0, innerWidth, innerHeight);
-
-  //   for (let i = 0; i < circleArray.length; i++) {
-  //     circleArray[i].update();
-  //   }
-  // }
-  // animate();
 
 });
 
