@@ -4,10 +4,6 @@ $(document).ready(function () {
   let expensesArray = ["text-expense0", "num-expense0"];
   let revenuesArray = ["text-revenue0", "num-revenue0"];
 
-
-  
-
-
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
       <aside class="${t_id}">
@@ -65,7 +61,7 @@ $(document).ready(function () {
     })
   };
 
-
+  //////Add revenue and expense fields/////////////
   $(".add-revenue").on("click", function (e) {
     const idText = "text-revenue" + revenueCounter;
     const idNum = "num-revenue" + revenueCounter;
@@ -122,7 +118,6 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     })
-
   });
 
 
@@ -214,8 +209,6 @@ $(document).ready(function () {
 
   })
 
-
-
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////circle vis code/////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -231,6 +224,8 @@ $(document).ready(function () {
     for (let item of expensesArray) {
       console.log(`expensesArray: ${item}`);
     }
+
+    console.log()
     $("#circle-svg").empty();
 
     const scale = 20000;
@@ -247,11 +242,9 @@ $(document).ready(function () {
     let inputNumber, prevRadius;
 
     let direction = 0;
-    let directionRate = 0;
-    let directionRateRate = 0;
 
     let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
-    let circleElement, circleRadius;
+    let circleElement;
 
     const circle = document.getElementById('circle-visual');
     const svgMain = document.getElementById('circle-svg');
