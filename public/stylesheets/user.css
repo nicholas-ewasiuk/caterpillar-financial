@@ -32,14 +32,14 @@ nav {
   height: 80px;
   width: 100vw;
   position: fixed;
+  z-index: 10;
   top: 0;
-  z-index: 11;
   padding-left: 5%;
   padding-right: 5%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
 }
 .username {
@@ -57,9 +57,9 @@ a {
   text-decoration: none;
 }
 .container {
-z-index: 99;
 width: 100%;
-min-height: 100vh;
+height: 100%;
+padding-top: 80px;
 display: flex;
 flex-direction: row
 }
@@ -67,6 +67,7 @@ flex-direction: row
 .content {
   background: chartreuse;
   width: 80%;
+  height: 100vh;
   font-family: var(--font-family);
 }
 /* .content-wrap {
@@ -83,16 +84,6 @@ flex-direction: row
   color: var(--color-dark);
   font-size: var(--fontsize-sub);
   font-weight: var(--font-bold);
-}
-
-/* this is the input styles */
-/* .input-fields {
-  display: flex;
-  flex-direction: column;
-} */
-
-#dataset-title {
-  margin-bottom: 10px;
 }
 
 .revenues {
@@ -131,13 +122,11 @@ flex-direction: row
 /* accordion menu */
 
 .menu {
-  z-index: 12;
-  width: 20%;
   border-radius: 0.2rem;
-  margin-top: 80px;
   left: 0;
   overflow: hidden;
-
+  display: flex;
+  flex-direction: column;
 }
 .menu a {
   text-decoration: none;
@@ -181,8 +170,9 @@ flex-direction: row
 .menu-title {
   padding-bottom: 1.5rem; 
 }
+
 .create-input-ctrls {
-  z-index: 13;
+  width: 100%;
   padding: 1.5rem; 
   display: flex;
   flex-direction: column;
@@ -239,10 +229,9 @@ flex-direction: row
   padding-bottom: 1rem;
 
 }
-
 #graph-controls {
   overflow: hidden;
 }
-/* #previous-menu-item__sub {
+#previous-menu-item__sub {
   display: none;
-} */
+}

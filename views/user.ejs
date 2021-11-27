@@ -30,28 +30,6 @@
 </head>
 
 <body>
-  <!-- <nav>
-    <h3 class="username">
-      <%= username %>
-    </h3>
-    <div class="drop-down">
-      <div class="created-graphs">
-        <form action="/users/datasets" method="GET" class="drop-down-form">
-          <select name="drop-down-datasets" id="drop-down-datasets">
-            <option value="" disable select hidden>Previous datasets</option>
-            <% for (let i=0; i < datasetTitles.length; i++) { %>
-              <option id="options-id">
-                <%= datasetTitles[i].dataset_name %>
-              </option>
-              <% } %>
-          </select>
-          <button type="submit" id="drop-down-button">Load</button>
-        </form>
-      </div>
-    </div>
-
-    <button id="logout">Logout</button>
-  </nav> -->
   <nav>
     <h3 class="username"><%= username %></h3>
 
@@ -62,7 +40,7 @@
 
   <div class="container">
 
-  <div class="menu">
+  <div class="menu" id="menu-slide">
         <li class="menu-item" id="create">
           <a href="" class="btn" id="create-btn">
             <i class="fas fa-plus"></i>
@@ -98,8 +76,7 @@
             View All
           </a>
         </li>
-  
-      </div>
+
   <!-- onclick create this slides out -->
   <div class="menu" id="graph-controls">
     <li class="menu-item" id="back">
@@ -156,8 +133,8 @@
     </li>
     <!-- end of input controls -->
   </div>
-
-
+</div>
+<!-- menu div -->
 
 
 
