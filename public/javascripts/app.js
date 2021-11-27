@@ -223,11 +223,11 @@ $(document).ready(function () {
 
   //   if (totalExpense > totalRevenue) {
   //     circle.setAttribute('fill', '#ecc5bf');
-  //     balance.innerHTML=(totalExpense - totalRevenue);
+  //     balance.innerHTML = (totalExpense - totalRevenue);
   //     circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
   //   } else if (totalRevenue > totalExpense) {
   //     circle.setAttribute('fill', '#d4fbc4');
-  //     balance.innerHTML=(totalExpense - totalRevenue);
+  //     balance.innerHTML = (totalExpense - totalRevenue);
   //     circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
   //   }
 
@@ -312,5 +312,4 @@ $(document).ready(function () {
 
 
 });
-
 
