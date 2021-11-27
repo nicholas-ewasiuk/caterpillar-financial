@@ -215,6 +215,7 @@ $(document).ready(function () {
   })
 
 
+
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////circle vis code/////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -223,6 +224,13 @@ $(document).ready(function () {
 
   function updateCircle(event) {
     console.clear();
+
+    for (let item of revenuesArray) {
+      console.log(`revenuesArray: ${item}`);
+    }
+    for (let item of expensesArray) {
+      console.log(`expensesArray: ${item}`);
+    }
     $("#circle-svg").empty();
 
     const scale = 20000;
@@ -318,8 +326,10 @@ $(document).ready(function () {
       cy = Number(circleElement.getAttribute('cy'));
 
       prevRadius = Number(circleElement.getAttribute('r'));
-      console.log(`prevRadius: ${prevRadius} radius: ${radius} vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy} `);
     }
+    console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
+    
+
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////
