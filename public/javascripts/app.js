@@ -215,6 +215,125 @@ $(document).ready(function () {
   })
 
 
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////circle vis code/////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+
+  document.addEventListener('input', updateCircle);
+
+  function updateCircle(event) {
+    console.clear();
+    $("#circle-svg").empty();
+
+    const scale = 20000;
+    const ns = 'http://www.w3.org/2000/svg';
+
+    let totalRevenue = 0;
+    let totalExpense = 0;
+    let totalAmount = 0;
+
+    const revenueAmounts = [];
+    const expenseAmounts = [];
+
+    let inputNumber, prevRadius;
+
+    let direction = 0;
+    let directionRate = 0;
+
+    let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
+    let circleElement, circleRadius;
+
+    const circle = document.getElementById('circle-visual');
+    const svgMain = document.getElementById('circle-svg');
+    //const balance = document.getElementById('balance');
+
+  //Loop through the fields and create a <circle> for each//
+    for (let i = 0; i < revenueCounter; i++) {
+      inputNumber = document.getElementById(`num-revenue${i}`)
+      totalRevenue += Number(inputNumber.value);
+      revenueAmounts.push(Number(inputNumber.value));
+
+      circleElement = document.createElementNS(ns, 'circle');
+      circleElement.setAttribute('id', `circ${i}`);
+      svgMain.append(circleElement);
+    }
+
+    for (let i = 0; i < expenseCounter; i++) {
+      inputNumber = document.getElementById(`num-expense${i}`);
+      totalExpense += Number(inputNumber.value);
+      expenseAmounts.push(Number(inputNumber.value));
+
+      circleElement = document.createElementNS(ns, 'circle');
+      circleElement.setAttribute('id', `circ${i + revenueCounter}`);
+      document.getElementById('circle-svg').append(circleElement);
+    }
+  //Get the total $$$ amount//
+    totalAmount = totalExpense + totalRevenue;
+  
+  //Proportioning the amounts and setting <circle> radii//
+    for (let i = 0; i < revenueCounter; i++) {
+      circleElement = document.getElementById(`circ${i}`);
+      radius = Math.sqrt((revenueAmounts[i] / totalRevenue) * (totalRevenue / totalAmount) * scale);
+      console.log(radius);
+      circleElement.setAttribute('r', `${radius}`);
+      circleElement.setAttribute('fill', 'green');
+      circleElement.setAttribute('fill-opacity', '0.5');
+    }
+
+    for (let i = 0; i < expenseCounter; i++) {
+      circleElement = document.getElementById(`circ${i + revenueCounter}`);
+      radius = Math.sqrt((expenseAmounts[i] / totalExpense) * (totalExpense / totalAmount) * scale);
+      console.log(radius);
+      circleElement.setAttribute('r', `${radius}`);
+      circleElement.setAttribute('fill', 'red');
+      circleElement.setAttribute('fill-opacity', '0.5');
+    }
+
+  //Randomly place the circles
+
+    for (let i = 0; i < (expenseCounter + revenueCounter); i++) {
+      circleElement = document.getElementById(`circ${i}`);
+
+      if (i === 0) {
+        circleElement.setAttribute('cx', `${svgMain.clientWidth / 2}`);
+        circleElement.setAttribute('cy', `${svgMain.clientHeight / 2}`);
+        prevRadius = Number(circleElement.getAttribute('r'));
+        cx = Number(circleElement.getAttribute('cx'));
+        cy = Number(circleElement.getAttribute('cy'));
+        continue;
+      }
+      radius = Number(circleElement.getAttribute('r'));
+      directionRate += 0.02;
+      direction += 0.2 - directionRate;
+
+      angleX = Math.sin(direction * 2 * Math.PI);
+      angleY = Math.cos(direction * 2 * Math.PI);
+
+      totalDist = radius + prevRadius;
+
+      vecX = angleX * totalDist;
+      vecY = angleY * totalDist;
+
+      newCx = cx + vecX;
+      newCy = cy + vecY;
+
+      circleElement.setAttribute('cx', `${newCx}`);
+      circleElement.setAttribute('cy', `${newCy}`);
+
+      cx = Number(circleElement.getAttribute('cx'));
+      cy = Number(circleElement.getAttribute('cy'));
+
+      prevRadius = Number(circleElement.getAttribute('r'));
+
+      //prevRadius = Number(circleElement.getAttribute('r'));
+      console.log(`prevRadius: ${prevRadius} radius: ${radius} vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy} `);
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
   // $().on('click', function(e) {
