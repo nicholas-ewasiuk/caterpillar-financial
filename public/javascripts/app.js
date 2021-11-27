@@ -225,42 +225,45 @@ $(document).ready(function () {
   // }
 
   // CANVAS
-  console.log('canvas reached');
-  const canvas = document.querySelector('canvas');
+  // console.log('canvas reached');
+  // const canvas = document.querySelector('canvas');
+  // // console.log(canvas);
+  // canvas.width = window.innerWidth;
+  // canvas.height = window.innerHeight;
+  // const c = canvas.getContext('2d');
+
   // console.log(canvas);
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const c = canvas.getContext('2d');
+  // const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
 
-  console.log(canvas);
-  const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
+  // const randomColor = Math.floor(Math.random() * color.length);
+  // var radius=50;
 
-  const randomColor = Math.floor(Math.random() * color.length);
-  var radius=50;
+  // var $radius=document.getElementById('num-revenue0');
+  // $radius.value=radius;
 
-  var $radius=document.getElementById('num-revenue0');
-  $radius.value=radius;
-
-  draw();
+  // draw();
   
-  $radius.addEventListener("keyup", function(){
-      radius=this.value;
-      draw();
-  }, false);
+  // $radius.addEventListener("keyup", function(){
+  //     radius=this.value;
+  //     draw();
+  // }, false);
   
-  $radius.addEventListener("keyup", function(){
-      radius=this.value;
-      draw();
-  }, false);
+  // $radius.addEventListener("keyup", function(){
+  //     radius=this.value;
+  //     draw();
+  // }, false);
   
   
-  function draw(){
-      c.clearRect(0,0,canvas.width,canvas.height);
-      c.arc(300, 300, radius, 0, Math.PI * 2, false);
-      c.fillStyle = color[randomColor];
-      c.fill();
-      // c.fillRect(40,40,width,height);
-  }
+  // function draw(){
+  //     c.clearRect(0,0,canvas.width,canvas.height);
+  //     c.arc(300, 300, radius, 0, Math.PI * 2, false);
+  //     c.fillStyle = color[randomColor];
+  //     c.fill();
+  //     c.strokeStyle = color[randomColor];
+  //     c.stroke();
+  //     c.closePath();
+  //     // c.fillRect(40,40,width,height);
+  // }
 
   // const mousePosition = {
   //   x: undefined,

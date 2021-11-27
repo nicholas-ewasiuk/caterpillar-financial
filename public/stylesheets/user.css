@@ -18,29 +18,37 @@
   --font-black: 900;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
 /*^ global ^*/
 
 nav {
-  background-color: var(--color-dark);
+  background-color: var(--color-white);
   height: 80px;
   width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 11;
   padding-left: 5%;
   padding-right: 5%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+
 }
 .username {
-  color:var(--color-white);
+  color:var(--color-dark);
 }
 body {
   font-family: var(--font-family);
   margin: 0;
-  overflow-x: hidden;
+
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -49,79 +57,23 @@ a {
   text-decoration: none;
 }
 .containter {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-}
-
-.dataset-title {
-  height: 10px;
-  border: 2px solid red;
-  border-radius: 25%;
-}
-
-.input-fields {
   z-index: 99;
-  padding-top: 20%;
-  width: 35%;
-  height: 100vh;
-  font-family: var(--font-family);
-  background: linear-gradient(
-    to top,
-    #dbdcd7 0%,
-    #dddcd7 24%,
-    #e2c9cc 30%,
-    #e7627d 46%,
-    #b8235a 59%,
-    #801357 71%,
-    #3d1635 84%,
-    #1c1a27 100%
-  );
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
+width: 100%;
+min-height: 100vh;
+display: flex;
+flex-direction: row;
 }
 
-#error {
-  padding-top: 80px;
-  width: 100%;
-  height: 250px;
-  background-color: #b8235a;
-  display: flex;
-  justify-content: flex-end;
-}
-.error-msg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.error-msg-exit {
-  width: 100%;
-  display: flex;
-  justify-items: right;
-}
-#input-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 .content {
+  background: chartreuse;
   width: 80%;
   font-family: var(--font-family);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.content-wrap {
+/* .content-wrap {
   display: flex;
   flex-direction: column;
   justify-content: left;
-}
+} */
 .content h2 {
   color: var(--color-dark);
   font-size: var(--fontsize-header);
@@ -176,7 +128,114 @@ a {
   justify-content: flex-start;
 }
 
-/* #canvas {
-  width: 900px;
-  height: 900px;
+/* accordion menu */
+
+.menu {
+  width: 20%;
+  border-radius: 0.2rem;
+  margin-top: 80px;
+  left: 0;
+  overflow: hidden;
+
+}
+.menu a {
+  text-decoration: none;
+}
+.menu-item {
+  list-style: none;
+  border-top: 1px solid var(--color-dark);
+}
+/* overflow: hidden; */
+.btn {
+  display: block;
+  padding: 1rem 1.2rem;
+  background: darkgray;
+  color: var(--color-white);
+  position: relative;
+}
+.btn i {
+  margin-right: 1rem;
+}
+.menu-item__sub {
+  background: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+ 
+}
+/* overflow: hidden; */
+.menu-item__sub a {
+  display: block;
+  padding: 1.5rem 2rem;
+  color: var(--color-dark);
+  font-size: 0.9rem;
+  position: relative;
+  border-bottom: 1px solid darkgrey;
+}
+.menu-item__sub a:hover {
+  background: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);
+  color: var(--color-dark);
+}
+.menu-item:target .menu-item__sub {
+  max-height: 20em;
+}
+
+.menu-title {
+  padding-bottom: 1.5rem; 
+  font-size: var(--fontsize-sub);
+}
+.create-input-ctrls {
+  padding: 1.5rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.create-input-ctrls label {
+  display: flex;
+  flex-direction: column;
+}
+#cntrl-title {
+  padding-top: 1.5rem; 
+}
+#add-delete {
+  font-size: var(--fontsize-sub);
+  padding-right: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#add-delete i {
+  color: var(--color-step-five);
+  margin-left: 1rem;
+}
+#add-delete i:hover {
+  color: var(--color-dark);
+}
+
+.create-input-ctrls input {
+  padding-left: 1rem;
+  height: 30px;
+  border-radius: 0px;
+  border: 1px solid lightgray;
+  margin: 0.2rem;
+}
+.create-input-ctrls input:hover {
+  border: 1px solid darkgray;
+}
+
+#revenue-1 aside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#expenses-1 aside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#graph-controls {
+  overflow: hidden;
+}
+/* #previous-menu-item__sub {
+  display: none;
 } */
