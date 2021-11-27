@@ -180,7 +180,6 @@ flex-direction: row
 
 .menu-title {
   padding-bottom: 1.5rem; 
-  font-size: var(--fontsize-sub);
 }
 .create-input-ctrls {
   z-index: 13;
