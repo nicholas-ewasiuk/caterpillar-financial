@@ -87,9 +87,20 @@
             Previous
           </a>
           <div class="menu-item__sub" id="previous-menu-item__sub">
-            <a href="#">Link to Previous 1</a>
+            <form action="/users/datasets" method="GET" class="drop-down-form">
+              <select name="drop-down-datasets" id="drop-down-datasets">
+                <option value="" disable select hidden>Previous datasets</option>
+                <% for (let i=0; i < datasetTitles.length; i++) { %>
+                  <option id="options-id">
+                    <%= datasetTitles[i].dataset_name %>
+                  </option>
+                  <% } %>
+              </select>
+              <button type="submit" id="drop-down-button">Load</button>
+            </form>
+            <!-- <a href="#">Link to Previous 1</a>
             <a href="#">Link to Previous 2</a>
-            <a href="#">Link to Previous 3</a>
+            <a href="#">Link to Previous 3</a> -->
           </div>
         </li>
         <li class="menu-item">
@@ -114,67 +125,47 @@
         </label>
       </a>
       <div class="create-input-ctrls">
+        <form action="/users" method="POST" class="user-form">
         <label for="title" id="cntrl-title">
           Title
-          <input type="text" placeholder="title">
+          <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
         </label>
 
         <!-- revenue group -->
-        <label for="revenue" id="revenue-1">
+        <label for="revenue" class="revenues">
           Revenue
           <aside>
             <span>
-              <input type="text" placeholder="source of revenue" id="revenue-name0">
-              <input type="number" placeholder="amount" id="revenue-num0">
+              <input type="text" placeholder="source of revenue" id="text-revenue0">
+              <input type="number" placeholder="amount" id="num-revenue0">
             </span>
             <span id="add-delete">
               <i class="fas fa-plus-circle add-revenue"></i>
             </span>
           </aside>
           <!-- revenue group -->
-          <aside>
-            <span>
-              <input type="text" placeholder="source of revenue" id="revenue-name0">
-              <input type="number" placeholder="amount" id="revenue-num0">
-            </span>
-            <span id="add-delete">
-              <i class="fas fa-minus-circle delete-revenue"></i>
-            </span>
-          </aside>
         </label>
 
-        <label for="expense" id="expenses-1">
+        <label for="expense" class="expenses">
           Expense
           <aside>
             <span>
-              <input type="text" placeholder="source of expenses" id="expenses-name0">
-              <input type="number" placeholder="amount" id="expense-num0">
+              <input type="text" placeholder="source of expenses" id="text-expense0">
+              <input type="number" placeholder="amount" id="num-expense0">
             </span>
             <span id="add-delete">
               <i class="fas fa-plus-circle add-expense"></i>
             </span>
           </aside>
           <!-- expense group -->
-          <aside>
-            <span>
-              <input type="text" placeholder="source of expense" id="expense-name0">
-              <input type="number" placeholder="amount" id="expense-num0">
-            </span>
-            <span id="add-delete">
-              <i class="fas fa-minus-circle delete-expense"></i>
-            </span>
-          </aside>
         </label>
-
+        <li class="menu-item" id="Save">
+          <button type="submit" id="submit-button">Save</button>
+        </li>
+        </form>
       </div>
     </li>
     <!-- end of input controls -->
-    <li class="menu-item" id="Save">
-      <a href="" class="btn">
-        <i class="fas fa-check-circle"></i>
-        Save
-      </a>
-    </li>
   </div>
 
 
@@ -221,33 +212,9 @@
           
           </form>
         </div>
-<<<<<<< HEAD
-    </div>
-    <div class="content">
-      <canvas id="canvas">
-
-      </canvas>
-      <!-- <svg 
-        version="1.0" 
-        xmlns="http://www.w3.org/2000/svg" 
-        xmlns:xlink="http://www.w3.org/1999/xlink" 
-        x="0px" 
-        y="0px"
-        viewBox="0 0 100 100" 
-        enable-background="new 0 0 100 100" 
-        xml:space="preserve">
-        <circle id="circle-visual" fill="#D4FBC4" cx="50" cy="50" r="0"/>
-        <text id="balance" x="44" y="50" fill="#FFFFFF" font-family="Poppins" font-size="6px" font-weight="700" text-align="center" style='transform-box: fill-box; transform-origin: bottom center;'></text>
-      </svg> -->
-    </div>
-    <div class="right-hand-drawer">
-      <!-- incase we need a sliding right hand drawer -->
-    </div>
-=======
     </div> -->
 
     <div class="content"></div>
->>>>>>> 344f5eef63bef41b7703363b2f9e815074b5c5a2
   </div>
 
 </body>
