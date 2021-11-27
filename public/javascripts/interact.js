@@ -27,6 +27,11 @@ $(document).ready(function () {
       console.log("slideUp + slideDown");
     });
   });
+  $("#create-btn").click(function(){
+    $(".create-input-ctrls").slideToggle(300, function(){
+      console.log("slideUp + slideDown");
+    });
+  });
 
   // $("#graph-controls").hide();
 

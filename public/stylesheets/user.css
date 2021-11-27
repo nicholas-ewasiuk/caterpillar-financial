@@ -67,7 +67,7 @@ flex-direction: row
 .content {
   background: chartreuse;
   width: 80%;
-  height: 100vh;
+  height: 90vh;
   font-family: var(--font-family);
 }
 /* .content-wrap {
@@ -235,3 +235,24 @@ flex-direction: row
 #previous-menu-item__sub {
   display: none;
 }
+#submit-button {
+  margin-top: 1rem;
+  height: 30px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  background: chartreuse;
+  border: 1px solid lightgray;
+}
+#submit-button i{
+padding-left: 1rem;
+} 
+#submit-button:hover {
+  background: lightsalmon;
+  color: white;
+}
+/* Color Theme Swatches in Hex */
+.DK-TALKIES™-1-hex { color: #010440; }
+.DK-TALKIES™-2-hex { color: #D7F205; }
+.DK-TALKIES™-3-hex { color: #CAD95B; }
+.DK-TALKIES™-4-hex { color: #D9B391; }
+.DK-TALKIES™-5-hex { color: #BFB3A8; }

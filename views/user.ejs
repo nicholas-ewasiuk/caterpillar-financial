@@ -31,157 +31,109 @@
 
 <body>
   <nav>
-    <h3 class="username"><%= username %></h3>
+    <h3 class="username">
+      <%= username %>
+    </h3>
 
-      <i class="fas fa-sign-out-alt">Logout </i>
-      
+    <i class="fas fa-sign-out-alt">Logout </i>
+
   </nav>
   <!-- ^^ nav ^^  -->
 
   <div class="container">
 
-  <div class="menu" id="menu-slide">
-        <li class="menu-item" id="create">
-          <a href="" class="btn" id="create-btn">
-            <i class="fas fa-plus"></i>
-            Create
-          </a>
-        </li>
+    <div class="menu" id="menu-slide">
+      <li class="menu-item" id="create">
+        <a href="" class="btn" id="create-btn">
+          <i class="fas fa-plus"></i>
+          Create
+        </a>
+          <div class="create-input-ctrls">
+            <form action="/users" method="POST" class="user-form">
+              <label for="title" id="cntrl-title">
+                Title
+                <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
+              </label>
 
-        <li class="menu-item" id="previous-graphs">
-          <a href="#previous-graphs" class="btn" id="previous-btn">
-            <i class="fas fa-history"></i>
-            Previous
-          </a>
-          <div class="menu-item__sub" id="previous-menu-item__sub">
-            <form action="/users/datasets" method="GET" class="drop-down-form">
-              <select name="drop-down-datasets" id="drop-down-datasets">
-                <option value="" disable select hidden>Previous datasets</option>
-                <% for (let i=0; i < datasetTitles.length; i++) { %>
-                  <option id="options-id">
-                    <%= datasetTitles[i].dataset_name %>
-                  </option>
-                  <% } %>
-              </select>
-              <button type="submit" id="drop-down-button">Load</button>
-            </form>
-            <!-- <a href="#">Link to Previous 1</a>
-            <a href="#">Link to Previous 2</a>
-            <a href="#">Link to Previous 3</a> -->
-          </div>
-        </li>
-        <li class="menu-item">
-          <a href="" class="btn">
-            <i class="fas fa-search"></i>
-            View All
-          </a>
-        </li>
+              <!-- revenue group -->
+              <label for="revenue" class="revenues">
+                Revenue
+                <aside>
+                  <span>
+                    <input type="text" placeholder="source of revenue" id="text-revenue0">
+                    <input type="number" placeholder="amount" id="num-revenue0">
+                  </span>
+                  <span id="add-delete">
+                    <i class="fas fa-plus-circle add-revenue"></i>
+                  </span>
+                </aside>
+                <!-- revenue group -->
+              </label>
 
-  <!-- onclick create this slides out -->
-  <div class="menu" id="graph-controls">
-    <li class="menu-item" id="back">
-      <a href="" class="btn">
-        <i class="fas fa-arrow-alt-circle-left"></i>
-        Back
-      </a>
-    </li>
-    <li class="menu-item" id="new-graph">
-      <a href="new-graph" class="btn">
-        Title
-        </label>
-      </a>
-      <div class="create-input-ctrls">
-        <form action="/users" method="POST" class="user-form">
-        <label for="title" id="cntrl-title">
-          Title
-          <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-        </label>
-
-        <!-- revenue group -->
-        <label for="revenue" class="revenues">
-          Revenue
-          <aside>
-            <span>
-              <input type="text" placeholder="source of revenue" id="text-revenue0">
-              <input type="number" placeholder="amount" id="num-revenue0">
-            </span>
-            <span id="add-delete">
-              <i class="fas fa-plus-circle add-revenue"></i>
-            </span>
-          </aside>
-          <!-- revenue group -->
-        </label>
-
-        <label for="expense" class="expenses">
-          Expense
-          <aside>
-            <span>
-              <input type="text" placeholder="source of expenses" id="text-expense0">
-              <input type="number" placeholder="amount" id="num-expense0">
-            </span>
-            <span id="add-delete">
-              <i class="fas fa-plus-circle add-expense"></i>
-            </span>
-          </aside>
-          <!-- expense group -->
-        </label>
+              <label for="expense" class="expenses">
+                Expense
+                <aside>
+                  <span>
+                    <input type="text" placeholder="source of expenses" id="text-expense0">
+                    <input type="number" placeholder="amount" id="num-expense0">
+                  </span>
+                  <span id="add-delete">
+                    <i class="fas fa-plus-circle add-expense"></i>
+                  </span>
+                </aside>
+                <!-- expense group -->
+              </label>
         <li class="menu-item" id="Save">
-          <button type="submit" id="submit-button">Save</button>
+          <button type="submit" id="submit-button">
+            Save
+            <i class="fas fa-share-square"></i>
+          </button>
         </li>
         </form>
       </div>
-    </li>
-    <!-- end of input controls -->
-  </div>
-</div>
-<!-- menu div -->
+      </li>
+      </li>
 
-
-
-
-
-  <!--<div class="input-fields">
-       <div id="error">
-          <span class="error-msg">
-            <h2>ERROR</h2>
-            <p>Cannot save: title is already in use.</p>
-          </span>
-          <i class="fas fa-times"></i>
-        </div> 
-      <form action="/users" method="POST" class="user-form">
-        <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-        
-        <div id="input-wrapper">
-            <div class="revenues">
-              <div class="title-value-revenue">
-                <input type="text" placeholder="revenue type" name="text-revenue0" id="text-revenue0">
-              </div>
-                <input type="number" placeholder="value" name="num-revenue0" id="num-revenue0">
-                <aside>
-                  <i class="fas fa-plus-circle add-revenue"></i>
-                  <i class="fas fa-minus-circle"></i>
-                </aside>
-            </div>
-
-            <div class="expenses">
-              <div class="title-value">
-                <input type="text" placeholder="expense type" name="text-expense0" id="text-expense0">
-              </div>
-                <input type="number" placeholder="value" name="num-expense0" id="num-expense0">
-                <aside>
-                <i class="fas fa-plus-circle add-expense"></i>
-                <i class="fas fa-minus-circle"></i>
-                </aside>
-            </div>
-          
-            <button type="submit" id="submit-button">Save</button>
-          
+      <li class="menu-item" id="previous-graphs">
+        <a href="#previous-graphs" class="btn" id="previous-btn">
+          <i class="fas fa-history"></i>
+          Previous
+        </a>
+        <div class="menu-item__sub" id="previous-menu-item__sub">
+          <form action="/users/datasets" method="GET" class="drop-down-form">
+            <select name="drop-down-datasets" id="drop-down-datasets">
+              <option value="" disable select hidden>Previous datasets</option>
+              <% for (let i=0; i < datasetTitles.length; i++) { %>
+                <option id="options-id">
+                  <%= datasetTitles[i].dataset_name %>
+                </option>
+                <% } %>
+            </select>
+            <button type="submit" id="drop-down-button">Load</button>
           </form>
+          <!-- <a href="#">Link to Previous 1</a>
+            <a href="#">Link to Previous 2</a>
+            <a href="#">Link to Previous 3</a> -->
         </div>
-    </div> -->
+      </li>
+      <li class="menu-item">
+        <a href="" class="btn">
+          <i class="fas fa-search"></i>
+          View All
+        </a>
+      </li>
 
-    <div class="content"></div>
+      <!-- onclick create this slides out -->
+      <div class="menu" id="graph-controls">
+    
+      <!-- end of input controls -->
+    </div>
+  </div>
+  <!-- menu div -->
+
+  <div class="content"></div>
   </div>
 
 </body>
+
 </html>
