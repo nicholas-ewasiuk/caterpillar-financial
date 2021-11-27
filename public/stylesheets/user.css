@@ -56,12 +56,12 @@ a {
   color: var(--color-dark);
   text-decoration: none;
 }
-.containter {
-  z-index: 99;
+.container {
+z-index: 99;
 width: 100%;
 min-height: 100vh;
 display: flex;
-flex-direction: row;
+flex-direction: row
 }
 
 .content {
@@ -131,6 +131,7 @@ flex-direction: row;
 /* accordion menu */
 
 .menu {
+  z-index: 12;
   width: 20%;
   border-radius: 0.2rem;
   margin-top: 80px;
@@ -182,6 +183,7 @@ flex-direction: row;
   font-size: var(--fontsize-sub);
 }
 .create-input-ctrls {
+  z-index: 13;
   padding: 1.5rem; 
   display: flex;
   flex-direction: column;
@@ -222,17 +224,23 @@ flex-direction: row;
 .create-input-ctrls input:hover {
   border: 1px solid darkgray;
 }
-
+#cntrl-title {
+  padding-bottom: 1rem;
+}
 #revenue-1 aside {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 1rem;
 }
 #expenses-1 aside {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 1rem;
+
 }
+
 #graph-controls {
   overflow: hidden;
 }
