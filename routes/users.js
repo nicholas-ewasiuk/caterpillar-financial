@@ -34,7 +34,7 @@ module.exports = (db) => {
 
         db.query(`SELECT * FROM datasets WHERE user_id=${userId} AND dataset_name=$1`, [datasetName])
           .then(duplicate => {
-            if (duplicate.rows) {
+            if (duplicate.rows[0]) {
               let duplicateError = true;
 
               res.send(duplicateError)

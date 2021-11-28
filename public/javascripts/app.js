@@ -130,6 +130,7 @@ $(document).ready(function () {
     const username = $('.username').text();
     const datasetTitle = $('#dataset-title').val();
 
+    // save form data
     $.ajax({
       url: 'http://localhost:3001/users/datasets',
       method: 'POST',
@@ -143,9 +144,11 @@ $(document).ready(function () {
       if (result) {
         // dataset name already exists
         // show error message
+
         console.log("working?")
       } else {
         // show visual queue for when graph is saved
+
       }
     })
   });
@@ -155,6 +158,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     const datasetName = $('#drop-down-datasets').val();
+    const username = $('.username').text();
 
     $.ajax({
       url: 'http://localhost:3001/datasets',
@@ -241,6 +245,21 @@ $(document).ready(function () {
     }).catch((err) => {
       console.log("catch error", err)
     })
+  })
+
+  $('#view-all').on('click', function(e) {
+    e.preventDefault();
+
+    const username = $('.username').text();
+
+    $.ajax({
+      url: 'http://localhost:3001/collectall',
+      method: 'GET',
+      data: username
+    }).then((results) => {
+      //results is an array where results[0] has all revenue sets and the dataset_id from this user and results[1] has all expenses sets with the dataset_id
+      console.log("view all results", results)
+    })   
   })
 
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -375,23 +394,6 @@ $(document).ready(function () {
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-  $('#view-all').on('click', function(e) {
-    e.preventDefault();
-
-    const username = $('.username').text();
-
-    $.ajax({
-      url: 'http://localhost:3001/collectall',
-      method: 'GET',
-      data: username
-    }).then((results) => {
-      //results is an array where results[0] has all revenue sets and the dataset_id from this user and results[1] has all expenses sets with the dataset_id
-      console.log("view all results", results)
-    })   
-  })
 
   // document.addEventListener('input', updateCircle);
 
