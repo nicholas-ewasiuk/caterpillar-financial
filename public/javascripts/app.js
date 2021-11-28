@@ -163,7 +163,7 @@ $(document).ready(function () {
     $.ajax({
       url: 'http://localhost:3001/datasets',
       method: 'GET',
-      data: datasetName
+      data: { datasetName: datasetName, username: username }
     }).then((result) => {
       //result is an array where array[0] is the revenues data and array[1] is the expense data
 
