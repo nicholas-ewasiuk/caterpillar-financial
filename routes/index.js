@@ -17,7 +17,7 @@ module.exports = (db) => {
 
   router.post('/login', function(req, res) {
     
-    db.query(`SELECT * FROM users WHERE email LIKE '${req.body.email}'`)
+    db.query(`SELECT * FROM users WHERE email LIKE $1`, [req.body.email])
       .then(data => {
         const user_id = data.rows[0].id;
 
@@ -29,7 +29,7 @@ module.exports = (db) => {
   router.get('/datasets', function(req, res) {
     const datasetName = decodeURIComponent(req.url.split('?')[1]);
 
-    db.query(`SELECT id FROM datasets WHERE dataset_name='${datasetName}'`)
+    db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
       .then(data => {
         const datasetId = data.rows[0].id;
         
@@ -51,8 +51,32 @@ module.exports = (db) => {
 
 
   router.get('/collectall', function(req, res) {
+    const username = decodeURIComponent(req.url.split('?')[1]);
+    let dataArray = [];
 
-    db.query(`SELECT `)
+    db.query(`
+    SELECT dataset_id, revenue_name, amount 
+    FROM revenues 
+    JOIN datasets ON datasets.id = dataset_id
+    JOIN users ON users.id = user_id
+    WHERE users.username=$1;
+    `, [username])
+      .then(revenuesSets => {
+      dataArray.push(revenuesSets.rows);
+
+      db.query(`
+      SELECT dataset_id, expense_name, amount 
+      FROM expenses 
+      JOIN datasets ON datasets.id = dataset_id
+      JOIN users ON users.id = user_id
+      WHERE users.username=$1;
+      `, [username])
+        .then(expensesSets => {
+          dataArray.push(expensesSets.rows);
+
+          res.send(dataArray);
+        })
+    })
   })
 
   return router;

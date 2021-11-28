@@ -3,6 +3,14 @@
 $(document).ready(function () {
   console.log("interact file init");
 
+  // $('#graph-controls').slideToggle()
+
+  $("#create-btn").click(function(){
+    $("#graph-controls").slideToggle(300, function(){
+      console.log("slideUp + slideDown");
+    });
+  });
+
   // $("#button-to-click").on("click", function () {
   //   $("#affected-div").get(0).scrollIntoView('swing');
   // });
@@ -27,6 +35,7 @@ $(document).ready(function () {
       console.log("slideUp + slideDown");
     });
   });
+
   $("#create-btn").click(function(){
     $(".create-input-ctrls").slideToggle(300, function(){
       console.log("slideUp + slideDown");

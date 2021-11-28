@@ -370,18 +370,20 @@ $(document).ready(function () {
 
 
 
-  // $().on('click', function(e) {
+  $('#view-all').on('click', function(e) {
+    e.preventDefault();
 
-  //   const username = $('.username').text();
+    const username = $('.username').text();
 
-  //   $.ajax({
-  //     url: 'http://localhost:3001/collectall',
-  //     method: 'GET',
-  //     data: username
-  //   })    
-  // }).then((result) => {
-
-  // })
+    $.ajax({
+      url: 'http://localhost:3001/collectall',
+      method: 'GET',
+      data: username
+    }).then((results) => {
+      //results is an array where results[0] has all revenue sets and the dataset_id from this user and results[1] has all expenses sets with the dataset_id
+      console.log("view all results", results)
+    })   
+  })
 
   // document.addEventListener('input', updateCircle);
 

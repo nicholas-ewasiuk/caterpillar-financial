@@ -23,17 +23,19 @@ module.exports = (db) => {
     // console.log("reqbody-------------",req.body)
     const revData = req.body["revenuesData[]"];
     const expData = req.body["expensesData[]"];
-    const username = req.body.usernameData;
+    const username = req.body.usernameData.trim();
     const datasetName = req.body.datasetTitle;
     
-    db.query(`SELECT id FROM users WHERE username='${username}'`)
+
+    db.query(`SELECT id FROM users WHERE username=$1`, [username])
       .then(result => {
+        console.log("here-----", result)
         const userId = result.rows[0].id
 
-        db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, '${datasetName}')`)
+        db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, $1)`, [datasetName])
           .then(res => {
 
-            db.query(`SELECT id FROM datasets WHERE dataset_name='${datasetName}'`)
+            db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
               .then(datasetId => {
 
                 for (let i = 0; i < revData.length; i++) {
@@ -41,8 +43,8 @@ module.exports = (db) => {
                   if (i % 2 === 0) {
                     
                     db.query(`
-                      INSERT INTO revenues (dataset_id, revenue_name, amount) VALUES (${datasetId.rows[0].id}, '${revData[i]}', ${revData[i + 1]});
-                    `)
+                      INSERT INTO revenues (dataset_id, revenue_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
+                    `, [revData[i], revData[i + 1]])
                   }
                 }
             
@@ -50,8 +52,8 @@ module.exports = (db) => {
 
                   if (i % 2 === 0) {
                     db.query(`
-                      INSERT INTO expenses (dataset_id, expense_name, amount) VALUES (${datasetId.rows[0].id}, '${expData[i]}', ${expData[i + 1]});
-                    `)
+                      INSERT INTO expenses (dataset_id, expense_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
+                    `, [expData[i], expData[i + 1]])
                   }
                 }
 
