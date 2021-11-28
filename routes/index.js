@@ -74,7 +74,7 @@ module.exports = (db) => {
 
 
   router.get('/collectall', function(req, res) {
-    const username = decodeURIComponent(req.url.split('?')[1]);
+    const username = decodeURIComponent(req.url.split('?')[1]).trim();
     let dataArray = [];
 
     db.query(`
@@ -100,7 +100,32 @@ module.exports = (db) => {
           res.send(dataArray);
         })
     })
+  });
+
+
+  router.post('/delete', function(req, res) {
+
+    const username = req.body.username;
+    const datasetTitle = req.body.datasetTitle;
+
+    if (username && datasetTitle) {
+
+      db.query(`SELECT id FROM users WHERE username=$1`, [username])
+        .then(userIdData => {
+
+          const userId = userIdData.rows[0].id;
+
+          db.query(`DELETE FROM datasets WHERE dataset_name=$1 AND user_id=${userId}`, [datasetTitle])
+            .then(result => {
+
+              const confirmation = true;
+
+              res.send(confirmation)
+            })
+        })
+    }
   })
+
 
   return router;
 }

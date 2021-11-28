@@ -249,7 +249,7 @@ $(document).ready(function () {
 
   $('#view-all').on('click', function(e) {
     e.preventDefault();
-
+    
     const username = $('.username').text();
 
     $.ajax({
@@ -260,6 +260,24 @@ $(document).ready(function () {
       //results is an array where results[0] has all revenue sets and the dataset_id from this user and results[1] has all expenses sets with the dataset_id
       console.log("view all results", results)
     })   
+  })
+
+  $('#delete-previous').on('click', function(e) {
+    e.preventDefault();
+
+    const username = $('.username').text().trim();
+    const datasetTitle = $('#drop-down-datasets').val();
+
+    $.ajax({
+      url: 'http://localhost:3001/delete',
+      method: 'POST',
+      data: { username: username, datasetTitle: datasetTitle }
+    }).then((confirmation) => {
+      if (confirmation) {
+        location.reload();
+      }
+    })
+
   })
 
   //////////////////////////////////////////////////////////////////////////////////////////
