@@ -53,6 +53,7 @@ $(document).ready(function () {
       numExpenseArray = filterArray;
 
       nearestAside.remove();
+      updateCircle();
     })
   }
 
@@ -70,6 +71,8 @@ $(document).ready(function () {
       numRevenueArray = filterArray;
   
       nearestAside.remove();
+
+      updateCircle();
     })
   };
 
@@ -85,7 +88,7 @@ $(document).ready(function () {
     numRevenueArray.push(idNum);
 
     revenueCounter++;
-
+    
   });
 
   $(".add-expense").on("click", function (e) {
@@ -220,11 +223,11 @@ $(document).ready(function () {
       }
 
       $('#dataset-title').val($("#drop-down-datasets").val())
-
+      updateCircle();
+      
     }).catch((err) => {
       console.log("catch error", err)
     })
-
   })
 
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -233,7 +236,7 @@ $(document).ready(function () {
 
   document.addEventListener('input', updateCircle);
 
-  function updateCircle(event) {
+  function updateCircle() {
     console.clear();
     
     console.log(numExpenseArray, numRevenueArray);
