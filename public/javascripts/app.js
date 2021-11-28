@@ -144,6 +144,8 @@ $(document).ready(function () {
         // dataset name already exists
         // show error message
         console.log("working?")
+      } else {
+        // show visual queue for when graph is saved
       }
     })
   });
