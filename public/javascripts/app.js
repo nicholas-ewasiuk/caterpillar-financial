@@ -4,7 +4,7 @@ $(document).ready(function () {
   let expensesArray = ["text-expense0", "num-expense0"];
   let revenuesArray = ["text-revenue0", "num-revenue0"];
   let numExpenseArray = [["text-expense0","num-expense0"]];
-  let numRevenueArray = [["text-expense0","num-expense0"]];
+  let numRevenueArray = [["text-revenue0","num-revenue0"]];
 
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
@@ -47,9 +47,12 @@ $(document).ready(function () {
       let target = e.target;
 
       const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
       const numInput = nearestAside.firstElementChild.lastElementChild;
 
-      const filterArray = numExpenseArray.filter(id => id !== numInput.id);
+      const filterItem = [textInput.id, numInput.id];
+
+      const filterArray = numExpenseArray.filter(id => !arrayEquals(id, filterItem));
       numExpenseArray = filterArray;
 
       nearestAside.remove();
@@ -65,13 +68,15 @@ $(document).ready(function () {
       let target = e.target;
 
       const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
       const numInput = nearestAside.firstElementChild.lastElementChild;
 
-      const filterArray = numRevenueArray.filter(id => id !== numInput.id);
+      const filterItem = [textInput.id, numInput.id];
+
+      const filterArray = numRevenueArray.filter(id => !arrayEquals(id, filterItem));
       numRevenueArray = filterArray;
   
       nearestAside.remove();
-
       updateCircle();
     })
   };
@@ -167,7 +172,7 @@ $(document).ready(function () {
       expensesArray = ["text-expense0", "num-expense0"];
       revenuesArray = ["text-revenue0", "num-revenue0"];
       numExpenseArray = [["text-expense0","num-expense0"]];
-      numRevenueArray = [["text-expense0","num-expense0"]];
+      numRevenueArray = [["text-revenue0","num-revenue0"]];
 
       revenueCounter = 1;
       expenseCounter = 1;
@@ -258,7 +263,6 @@ $(document).ready(function () {
     let circleElement, textElement;
 
     const svgMain = document.getElementById('circle-svg');
-    //const balance = document.getElementById('balance');
 
     const numArray = numRevenueArray.concat(numExpenseArray);
 
@@ -327,8 +331,8 @@ $(document).ready(function () {
       //Randomly place the circles
       direction = Math.random();
 
-      angleX = Math.sin(direction * Math.PI);
-      angleY = Math.cos(direction * Math.PI);
+      angleX = Math.sin(direction * Math.PI / 2);
+      angleY = Math.cos(direction * Math.PI / 2);
 
       totalDist = radius + prevRadius;
 
@@ -351,7 +355,13 @@ $(document).ready(function () {
     }
     console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
   }
-
+  
+  function arrayEquals(a, b) {
+    return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+  }
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
