@@ -3,8 +3,8 @@ $(document).ready(function () {
   let expenseCounter = 1;
   let expensesArray = ["text-expense0", "num-expense0"];
   let revenuesArray = ["text-revenue0", "num-revenue0"];
-  let numExpenseArray = ["num-expense0"];
-  let numRevenueArray = ["num-revenue0"];
+  let numExpenseArray = [["text-expense0","num-expense0"]];
+  let numRevenueArray = [["text-expense0","num-expense0"]];
 
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
@@ -85,7 +85,7 @@ $(document).ready(function () {
     appendRevenueInputElements(idText, idNum);
 
     revenuesArray.push(idText, idNum);
-    numRevenueArray.push(idNum);
+    numRevenueArray.push([idText, idNum]);
 
     revenueCounter++;
     
@@ -98,7 +98,7 @@ $(document).ready(function () {
     appendExpenseInputElements(idText, idNum);
 
     expensesArray.push(idText, idNum);
-    numExpenseArray.push(idNum);
+    numExpenseArray.push([idText,idNum]);
 
     expenseCounter++;
   })
@@ -166,8 +166,8 @@ $(document).ready(function () {
 
       expensesArray = ["text-expense0", "num-expense0"];
       revenuesArray = ["text-revenue0", "num-revenue0"];
-      numExpenseArray = ["num-expense0"];
-      numRevenueArray = ["num-revenue0"];
+      numExpenseArray = [["text-expense0","num-expense0"]];
+      numRevenueArray = [["text-expense0","num-expense0"]];
 
       revenueCounter = 1;
       expenseCounter = 1;
@@ -183,7 +183,7 @@ $(document).ready(function () {
         appendRevenueInputElements(idText, idNum);
 
         revenuesArray.push(idText, idNum);
-        numRevenueArray.push(idNum);
+        numRevenueArray.push([idText, idNum]);
 
         revenueCounter++;
 
@@ -198,7 +198,7 @@ $(document).ready(function () {
         appendExpenseInputElements(idText, idNum);
 
         expensesArray.push(idText, idNum);
-        numExpenseArray.push(idNum);
+        numExpenseArray.push([idText,idNum]);
 
         expenseCounter++;
 
@@ -248,58 +248,68 @@ $(document).ready(function () {
     let totalRevenue = 0;
     let totalExpense = 0;
     let totalAmount = 0;
+    let amount = 0;
 
-    const amounts = [];
-
-    const circArray = [];
-
-    let inputNumber, prevRadius;
+    let inputNumber, inputText, prevRadius;
 
     let direction = 0;
 
     let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
-    let circleElement;
+    let circleElement, textElement;
 
-    const circle = document.getElementById('circle-visual');
     const svgMain = document.getElementById('circle-svg');
     //const balance = document.getElementById('balance');
 
-  //Loop through the fields and create a <circle> for each//
-    for (let i = 0; i < numRevenueArray.length; i++) {
-      inputNumber = document.getElementById(`${numRevenueArray[i]}`)
-      totalRevenue += Number(inputNumber.value);
-      amounts.push(Number(inputNumber.value));
+    const numArray = numRevenueArray.concat(numExpenseArray);
 
-      circleElement = document.createElementNS(ns, 'circle');
-      circleElement.setAttribute('id', `circ${i}`);
-      svgMain.append(circleElement);
-      circArray.push(`circ${i}`);
-    }
+////////////////////////////////////////////////////////////////
+////Loop through the fields and create a <circle> for each//////
+////////////////////////////////////////////////////////////////
 
-    for (let i = 0; i < numExpenseArray.length; i++) {
-      inputNumber = document.getElementById(`${numExpenseArray[i]}`);
-      totalExpense += Number(inputNumber.value);
-      amounts.push(Number(inputNumber.value));
+    for (let i = 0; i < numArray.length; i++) {
 
-      circleElement = document.createElementNS(ns, 'circle');
-      circleElement.setAttribute('id', `circ${i + numRevenueArray.length}`);
-      svgMain.append(circleElement);
-      circArray.push(`circ${i + numRevenueArray.length}`);
-    }
-  //Get the total $$$ amount//
-    totalAmount = totalExpense + totalRevenue;
-  
-  //Proportioning the amounts and setting <circle> radii//
-    for (let i = 0; i < circArray.length; i++) {
-      circleElement = document.getElementById(`circ${i}`);
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      inputText = document.getElementById(`${numArray[i][0]}`);
 
       if (i < numRevenueArray.length) {
-        radius = Math.sqrt((amounts[i] / totalRevenue) * (totalRevenue / totalAmount) * scale);
+        totalRevenue += Number(inputNumber.value);
+      } else {
+        totalExpense += Number(inputNumber.value);
+      }
+
+      circleElement = document.createElementNS(ns, 'circle');
+      textElement = document.createElementNS(ns, 'text');
+
+      circleElement.setAttribute('id', `circ${i}`);
+      textElement.setAttribute('id', `text${i}`);
+      textElement.innerHTML = inputText.value;
+
+      svgMain.append(circleElement);
+      svgMain.append(textElement);
+    }
+
+  //Get the total $$$ amount//
+    totalAmount = totalExpense + totalRevenue;
+
+////////////////////////////////////////////////////////////////
+/////////Proportioning and placing the circles//////////////////
+////////////////////////////////////////////////////////////////
+
+    for (let i = 0; i < numArray.length; i++) {
+      circleElement = document.getElementById(`circ${i}`);
+      textElement = document.getElementById(`text${i}`);
+
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      amount = Number(inputNumber.value);
+
+      if (i < numRevenueArray.length) {
+        radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
         circleElement.setAttribute('fill', 'green');
       } else {
-        radius = Math.sqrt((amounts[i] / totalExpense) * (totalExpense / totalAmount) * scale);
+        radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
         circleElement.setAttribute('fill', 'red');
       }
+
       circleElement.setAttribute('r', `${radius}`);
       circleElement.setAttribute('fill-opacity', '0.5');
 
@@ -310,6 +320,8 @@ $(document).ready(function () {
         prevRadius = Number(circleElement.getAttribute('r'));
         cx = Number(circleElement.getAttribute('cx'));
         cy = Number(circleElement.getAttribute('cy'));
+        textElement.setAttribute('x', `${svgMain.clientWidth / 2}`);
+        textElement.setAttribute('y', `${svgMain.clientHeight / 2}`);
         continue;
       }
       //Randomly place the circles
@@ -328,6 +340,9 @@ $(document).ready(function () {
 
       circleElement.setAttribute('cx', `${newCx}`);
       circleElement.setAttribute('cy', `${newCy}`);
+
+      textElement.setAttribute('x', `${newCx}`);
+      textElement.setAttribute('y', `${newCy}`);
 
       cx = Number(circleElement.getAttribute('cx'));
       cy = Number(circleElement.getAttribute('cy'));
