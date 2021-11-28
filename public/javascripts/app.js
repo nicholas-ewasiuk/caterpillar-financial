@@ -288,52 +288,56 @@ $(document).ready(function () {
     let directionRate = 0.5;
 
     let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
-    let circleElement, textElement;
+    let circleElement, textElement, lineElement;
 
     const svgMain = document.getElementById('circle-svg');
 
     const numArray = numRevenueArray.concat(numExpenseArray);
 
-////////////////////////////////////////////////////////////////
-////Loop through the fields and create a <circle> for each//////
-////////////////////////////////////////////////////////////////
 
     for (let i = 0; i < numArray.length; i++) {
 
+///Get the values from the input fields
       inputNumber = document.getElementById(`${numArray[i][1]}`);
-      inputText = document.getElementById(`${numArray[i][0]}`);
 
+///Add values to expense and revenue totals
       if (i < numRevenueArray.length) {
         totalRevenue += Number(inputNumber.value);
       } else {
         totalExpense += Number(inputNumber.value);
       }
-
-      circleElement = document.createElementNS(ns, 'circle');
-      textElement = document.createElementNS(ns, 'text');
-
-      circleElement.setAttribute('id', `circ${i}`);
-      textElement.setAttribute('id', `text${i}`);
-      textElement.innerHTML = inputText.value;
-
-      svgMain.append(circleElement);
-      svgMain.append(textElement);
     }
-
-  //Get the total $$$ amount//
+///Get the total $$$ amount
     totalAmount = totalExpense + totalRevenue;
 
-////////////////////////////////////////////////////////////////
-/////////Proportioning and placing the circles//////////////////
-////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+////Create all SVG elements. Proportion the circle radii and place elements//////
+/////////////////////////////////////////////////////////////////////////////////
 
     for (let i = 0; i < numArray.length; i++) {
-      circleElement = document.getElementById(`circ${i}`);
-      textElement = document.getElementById(`text${i}`);
 
+///Get values from input fields
       inputNumber = document.getElementById(`${numArray[i][1]}`);
-      amount = Number(inputNumber.value);
+      inputText = document.getElementById(`${numArray[i][0]}`);
 
+      amount = Number(inputNumber.value);
+      
+///create circle svg element
+      circleElement = document.createElementNS(ns, 'circle');
+
+///create text svg element and assign value from text input field
+      textElement = document.createElementNS(ns, 'text');
+      textElement.innerHTML = inputText.value;
+
+///create line svg element
+      lineElement = document.createElementNS(ns, 'line');
+
+///set the id attributes for each element
+      circleElement.setAttribute('id', `circ${i}`);
+      textElement.setAttribute('id', `text${i}`);
+      lineElement.setAttribute('id', `line${i}`);
+
+///Calculate propotional radius and set for circle element
       if (i < numRevenueArray.length) {
         radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
         circleElement.setAttribute('fill', 'green');
@@ -345,7 +349,7 @@ $(document).ready(function () {
       circleElement.setAttribute('r', `${radius}`);
       circleElement.setAttribute('fill-opacity', '0.5');
 
-      //Set the first circle at center
+//Set the first circle in top left corner
       if (i === 0) {
         circleElement.setAttribute('cx', `${radius}`);
         circleElement.setAttribute('cy', `${radius}`);
@@ -354,9 +358,14 @@ $(document).ready(function () {
         cy = Number(circleElement.getAttribute('cy'));
         textElement.setAttribute('x', `${radius}`);
         textElement.setAttribute('y', `${radius}`);
+
+        ///Append all the elements to the DOM
+        svgMain.append(circleElement);
+        svgMain.append(textElement);
+        svgMain.append(lineElement);
         continue;
       }
-      //Randomly place the circles
+///For remaining circles, place each at random angle next to previous
       direction = Math.random();
       directionRate += 0.01;
 
@@ -381,10 +390,15 @@ $(document).ready(function () {
       cy = Number(circleElement.getAttribute('cy'));
 
       prevRadius = Number(circleElement.getAttribute('r'));
+
+///Append all the elements to the DOM
+      svgMain.append(circleElement);
+      svgMain.append(textElement);
+      svgMain.append(lineElement);
     }
     console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
   }
-  
+
   function arrayEquals(a, b) {
     return Array.isArray(a) &&
       Array.isArray(b) &&
