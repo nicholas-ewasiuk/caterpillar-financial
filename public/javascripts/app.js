@@ -3,6 +3,8 @@ $(document).ready(function () {
   let expenseCounter = 1;
   let expensesArray = ["text-expense0", "num-expense0"];
   let revenuesArray = ["text-revenue0", "num-revenue0"];
+  let numExpenseArray = ["num-expense0"];
+  let numRevenueArray = ["num-revenue0"];
 
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
@@ -43,9 +45,14 @@ $(document).ready(function () {
 
     $(".fa-minus-circle").on("click", function(e) {
       let target = e.target;
-      console.log("here",target)
-  
-      target.closest("aside").remove();
+
+      const nearestAside = target.closest("aside");
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+
+      const filterArray = numExpenseArray.filter(id => id !== numInput.id);
+      numExpenseArray = filterArray;
+
+      nearestAside.remove();
     })
   }
 
@@ -55,9 +62,14 @@ $(document).ready(function () {
 
     $(".fa-minus-circle").on("click", function(e) {
       let target = e.target;
-      console.log("here",target)
+
+      const nearestAside = target.closest("aside");
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+
+      const filterArray = numRevenueArray.filter(id => id !== numInput.id);
+      numRevenueArray = filterArray;
   
-      target.closest("aside").remove();
+      nearestAside.remove();
     })
   };
 
@@ -70,6 +82,7 @@ $(document).ready(function () {
     appendRevenueInputElements(idText, idNum);
 
     revenuesArray.push(idText, idNum);
+    numRevenueArray.push(idNum);
 
     revenueCounter++;
 
@@ -82,6 +95,7 @@ $(document).ready(function () {
     appendExpenseInputElements(idText, idNum);
 
     expensesArray.push(idText, idNum);
+    numExpenseArray.push(idNum);
 
     expenseCounter++;
   })
@@ -149,6 +163,8 @@ $(document).ready(function () {
 
       expensesArray = ["text-expense0", "num-expense0"];
       revenuesArray = ["text-revenue0", "num-revenue0"];
+      numExpenseArray = ["num-expense0"];
+      numRevenueArray = ["num-revenue0"];
 
       revenueCounter = 1;
       expenseCounter = 1;
@@ -164,6 +180,7 @@ $(document).ready(function () {
         appendRevenueInputElements(idText, idNum);
 
         revenuesArray.push(idText, idNum);
+        numRevenueArray.push(idNum);
 
         revenueCounter++;
 
@@ -178,6 +195,7 @@ $(document).ready(function () {
         appendExpenseInputElements(idText, idNum);
 
         expensesArray.push(idText, idNum);
+        numExpenseArray.push(idNum);
 
         expenseCounter++;
 
@@ -217,15 +235,8 @@ $(document).ready(function () {
 
   function updateCircle(event) {
     console.clear();
-
-    for (let item of revenuesArray) {
-      console.log(`revenuesArray: ${item}`);
-    }
-    for (let item of expensesArray) {
-      console.log(`expensesArray: ${item}`);
-    }
-
-    console.log()
+    
+    console.log(numExpenseArray, numRevenueArray);
     $("#circle-svg").empty();
 
     const scale = 20000;
@@ -251,8 +262,8 @@ $(document).ready(function () {
     //const balance = document.getElementById('balance');
 
   //Loop through the fields and create a <circle> for each//
-    for (let i = 0; i < revenueCounter; i++) {
-      inputNumber = document.getElementById(`num-revenue${i}`)
+    for (let i = 0; i < numRevenueArray.length; i++) {
+      inputNumber = document.getElementById(`${numRevenueArray[i]}`)
       totalRevenue += Number(inputNumber.value);
       amounts.push(Number(inputNumber.value));
 
@@ -262,15 +273,15 @@ $(document).ready(function () {
       circArray.push(`circ${i}`);
     }
 
-    for (let i = 0; i < expenseCounter; i++) {
-      inputNumber = document.getElementById(`num-expense${i}`);
+    for (let i = 0; i < numExpenseArray.length; i++) {
+      inputNumber = document.getElementById(`${numExpenseArray[i]}`);
       totalExpense += Number(inputNumber.value);
       amounts.push(Number(inputNumber.value));
 
       circleElement = document.createElementNS(ns, 'circle');
-      circleElement.setAttribute('id', `circ${i + revenueCounter}`);
+      circleElement.setAttribute('id', `circ${i + numRevenueArray.length}`);
       svgMain.append(circleElement);
-      circArray.push(`circ${i + revenueCounter}`);
+      circArray.push(`circ${i + numRevenueArray.length}`);
     }
   //Get the total $$$ amount//
     totalAmount = totalExpense + totalRevenue;
@@ -279,7 +290,7 @@ $(document).ready(function () {
     for (let i = 0; i < circArray.length; i++) {
       circleElement = document.getElementById(`circ${i}`);
 
-      if (i < revenueCounter) {
+      if (i < numRevenueArray.length) {
         radius = Math.sqrt((amounts[i] / totalRevenue) * (totalRevenue / totalAmount) * scale);
         circleElement.setAttribute('fill', 'green');
       } else {
@@ -321,8 +332,6 @@ $(document).ready(function () {
       prevRadius = Number(circleElement.getAttribute('r'));
     }
     console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
-    
-
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////
