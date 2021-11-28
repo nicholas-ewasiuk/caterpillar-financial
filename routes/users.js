@@ -61,7 +61,6 @@ module.exports = (db) => {
           })
 
       })
-   
   });
 
   return router;
