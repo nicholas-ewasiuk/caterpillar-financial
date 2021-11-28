@@ -23,11 +23,13 @@ module.exports = (db) => {
     // console.log("reqbody-------------",req.body)
     const revData = req.body["revenuesData[]"];
     const expData = req.body["expensesData[]"];
-    const username = req.body.usernameData;
+    const username = req.body.usernameData.trim();
     const datasetName = req.body.datasetTitle;
     
-    db.query(`SELECT id FROM users WHERE username='${username}'`)
+
+    db.query(`SELECT id FROM users WHERE username='${username}';`)
       .then(result => {
+        console.log("result",result)
         const userId = result.rows[0].id
 
         db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, '${datasetName}')`)
