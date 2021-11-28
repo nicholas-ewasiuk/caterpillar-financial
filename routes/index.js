@@ -30,7 +30,7 @@ module.exports = (db) => {
           // it's just a blank error page with this message
           // res.status(403).send("403: e-mail cannot be found, <a href='/login'>back to login</a>");
 
-          res.redirect('login')
+          res.redirect('login');
 
         }
       })
