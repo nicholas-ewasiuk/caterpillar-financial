@@ -264,6 +264,7 @@ $(document).ready(function () {
     let inputNumber, inputText, prevRadius;
 
     let direction = 0;
+    let directionRate = 0.5;
 
     let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
     let circleElement, textElement;
@@ -325,20 +326,21 @@ $(document).ready(function () {
 
       //Set the first circle at center
       if (i === 0) {
-        circleElement.setAttribute('cx', `${svgMain.clientWidth / 2}`);
-        circleElement.setAttribute('cy', `${svgMain.clientHeight / 2}`);
+        circleElement.setAttribute('cx', `${radius}`);
+        circleElement.setAttribute('cy', `${radius}`);
         prevRadius = Number(circleElement.getAttribute('r'));
         cx = Number(circleElement.getAttribute('cx'));
         cy = Number(circleElement.getAttribute('cy'));
-        textElement.setAttribute('x', `${svgMain.clientWidth / 2}`);
-        textElement.setAttribute('y', `${svgMain.clientHeight / 2}`);
+        textElement.setAttribute('x', `${radius}`);
+        textElement.setAttribute('y', `${radius}`);
         continue;
       }
       //Randomly place the circles
       direction = Math.random();
+      directionRate += 0.01;
 
-      angleX = Math.sin(direction * Math.PI / 2);
-      angleY = Math.cos(direction * Math.PI / 2);
+      angleX = Math.sin(direction * Math.PI * directionRate);
+      angleY = Math.cos(direction * Math.PI * directionRate);
 
       totalDist = radius + prevRadius;
 
