@@ -32,33 +32,44 @@ module.exports = (db) => {
         console.log("here-----", result)
         const userId = result.rows[0].id
 
-        db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, $1)`, [datasetName])
-          .then(res => {
+        db.query(`SELECT * FROM datasets WHERE user_id=${userId} AND dataset_name=$1`, [datasetName])
+          .then(duplicate => {
+            if (duplicate.rows) {
+              let duplicateError = true;
 
-            db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
-              .then(datasetId => {
+              res.send(duplicateError)
+            } else {
 
-                for (let i = 0; i < revData.length; i++) {
+              db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, $1)`, [datasetName])
+                .then(res => {
+      
+                  db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
+                    .then(datasetId => {
+      
+                      for (let i = 0; i < revData.length; i++) {
+                        
+                        if (i % 2 === 0) {
+                          
+                          db.query(`
+                            INSERT INTO revenues (dataset_id, revenue_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
+                          `, [revData[i], revData[i + 1]])
+                        }
+                      }
                   
-                  if (i % 2 === 0) {
-                    
-                    db.query(`
-                      INSERT INTO revenues (dataset_id, revenue_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
-                    `, [revData[i], revData[i + 1]])
-                  }
-                }
-            
-                for (let i = 0; i < expData.length; i++) {
-
-                  if (i % 2 === 0) {
-                    db.query(`
-                      INSERT INTO expenses (dataset_id, expense_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
-                    `, [expData[i], expData[i + 1]])
-                  }
-                }
-
-              })
+                      for (let i = 0; i < expData.length; i++) {
+      
+                        if (i % 2 === 0) {
+                          db.query(`
+                            INSERT INTO expenses (dataset_id, expense_name, amount) VALUES (${datasetId.rows[0].id}, $1, $2);
+                          `, [expData[i], expData[i + 1]])
+                        }
+                      }
+      
+                    })
+                })
+            }
           })
+
 
       })
    

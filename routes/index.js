@@ -9,19 +9,30 @@ module.exports = (db) => {
   router.get('/', function(req, res, next) {
     
     res.render('index', { title: 'Express' });
+
   });
 
   router.get('/login', function(req, res) {
     res.render('login');
+
   })
 
   router.post('/login', function(req, res) {
     
     db.query(`SELECT * FROM users WHERE email LIKE $1`, [req.body.email])
       .then(data => {
-        const user_id = data.rows[0].id;
+        if (data.rows[0]) {
+          const user_id = data.rows[0].id;
+  
+          res.redirect('/users/' + encodeURIComponent(user_id));
 
-        res.redirect('/users/' + encodeURIComponent(user_id));
+        } else {
+          // it's just a blank error page with this message
+          // res.status(403).send("403: e-mail cannot be found, <a href='/login'>back to login</a>");
+
+          res.redirect('login')
+
+        }
       })
   });
 
@@ -44,6 +55,7 @@ module.exports = (db) => {
                 const dataArray = [ revenuesData, expensesData ];
 
                 res.send(dataArray);
+
               })
           })
       })

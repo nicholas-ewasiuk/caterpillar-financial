@@ -139,6 +139,12 @@ $(document).ready(function () {
         usernameData: username,
         datasetTitle: datasetTitle
       }
+    }).then((result) => {
+      if (result) {
+        // dataset name already exists
+        // show error message
+        console.log("working?")
+      }
     })
   });
 
