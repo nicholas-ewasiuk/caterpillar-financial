@@ -37,11 +37,19 @@ $(document).ready(function () {
   });
 
   $("#create-btn").click(function(){
-    $("#graph-controls").slideToggle(300, function(){
+    $(".create-input-ctrls").slideToggle(300, function(){
       console.log("slideUp + slideDown");
     });
   });
 
+  // $("#graph-controls").hide();
+
+  // $("#create-btn").click(function(){
+  //   $("#menu-slide").slideUp(300)
+  //   $("#graph-controls").slideToggle(300, function(){
+  //     $("#graph-controls").show();
+  //   });
+  // });
 
   // document.ready
 });

@@ -3,10 +3,8 @@ $(document).ready(function () {
   let expenseCounter = 1;
   let expensesArray = ["text-expense0", "num-expense0"];
   let revenuesArray = ["text-revenue0", "num-revenue0"];
-
-
-  
-
+  let numExpenseArray = [["text-expense0","num-expense0"]];
+  let numRevenueArray = [["text-revenue0","num-revenue0"]];
 
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
@@ -47,9 +45,18 @@ $(document).ready(function () {
 
     $(".fa-minus-circle").on("click", function(e) {
       let target = e.target;
-      console.log("here",target)
-  
-      target.closest("aside").remove();
+
+      const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+
+      const filterItem = [textInput.id, numInput.id];
+
+      const filterArray = numExpenseArray.filter(id => !arrayEquals(id, filterItem));
+      numExpenseArray = filterArray;
+
+      nearestAside.remove();
+      updateCircle();
     })
   }
 
@@ -59,13 +66,22 @@ $(document).ready(function () {
 
     $(".fa-minus-circle").on("click", function(e) {
       let target = e.target;
-      console.log("here",target)
+
+      const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+
+      const filterItem = [textInput.id, numInput.id];
+
+      const filterArray = numRevenueArray.filter(id => !arrayEquals(id, filterItem));
+      numRevenueArray = filterArray;
   
-      target.closest("aside").remove();
+      nearestAside.remove();
+      updateCircle();
     })
   };
 
-
+  //////Add revenue and expense fields/////////////
   $(".add-revenue").on("click", function (e) {
     const idText = "text-revenue" + revenueCounter;
     const idNum = "num-revenue" + revenueCounter;
@@ -74,9 +90,10 @@ $(document).ready(function () {
     appendRevenueInputElements(idText, idNum);
 
     revenuesArray.push(idText, idNum);
+    numRevenueArray.push([idText, idNum]);
 
     revenueCounter++;
-
+    
   });
 
   $(".add-expense").on("click", function (e) {
@@ -86,6 +103,7 @@ $(document).ready(function () {
     appendExpenseInputElements(idText, idNum);
 
     expensesArray.push(idText, idNum);
+    numExpenseArray.push([idText,idNum]);
 
     expenseCounter++;
   })
@@ -122,7 +140,6 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     })
-
   });
 
 
@@ -154,6 +171,8 @@ $(document).ready(function () {
 
       expensesArray = ["text-expense0", "num-expense0"];
       revenuesArray = ["text-revenue0", "num-revenue0"];
+      numExpenseArray = [["text-expense0","num-expense0"]];
+      numRevenueArray = [["text-revenue0","num-revenue0"]];
 
       revenueCounter = 1;
       expenseCounter = 1;
@@ -169,6 +188,7 @@ $(document).ready(function () {
         appendRevenueInputElements(idText, idNum);
 
         revenuesArray.push(idText, idNum);
+        numRevenueArray.push([idText, idNum]);
 
         revenueCounter++;
 
@@ -183,6 +203,7 @@ $(document).ready(function () {
         appendExpenseInputElements(idText, idNum);
 
         expensesArray.push(idText, idNum);
+        numExpenseArray.push([idText,idNum]);
 
         expenseCounter++;
 
@@ -207,12 +228,142 @@ $(document).ready(function () {
       }
 
       $('#dataset-title').val($("#drop-down-datasets").val())
-
+      updateCircle();
+      
     }).catch((err) => {
       console.log("catch error", err)
     })
-
   })
+
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////circle vis code/////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+
+  document.addEventListener('input', updateCircle);
+
+  function updateCircle() {
+    console.clear();
+    
+    console.log(numExpenseArray, numRevenueArray);
+    $("#circle-svg").empty();
+
+    const scale = 20000;
+    const ns = 'http://www.w3.org/2000/svg';
+
+    let totalRevenue = 0;
+    let totalExpense = 0;
+    let totalAmount = 0;
+    let amount = 0;
+
+    let inputNumber, inputText, prevRadius;
+
+    let direction = 0;
+
+    let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
+    let circleElement, textElement;
+
+    const svgMain = document.getElementById('circle-svg');
+
+    const numArray = numRevenueArray.concat(numExpenseArray);
+
+////////////////////////////////////////////////////////////////
+////Loop through the fields and create a <circle> for each//////
+////////////////////////////////////////////////////////////////
+
+    for (let i = 0; i < numArray.length; i++) {
+
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      inputText = document.getElementById(`${numArray[i][0]}`);
+
+      if (i < numRevenueArray.length) {
+        totalRevenue += Number(inputNumber.value);
+      } else {
+        totalExpense += Number(inputNumber.value);
+      }
+
+      circleElement = document.createElementNS(ns, 'circle');
+      textElement = document.createElementNS(ns, 'text');
+
+      circleElement.setAttribute('id', `circ${i}`);
+      textElement.setAttribute('id', `text${i}`);
+      textElement.innerHTML = inputText.value;
+
+      svgMain.append(circleElement);
+      svgMain.append(textElement);
+    }
+
+  //Get the total $$$ amount//
+    totalAmount = totalExpense + totalRevenue;
+
+////////////////////////////////////////////////////////////////
+/////////Proportioning and placing the circles//////////////////
+////////////////////////////////////////////////////////////////
+
+    for (let i = 0; i < numArray.length; i++) {
+      circleElement = document.getElementById(`circ${i}`);
+      textElement = document.getElementById(`text${i}`);
+
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      amount = Number(inputNumber.value);
+
+      if (i < numRevenueArray.length) {
+        radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+        circleElement.setAttribute('fill', 'green');
+      } else {
+        radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
+        circleElement.setAttribute('fill', 'red');
+      }
+
+      circleElement.setAttribute('r', `${radius}`);
+      circleElement.setAttribute('fill-opacity', '0.5');
+
+      //Set the first circle at center
+      if (i === 0) {
+        circleElement.setAttribute('cx', `${svgMain.clientWidth / 2}`);
+        circleElement.setAttribute('cy', `${svgMain.clientHeight / 2}`);
+        prevRadius = Number(circleElement.getAttribute('r'));
+        cx = Number(circleElement.getAttribute('cx'));
+        cy = Number(circleElement.getAttribute('cy'));
+        textElement.setAttribute('x', `${svgMain.clientWidth / 2}`);
+        textElement.setAttribute('y', `${svgMain.clientHeight / 2}`);
+        continue;
+      }
+      //Randomly place the circles
+      direction = Math.random();
+
+      angleX = Math.sin(direction * Math.PI / 2);
+      angleY = Math.cos(direction * Math.PI / 2);
+
+      totalDist = radius + prevRadius;
+
+      vecX = angleX * totalDist;
+      vecY = angleY * totalDist;
+
+      newCx = cx + vecX;
+      newCy = cy + vecY;
+
+      circleElement.setAttribute('cx', `${newCx}`);
+      circleElement.setAttribute('cy', `${newCy}`);
+
+      textElement.setAttribute('x', `${newCx}`);
+      textElement.setAttribute('y', `${newCy}`);
+
+      cx = Number(circleElement.getAttribute('cx'));
+      cy = Number(circleElement.getAttribute('cy'));
+
+      prevRadius = Number(circleElement.getAttribute('r'));
+    }
+    console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
+  }
+  
+  function arrayEquals(a, b) {
+    return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+  }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
