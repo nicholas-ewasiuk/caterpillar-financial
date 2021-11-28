@@ -38,27 +38,38 @@ module.exports = (db) => {
 
 
   router.get('/datasets', function(req, res) {
-    const datasetName = decodeURIComponent(req.url.split('?')[1]);
 
-    db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
-      .then(data => {
-        const datasetId = data.rows[0].id;
+    const decoded = decodeURIComponent(req.url.split('?')[1]).split('&username=');
+
+    const datasetName = decoded[0].split('datasetName=')[1]
+
+    const username = decoded[1].trim()
+
+    db.query(`SELECT id FROM users WHERE username=$1`, [username])
+      .then(userIdData => {
+        const userId = userIdData.rows[0].id
         
-        db.query(`SELECT revenue_name, amount FROM revenues WHERE dataset_id='${datasetId}'`)
-          .then(revData => {
-            const revenuesData = revData.rows;
-
-            db.query(`SELECT expense_name, amount FROM expenses WHERE dataset_id='${datasetId}'`)
-              .then(expData => {
-                const expensesData = expData.rows;
-
-                const dataArray = [ revenuesData, expensesData ];
-
-                res.send(dataArray);
-
+        db.query(`SELECT id FROM datasets WHERE dataset_name=$1 AND user_id=${userId}`, [datasetName])
+          .then(data => {
+            const datasetId = data.rows[0].id;
+            
+            db.query(`SELECT revenue_name, amount FROM revenues WHERE dataset_id='${datasetId}'`)
+              .then(revData => {
+                const revenuesData = revData.rows;
+    
+                db.query(`SELECT expense_name, amount FROM expenses WHERE dataset_id='${datasetId}'`)
+                  .then(expData => {
+                    const expensesData = expData.rows;
+    
+                    const dataArray = [ revenuesData, expensesData ];
+    
+                    res.send(dataArray);
+    
+                  })
               })
           })
-      })
+      }) 
+
   });
 
 
