@@ -284,7 +284,13 @@ $(document).ready(function () {
   //////////////////////////circle vis code/////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  document.addEventListener('input', updateCircle);
+  document.addEventListener('input', updateCircleOnInput);
+
+  function updateCircleOnInput(event) {
+    if (event.target.placeholder === 'amount') {
+      updateCircle();
+    }
+  }
 
   function updateCircle() {
     console.clear();
@@ -292,7 +298,8 @@ $(document).ready(function () {
     console.log(numExpenseArray, numRevenueArray);
     $("#circle-svg").empty();
 
-    const scale = 20000;
+    const scale = 20000; //total area of all circles
+
     const ns = 'http://www.w3.org/2000/svg';
 
     let totalRevenue = 0;
@@ -434,6 +441,43 @@ $(document).ready(function () {
       a.length === b.length &&
       a.every((val, index) => val === b[index]);
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////Mouse inputs///////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  document.addEventListener('mouseup', mouseUpHandler);
+  document.addEventListener('mousedown', mouseDownHandler);
+  document.addEventListener('mousemove', mouseMoveHandler);
+
+  let mousePressed = false;
+  let clickedText;
+
+  function mouseDownHandler(event) {
+    const target = event.target;
+
+    if (target.tagName === 'text') {
+      mousePressed = true;
+      clickedText = target;
+      console.log(target);
+    }
+  }
+
+  function mouseMoveHandler(event) {
+    if (mousePressed) {
+      const lineElement = clickedText.nextElementSibling
+      clickedText.setAttribute('x', event.offsetX);
+      clickedText.setAttribute('y', event.offsetY);
+
+      lineElement.setAttribute('x2', clickedText.getAttribute('x'));
+      lineElement.setAttribute('y2', (Number(clickedText.getAttribute('y')) + 1));
+    }
+  }
+
+  function mouseUpHandler(event) {
+    mousePressed = false;
+  }
+
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
 
