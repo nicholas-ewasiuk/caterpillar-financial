@@ -249,7 +249,7 @@ $(document).ready(function () {
 
   $('#view-all').on('click', function(e) {
     e.preventDefault();
-    
+
     const username = $('.username').text();
 
     $.ajax({
@@ -312,19 +312,16 @@ $(document).ready(function () {
 
     const numArray = numRevenueArray.concat(numExpenseArray);
 
-
+///Loop through input amounts and get total amounts for each
     for (let i = 0; i < numArray.length; i++) {
-
-///Get the values from the input fields
       inputNumber = document.getElementById(`${numArray[i][1]}`);
-
-///Add values to expense and revenue totals
       if (i < numRevenueArray.length) {
         totalRevenue += Number(inputNumber.value);
       } else {
         totalExpense += Number(inputNumber.value);
       }
     }
+
 ///Get the total $$$ amount
     totalAmount = totalExpense + totalRevenue;
 
@@ -345,10 +342,12 @@ $(document).ready(function () {
 
 ///create text svg element and assign value from text input field
       textElement = document.createElementNS(ns, 'text');
+      textElement.setAttribute('text-decoration', `underline`);
       textElement.innerHTML = inputText.value;
 
 ///create line svg element
       lineElement = document.createElementNS(ns, 'line');
+      lineElement.setAttribute('stroke', `black`);
 
 ///set the id attributes for each element
       circleElement.setAttribute('id', `circ${i}`);
@@ -369,13 +368,19 @@ $(document).ready(function () {
 
 //Set the first circle in top left corner
       if (i === 0) {
-        circleElement.setAttribute('cx', `${radius}`);
-        circleElement.setAttribute('cy', `${radius}`);
+        circleElement.setAttribute('cx', `${radius + 100}`);
+        circleElement.setAttribute('cy', `${radius + 100}`);
         prevRadius = Number(circleElement.getAttribute('r'));
         cx = Number(circleElement.getAttribute('cx'));
         cy = Number(circleElement.getAttribute('cy'));
-        textElement.setAttribute('x', `${radius}`);
-        textElement.setAttribute('y', `${radius}`);
+
+        textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
+        textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
+
+        lineElement.setAttribute('x1', `${cx + (radius / 2)}`);
+        lineElement.setAttribute('y1', `${cy - (radius / 2)}`);
+        lineElement.setAttribute('x2', `${textElement.getAttribute('x')}`);
+        lineElement.setAttribute('y2', `${Number(textElement.getAttribute('y')) + 1}`);
 
         ///Append all the elements to the DOM
         svgMain.append(circleElement);
@@ -401,8 +406,14 @@ $(document).ready(function () {
       circleElement.setAttribute('cx', `${newCx}`);
       circleElement.setAttribute('cy', `${newCy}`);
 
-      textElement.setAttribute('x', `${newCx}`);
-      textElement.setAttribute('y', `${newCy}`);
+      textElement.setAttribute('x', `${newCx + (radius * 1.25)}`);
+      textElement.setAttribute('y', `${newCy - (radius * 1.25)}`);
+
+      lineElement.setAttribute('x1', `${newCx + (radius / 2)}`);
+      lineElement.setAttribute('y1', `${newCy - (radius / 2)}`);
+      lineElement.setAttribute('x2', `${textElement.getAttribute('x')}`);
+      lineElement.setAttribute('y2', `${Number(textElement.getAttribute('y')) + 1}`);
+
 
       cx = Number(circleElement.getAttribute('cx'));
       cy = Number(circleElement.getAttribute('cy'));
