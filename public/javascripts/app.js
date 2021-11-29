@@ -284,9 +284,7 @@ $(document).ready(function () {
   //////////////////////////circle vis code/////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  
   document.addEventListener('input', updateCircle);
-
   function updateCircle(event) {
 
   if (event.target.placeholder === 'amount') {
@@ -467,7 +465,7 @@ $(document).ready(function () {
       clickedText.setAttribute('y', event.offsetY);
 
       lineElement.setAttribute('x2', clickedText.getAttribute('x'));
-      lineElement.setAttribute('y2', clickedText.getAttribute('y'));
+      lineElement.setAttribute('y2', (Number(clickedText.getAttribute('y')) + 1));
     }
   }
 
