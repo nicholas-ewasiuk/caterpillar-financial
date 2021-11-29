@@ -284,10 +284,15 @@ $(document).ready(function () {
   //////////////////////////circle vis code/////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  document.addEventListener('input', updateCircle);
-  function updateCircle(event) {
+  document.addEventListener('input', updateCircleOnInput);
 
-  if (event.target.placeholder === 'amount') {
+  function updateCircleOnInput(event) {
+    if (event.target.placeholder === 'amount') {
+      updateCircle();
+    }
+  }
+
+  function updateCircle() {
     console.clear();
     
     console.log(numExpenseArray, numRevenueArray);
@@ -428,7 +433,6 @@ $(document).ready(function () {
       svgMain.append(lineElement);
     }
     console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
-  }
   }
 
   function arrayEquals(a, b) {
