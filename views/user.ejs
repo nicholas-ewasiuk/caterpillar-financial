@@ -34,71 +34,13 @@
     <h3 class="username">
       <%=username%>
     </h3>
-
-    <i class="fas fa-sign-out-alt">Logout </i>
-
+    <button class="btn-btn" id="submit-button" role="button">Logout</button>
   </nav>
   <!-- ^^ nav ^^  -->
 
   <div class="container">
 
     <div class="menu" id="menu-slide">
-      <li class="menu-item" id="create">
-        <a href="" class="btn" id="create-btn">
-          <i class="fas fa-plus"></i>
-          Create
-        </a>
-          <div class="create-input-ctrls">
-            <form action="/users" method="POST" class="user-form">
-              <label for="title" id="cntrl-title">
-                Title
-                <span>
-                <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-              </span>
-              <span id="add-delete">
-                <i class="fas fa-plus-circle add-revenue"></i>
-              </span>
-              </label>
-
-              <!-- revenue group -->
-              <label for="revenue" class="revenues">
-                Revenue
-                <aside>
-                  <span>
-                    <input type="text" placeholder="source of revenue" id="text-revenue0">
-                    <input type="number" placeholder="amount" id="num-revenue0">
-                  </span>
-                  <span id="add-delete">
-                    <i class="fas fa-plus-circle add-revenue"></i>
-                  </span>
-                </aside>
-                <!-- revenue group -->
-              </label>
-
-              <label for="expense" class="expenses">
-                Expense
-                <aside>
-                  <span>
-                    <input type="text" placeholder="source of expenses" id="text-expense0">
-                    <input type="number" placeholder="amount" id="num-expense0">
-                  </span>
-                  <span id="add-delete">
-                    <i class="fas fa-plus-circle add-expense"></i>
-                  </span>
-                </aside>
-                <!-- expense group -->
-              </label>
-        <li class="menu-item" id="Save">
-          <button type="submit" id="submit-button">
-            Save
-            <i class="fas fa-share-square"></i>
-          </button>
-        </li>
-        </form>
-      </div>
-      </li>
-      </li>
-
       <li class="menu-item" id="previous-graphs">
         <a href="#previous-graphs" class="btn" id="previous-btn">
           <i class="fas fa-history"></i>
@@ -117,37 +59,82 @@
             <button type="submit" id="drop-down-button">Load</button>
             <button type="button" id="delete-previous">Delete</button>
           </form>
-          <!-- <a href="#">Link to Previous 1</a>
-            <a href="#">Link to Previous 2</a>
-            <a href="#">Link to Previous 3</a> -->
         </div>
       </li>
-      <li class="menu-item" id="view-all">
-        <a href="" class="btn">
-          <i class="fas fa-search"></i>
-          View All
+      <li class="menu-item" id="create">
+        <a href="" class="btn" id="create-btn">
+          <i class="fas fa-plus"></i>
+          Create
         </a>
-      </li>
+        <div class="create-input-ctrls">
+          <form action="/users" method="POST" class="user-form">
+            <label for="title" id="cntrl-title">
+              Title
+              <span>
+                <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
+              </span>
+              <span id="add-delete">
+                <i class="fas fa-plus-circle add-revenue"></i>
+              </span>
+            </label>
 
-      <!-- onclick create this slides out -->
-      <div class="menu" id="graph-controls">
-    
+            <!-- revenue group -->
+            <label for="revenue" class="revenues">
+              Revenue
+              <aside>
+                <span>
+                  <input type="text" placeholder="source of revenue" id="text-revenue0">
+                  <input type="number" placeholder="amount" id="num-revenue0">
+                </span>
+                <span id="add-delete">
+                  <i class="fas fa-plus-circle add-revenue"></i>
+                </span>
+              </aside>
+              <!-- revenue group -->
+            </label>
+
+            <label for="expense" class="expenses">
+              Expense
+              <aside>
+                <span>
+                  <input type="text" placeholder="source of expenses" id="text-expense0">
+                  <input type="number" placeholder="amount" id="num-expense0">
+                </span>
+                <span id="add-delete">
+                  <i class="fas fa-plus-circle add-expense"></i>
+                </span>
+              </aside>
+              <!-- expense group -->
+            </label>
+      <li class="menu-item" id="Save">
+
+          <button class="btn-btn" id="submit-button" role="button">Save</button>
+          <!-- <i class="fas fa-share-square"></i> -->
+        
+        </button>
+      </li>
+      </form>
+    </div>
+    </li>
+    </li>
+    <li class="menu-item" id="view-all">
+      <a href="" class="btn">
+        <i class="fas fa-search"></i>
+        View All
+      </a>
+    </li>
+
+    <!-- onclick create this slides out -->
+    <div class="menu" id="graph-controls">
+
       <!-- end of input controls -->
     </div>
   </div>
   <!-- menu div -->
 
   <div class="content">
-    <svg 
-      version="1.0" 
-      xmlns="http://www.w3.org/2000/svg" 
-      xmlns:xlink="http://www.w3.org/1999/xlink" 
-      height="100%"
-      width="100%"
-      x="0px" 
-      y="0px"
-      id="circle-svg"
-      xml:space="preserve">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="100%"
+      width="100%" x="0px" y="0px" id="circle-svg" xml:space="preserve">
     </svg>
   </div>
 

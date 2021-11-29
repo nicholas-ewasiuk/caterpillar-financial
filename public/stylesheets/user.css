@@ -1,3 +1,4 @@
+
 :root {
   --rad: 0.7rem;
   --dur: 0.3s;
@@ -8,8 +9,10 @@
   --color-step-three: #e1dec1;
   --color-step-four: #e6d2c0;
   --color-step-five: #ecc5bf;
+  --color-neon-g: #D7F205;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
+  --fontsize-mega: 80px;
   --font-family: "Poppins", "helvetica", sans-serif;
   --font-regular: 400;
   --font-medium: 500;
@@ -17,6 +20,7 @@
   --font-bold: 800;
   --font-black: 900;
 }
+
 
 *{
   margin: 0;
@@ -46,6 +50,7 @@ nav {
   color:var(--color-dark);
 }
 body {
+  background-color: var(--color-dark);
   font-family: var(--font-family);
   margin: 0;
 
@@ -229,7 +234,7 @@ flex-direction: row
 #previous-menu-item__sub {
   display: none;
 }
-#submit-button {
+/* #submit-button {
   margin-top: 1rem;
   height: 30px;
   padding-right: 1rem;
@@ -243,10 +248,49 @@ padding-left: 1rem;
 #submit-button:hover {
   background: lightsalmon;
   color: white;
-}
+} */
 /* Color Theme Swatches in Hex */
 .DK-TALKIES™-1-hex { color: #010440; }
 .DK-TALKIES™-2-hex { color: #D7F205; }
 .DK-TALKIES™-3-hex { color: #CAD95B; }
 .DK-TALKIES™-4-hex { color: #D9B391; }
 .DK-TALKIES™-5-hex { color: #BFB3A8; }
+
+.btn-btn {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 3px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-btn:after {
+  content: "";
+  background-color: var(--color-neon-g);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.btn-btn:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .btn-btn {
+    padding: 13px 50px 13px;
+  }
+}
