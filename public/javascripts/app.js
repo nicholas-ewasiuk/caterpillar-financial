@@ -286,9 +286,66 @@ $(document).ready(function () {
 
   document.addEventListener('input', updateCircleOnInput);
 
+  const testButton = document.getElementById('generate-button');
+  testButton.addEventListener('click', function(){intializeCircleArray(circleObjectArray); console.log(circleObjectArray);});
+  
+  const circleObjectArray = [];
+
+  function Circle(radius, angle, id) {
+    this.radius = radius || 0;
+    this.angle = angle || 0;
+    this.id = id;
+  }
+
   function updateCircleOnInput(event) {
     if (event.target.placeholder === 'amount') {
       updateCircle();
+    }
+  }
+
+  function getTotalRevenue() {
+    let totalRevenue = 0;
+    for (let i = 0; i < numArray.length; i++) {
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      if (i < numRevenueArray.length) {
+        totalRevenue += Number(inputNumber.value);
+      }
+    }
+    return totalRevenue;
+  }
+
+  function getTotalExpense() {
+    let totalExpense = 0;
+    for (let i = 0; i < numArray.length; i++) {
+      inputNumber = document.getElementById(`${numArray[i][1]}`);
+      if (i >= numRevenueArray.length) {
+        totalExpense += Number(inputNumber.value);
+      }
+    }
+    return totalExpense;
+  }
+
+  function intializeCircleArray(targetArray) {
+
+    const totalRevenue = getTotalRevenue();
+    const totalExpense = getTotalExpense();
+    const totalAmount = totalExpense + totalRevenue;
+
+    for (let i = 0; i < numArray.length; i++) {
+      const inputNumber = document.getElementById(`${numArray[i][1]}`);
+      const amount = Number(inputNumber.value);
+      
+      const scale = 20000;
+      const id = i;
+      let radius = 0;
+
+      if (i < numRevenueArray.length) {
+        radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+      } else {
+        radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
+      }
+      const angle = Math.PI / 4
+      targetArray.push(new Circle(radius, angle, id))
     }
   }
 
@@ -332,59 +389,6 @@ $(document).ready(function () {
 
 ///Get the total $$$ amount
     totalAmount = totalExpense + totalRevenue;
-//////////////////////////////////////////////////////////
-    const testButton = document.getElementById('generate-button');
-    testButton.addEventListener('click', intializeCircleArray);
-
-    function Circle(radius, cx, cy, angle, color) {
-      this.radius = radius || 0;
-      this.cx = cx || 0;
-      this.cy = cy || 0;
-      this.angle = angle || 0;
-      this.color = color || 'black';
-    }
-
-    function intializeCircleArray() {
-      console.clear();
-      const circleObjectArray = [];
-
-      for (let i = 0; i < numArray.length; i++) {
-        const inputNumber = document.getElementById(`${numArray[i][1]}`);
-        const amount = Number(inputNumber.value);
-
-        let radius = 0;
-        let color;
-        let cx, cy, angle;
-
-        if (i < numRevenueArray.length) {
-          radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
-          color = 'green';
-        } else {
-          radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
-          color = 'red';
-        }
-
-        if (i === 0) {
-          cx = radius + 100;
-          cy = radius + 100;
-          angle = Math.PI / 4;
-          circleObjectArray.push(new Circle(radius, cx, cy, angle, color))
-          continue;
-        }
-        const prevCircle = circleObjectArray[i-1];
-
-        angle = Math.PI / 4
-
-        let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
-        let displaceY = Math.cos(prevCircle.angle) * (radius + prevCircle.radius);
-
-        cx = prevCircle.cx + displaceX;
-        cy = prevCircle.cy + displaceY;
-
-        circleObjectArray.push(new Circle(radius, cx, cy, angle, color))
-      }
-      console.log(circleObjectArray);
-    }
 
 /////////////////////////////////////////////////////////////////////////////////
 ////Create all SVG elements. Proportion the circle radii and place elements//////
@@ -411,7 +415,7 @@ $(document).ready(function () {
       lineElement.setAttribute('stroke', `black`);
 
 ///set the id attributes for each element
-      circleElement.setAttribute('id', `circ${i}`);
+      circleElement.setAttribute('id', `${i}`);
       textElement.setAttribute('id', `text${i}`);
       lineElement.setAttribute('id', `line${i}`);
 
@@ -503,21 +507,26 @@ $(document).ready(function () {
   document.addEventListener('mousedown', mouseDownHandler);
   document.addEventListener('mousemove', mouseMoveHandler);
 
-  let mousePressed = false;
-  let clickedText;
+  let textPressed = false;
+  let circlePressed = false;
+  let clickedText, clickedCircle;
 
   function mouseDownHandler(event) {
     const target = event.target;
 
     if (target.tagName === 'text') {
-      mousePressed = true;
+      textPressed = true;
       clickedText = target;
       console.log(target);
+    }
+    if (target.tagName === 'circle') {
+      circlePressed = true;
+      clickedCircle = target;
     }
   }
 
   function mouseMoveHandler(event) {
-    if (mousePressed) {
+    if (textPressed) {
       const lineElement = clickedText.nextElementSibling
       clickedText.setAttribute('x', event.offsetX);
       clickedText.setAttribute('y', event.offsetY);
@@ -525,10 +534,18 @@ $(document).ready(function () {
       lineElement.setAttribute('x2', clickedText.getAttribute('x'));
       lineElement.setAttribute('y2', (Number(clickedText.getAttribute('y')) + 1));
     }
+    if (circlePressed) {
+      console.clear()
+      const circle = circleObjectArray[clickedCircle.getAttribute('id')];
+      const angle = Math.atan(event.offsetY, event.offsetX);
+      circle.angle = angle;
+      console.log(circleObjectArray);
+    }
   }
 
   function mouseUpHandler(event) {
-    mousePressed = false;
+    textPressed = false;
+    circlePressed = false;
   }
 
 
