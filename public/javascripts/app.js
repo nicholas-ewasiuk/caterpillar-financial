@@ -319,6 +319,7 @@ $(document).ready(function () {
 
     const numArray = numRevenueArray.concat(numExpenseArray);
 
+
 ///Loop through input amounts and get total amounts for each
     for (let i = 0; i < numArray.length; i++) {
       inputNumber = document.getElementById(`${numArray[i][1]}`);
@@ -331,6 +332,59 @@ $(document).ready(function () {
 
 ///Get the total $$$ amount
     totalAmount = totalExpense + totalRevenue;
+//////////////////////////////////////////////////////////
+    const testButton = document.getElementById('generate-button');
+    testButton.addEventListener('click', intializeCircleArray);
+
+    function Circle(radius, cx, cy, angle, color) {
+      this.radius = radius || 0;
+      this.cx = cx || 0;
+      this.cy = cy || 0;
+      this.angle = angle || 0;
+      this.color = color || 'black';
+    }
+
+    function intializeCircleArray() {
+      console.clear();
+      const circleObjectArray = [];
+
+      for (let i = 0; i < numArray.length; i++) {
+        const inputNumber = document.getElementById(`${numArray[i][1]}`);
+        const amount = Number(inputNumber.value);
+
+        let radius = 0;
+        let color;
+        let cx, cy, angle;
+
+        if (i < numRevenueArray.length) {
+          radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+          color = 'green';
+        } else {
+          radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
+          color = 'red';
+        }
+
+        if (i === 0) {
+          cx = radius + 100;
+          cy = radius + 100;
+          angle = Math.PI / 4;
+          circleObjectArray.push(new Circle(radius, cx, cy, angle, color))
+          continue;
+        }
+        const prevCircle = circleObjectArray[i-1];
+
+        angle = Math.PI / 4
+
+        let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
+        let displaceY = Math.cos(prevCircle.angle) * (radius + prevCircle.radius);
+
+        cx = prevCircle.cx + displaceX;
+        cy = prevCircle.cy + displaceY;
+
+        circleObjectArray.push(new Circle(radius, cx, cy, angle, color))
+      }
+      console.log(circleObjectArray);
+    }
 
 /////////////////////////////////////////////////////////////////////////////////
 ////Create all SVG elements. Proportion the circle radii and place elements//////
