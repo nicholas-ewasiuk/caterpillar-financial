@@ -567,7 +567,7 @@ $(document).ready(function () {
 
   let textPressed = false;
   let circlePressed = false;
-  let clickedText, clickedCircle;
+  let clickedText, clickedCircle, previousCircle;
 
   function mouseDownHandler(event) {
     const target = event.target;
@@ -580,6 +580,7 @@ $(document).ready(function () {
     if (target.tagName === 'circle') {
       circlePressed = true;
       clickedCircle = target;
+      previousCircle = target.previousElementSibling;
     }
   }
 
@@ -594,11 +595,23 @@ $(document).ready(function () {
     }
     if (circlePressed) {
       console.clear()
-      const circle = circleObjectArray[Number(clickedCircle.getAttribute('id')) - 1];
-      const angle = Math.atan(event.offsetY / event.offsetX);
+      const circle = circleObjectArray[previousCircle.getAttribute('id')];
+      const cx = previousCircle.getAttribute('cx');
+      const cy = previousCircle.getAttribute('cy');
+      const x = event.offsetX - cx;
+      const y = event.offsetY - cy;
+      let angle = 0;
+
+      if( y < 0 && x > 0) {
+        angle = Math.PI + Math.atan(x / y);
+      } else if( y < 0 && x < 0) {
+        angle = Math.atan(x / y) - Math.PI;
+      } else {
+        angle = Math.atan(x / y);
+      }
       circle.angle = angle;
-      console.log(circleObjectArray);
-      console.log(`mouse x: ${event.offsetX} mouse y: ${event.offsetY} angle: ${angle}`);
+      console.log(previousCircle);
+      console.log(`x: ${x} y: ${y} angle: ${angle}`);
       displayCircles(circleObjectArray);
     }
   }
