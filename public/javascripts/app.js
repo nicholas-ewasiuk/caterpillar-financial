@@ -334,7 +334,7 @@ $(document).ready(function () {
       const amount = Number(inputNumber.value);
       
       const scale = 20000;
-      const id = i;
+      const id = `circ${i}`;
       let type;
       let radius = 0;
 
@@ -358,6 +358,23 @@ $(document).ready(function () {
     //using input element id
     //set the corresponding array elements radius
     //call display circles function
+    const target = event.target;
+    const amount = target.value;
+    let radius = 0;
+    let scale = 20000;
+    const index = target.id.slice(-1);
+    const totalRevenue = getTotalRevenue();
+    const totalExpense = getTotalExpense();
+    const totalAmount = totalExpense + totalRevenue;
+
+    if (target.id.includes('revenue')) {
+      radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+    }
+    if (target.id.includes('expense')) {
+      radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
+    }
+    circleObjectArray[index]['radius'] = radius;
+    displayCircles(circleObjectArray);
   }
 
   function displayCircles(srcArray) {
@@ -403,7 +420,8 @@ $(document).ready(function () {
 
   function updateCircleOnInput(event) {
     if (event.target.placeholder === 'amount') {
-      updateCircle();
+      //updateCircle();
+      updateCircleRadius(event);
     }
   }
 
@@ -595,7 +613,7 @@ $(document).ready(function () {
     }
     if (circlePressed) {
       console.clear()
-      const circle = circleObjectArray[previousCircle.getAttribute('id')];
+      const circle = circleObjectArray[previousCircle.getAttribute('id').slice(-1)];
       const cx = previousCircle.getAttribute('cx');
       const cy = previousCircle.getAttribute('cy');
       const x = event.offsetX - cx;
