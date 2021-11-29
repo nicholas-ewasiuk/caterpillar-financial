@@ -196,7 +196,6 @@ flex-direction: row
 #add-delete i:hover {
   color: var(--color-dark);
 }
-
 .create-input-ctrls input {
   padding-left: 1rem;
   height: 30px;
