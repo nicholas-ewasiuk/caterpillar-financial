@@ -434,6 +434,7 @@ $(document).ready(function () {
         const inputNumber = document.getElementById(`num-${type}${i}`);
         const amount = Number(inputNumber.value);
         radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+
         revenueCount++;
       }
       if (type === 'expense') {
@@ -446,6 +447,7 @@ $(document).ready(function () {
     displayCircles(circleObjectArray, textObjectArray);
   }
 
+//////////////////Set element styles in here//////////////////////////////////
   function displayCircles(circleArray, textArray) {
     $("#circle-svg").empty();
     const ns = 'http://www.w3.org/2000/svg';
@@ -460,20 +462,19 @@ $(document).ready(function () {
       const circleElement = document.createElementNS(ns, 'circle');
       circleElement.setAttribute('id', id);
       circleElement.setAttribute('r', radius);
-      circleElement.setAttribute('fill-opacity', '0.5');
-
+////text element
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', textArray[i].id);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.innerHTML = title;
-
+////line element
       const lineElement = document.createElementNS(ns, 'line');
-      lineElement.setAttribute('stroke', `black`);
-
+      lineElement.setAttribute('stroke', `white`);
+////circle element colors
       if (type === 'revenue') {
-        circleElement.setAttribute('fill', 'green');
+        circleElement.setAttribute('fill', 'white');
       } else if (type === 'expense') {
-        circleElement.setAttribute('fill', 'red');
+        circleElement.setAttribute('fill', 'white');
       }
 
       if (i === 0) {
