@@ -368,13 +368,15 @@ $(document).ready(function () {
       if (i < numRevenueArray.length) {
         radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
         circleElement.setAttribute('fill', '#FFF');
+        circleElement.setAttribute('radial-gradient', '#FFF');
+        
       } else {
         radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
         circleElement.setAttribute('fill', '#D7F205');
       }
 
       circleElement.setAttribute('r', `${radius}`);
-      circleElement.setAttribute('fill-opacity', '1');
+      circleElement.setAttribute('fill-opacity', '0.80');
 
 //Set the first circle in top left corner
       if (i === 0) {

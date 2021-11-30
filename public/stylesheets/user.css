@@ -335,3 +335,9 @@ flex-direction: row
 #previous-menu-item__sub {
   display: none;
 }
+#drop-down-button {
+  margin-top: 20px;
+}
+#delete-previous {
+  margin-top: 20px;
+}
