@@ -291,11 +291,19 @@ $(document).ready(function () {
   
   const circleObjectArray = [];
 
-  function Circle(radius, angle, id, type) {
+  function Circle(radius, angle, id, type, amount, title) {
     this.radius = radius || 0;
     this.angle = angle || 0;
-    this.id = id;
-    this.type = type;
+    this.id = id || 'none';
+    this.type = type || 'n/a';
+    this.amount = amount || 0;
+    this.title = title || 'n/a';
+  }
+
+  function CircleLabel(x, y, title) {
+    this.x = x;
+    this.y = y;
+    this.title = title;
   }
 
   function getTotalRevenue() {
@@ -331,7 +339,9 @@ $(document).ready(function () {
 
     for (let i = 0; i < numArray.length; i++) {
       const inputNumber = document.getElementById(`${numArray[i][1]}`);
+      const inputText = document.getElementById(`${numArray[i][0]}`);
       const amount = Number(inputNumber.value);
+      const title = inputText.value;
       
       const scale = 20000;
       const id = `circ${i}`;
@@ -346,62 +356,110 @@ $(document).ready(function () {
         type = 'expense';
       }
       const angle = Math.PI / 4;
-      targetArray.push(new Circle(radius, angle, id, type));
+      targetArray.push(new Circle(radius, angle, id, type, amount, title));
     }
     console.clear();
     console.log(targetArray);
     displayCircles(targetArray);
   }
 
-  function updateCircleRadius(event) {
-    //on amount input, get circle corresponding to the field
-    //using input element id
-    //set the corresponding array elements radius
-    //call display circles function
+  function updateCircleAmount(event) {
     const target = event.target;
     const amount = target.value;
-    let radius = 0;
-    let scale = 20000;
-    const index = target.id.slice(-1);
+
+    if (target.id.includes('revenue')) {
+      const index = target.id.slice(-1);
+      circleObjectArray[index]['amount'] = amount;
+    }
+    if (target.id.includes('expense')) {
+      const index = Number(target.id.slice(-1)) + numRevenueArray.length;
+      circleObjectArray[index]['amount'] = amount;
+    }
+    updateCircleRadius();
+  }
+
+  function updateCircleText(event) {
+    const target = event.target;
+    const title = target.value;
+
+    if (target.id.includes('revenue')) {
+      const index = target.id.slice(-1);
+      circleObjectArray[index]['title'] = title;
+    }
+    if (target.id.includes('expense')) {
+      const index = Number(target.id.slice(-1)) + numRevenueArray.length;
+      circleObjectArray[index]['title'] = title;
+    }
+  }
+
+  function updateCircleRadius() {
     const totalRevenue = getTotalRevenue();
     const totalExpense = getTotalExpense();
     const totalAmount = totalExpense + totalRevenue;
+    let revenueCount = 0;
 
-    if (target.id.includes('revenue')) {
-      radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+    for (let i = 0; i < circleObjectArray.length; i++) {
+      let radius = 0;
+      let scale = 20000;
+      const item = circleObjectArray[i];
+      let type = item['type'];
+
+      if (type === 'revenue') {
+        const inputNumber = document.getElementById(`num-${type}${i}`);
+        const amount = Number(inputNumber.value);
+        radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
+        revenueCount++;
+      }
+      if (type === 'expense') {
+        const inputNumber = document.getElementById(`num-${type}${i - revenueCount}`);
+        const amount = Number(inputNumber.value);
+        radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
+      }
+      circleObjectArray[i]['radius'] = radius;
     }
-    if (target.id.includes('expense')) {
-      radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
-    }
-    circleObjectArray[index]['radius'] = radius;
     displayCircles(circleObjectArray);
   }
 
-  function displayCircles(srcArray) {
+  function displayCircles(circleArray, textArray) {
     $("#circle-svg").empty();
+    console.clear();
     const ns = 'http://www.w3.org/2000/svg';
     let cx = 0;
     let cy = 0;
 
-    for (let i = 0; i < srcArray.length; i++) {
+    for (let i = 0; i < circleArray.length; i++) {
       const svgMain = document.getElementById('circle-svg');
-      const { radius, id, type } = srcArray[i];
+      const { radius, id, type, title } = circleArray[i];
+      const {x, y} = textArray[i];
 
       const circleElement = document.createElementNS(ns, 'circle');
       circleElement.setAttribute('id', id);
       circleElement.setAttribute('r', radius);
       circleElement.setAttribute('fill-opacity', '0.5');
 
+      const textElement = document.createElementNS(ns, 'text');
+      textElement.setAttribute('text-decoration', `underline`);
+      textElement.innerHTML = title;
+
+      if (type === 'revenue') {
+        circleElement.setAttribute('fill', 'green');
+      } else if (type === 'expense') {
+        circleElement.setAttribute('fill', 'red');
+      }
+
       if (i === 0) {
         cx = radius + 100;
         cy = radius + 100;
         circleElement.setAttribute('cx', cx);
         circleElement.setAttribute('cy', cy);
+        textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
+        textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
         svgMain.append(circleElement);
+        svgMain.append(textElement);
         continue;
       }
 
-      const prevCircle = srcArray[i-1];
+      const prevCircle = circleArray[i-1];
 
       let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
       let displaceY = Math.cos(prevCircle.angle) * (radius + prevCircle.radius);
@@ -411,17 +469,26 @@ $(document).ready(function () {
 
       circleElement.setAttribute('cx', cx);
       circleElement.setAttribute('cy', cy);
+      textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
+      textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
+
       svgMain.append(circleElement);
+      svgMain.append(textElement);
     }
+    console.log(circleObjectArray);
   }
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
   function updateCircleOnInput(event) {
-    if (event.target.placeholder === 'amount') {
+    if (event.target.id.includes('num')) {
       //updateCircle();
-      updateCircleRadius(event);
+      updateCircleAmount(event);
+    }
+    if (event.target.id.includes('text')) {
+      updateCircleText(event);
     }
   }
 
@@ -589,8 +656,9 @@ $(document).ready(function () {
 
   function mouseDownHandler(event) {
     const target = event.target;
-
+    console.log(target);
     if (target.tagName === 'text') {
+      event.preventDefault();
       textPressed = true;
       clickedText = target;
       console.log(target);
@@ -598,7 +666,7 @@ $(document).ready(function () {
     if (target.tagName === 'circle') {
       circlePressed = true;
       clickedCircle = target;
-      previousCircle = target.previousElementSibling;
+      previousCircle = target.previousElementSibling.previousElementSibling;
     }
   }
 
@@ -628,7 +696,7 @@ $(document).ready(function () {
         angle = Math.atan(x / y);
       }
       circle.angle = angle;
-      console.log(previousCircle);
+      console.log(circleObjectArray);
       console.log(`x: ${x} y: ${y} angle: ${angle}`);
       displayCircles(circleObjectArray);
     }
