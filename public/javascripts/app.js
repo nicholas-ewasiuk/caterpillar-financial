@@ -340,7 +340,7 @@ $(document).ready(function () {
     const totalRevenue = getTotalRevenue();
     const totalExpense = getTotalExpense();
     const totalAmount = totalExpense + totalRevenue;
-    let cx, cy;
+    let x, y;
 
     for (let i = 0; i < numArray.length; i++) {
       const inputNumber = document.getElementById(`${numArray[i][1]}`);
@@ -362,14 +362,14 @@ $(document).ready(function () {
         type = 'expense';
       }
 
-      const angle = Math.PI / 4;
+      const angle = Math.PI / 2;
 
       circleObjectArray.push(new Circle(radius, angle, id, type, amount, title));
       
       if (i === 0) {
-        cx = (radius * 1.25) + 100;
-        cy = (radius * 0.75) + 100;
-        textObjectArray.push(new CircleLabel(cx, cy, title, type, textId));
+        x = (radius * 1.25) + 100;
+        y = (radius * 0.75) + 100;
+        textObjectArray.push(new CircleLabel(x, y, title, type, textId));
         continue;
       }
 
@@ -378,10 +378,10 @@ $(document).ready(function () {
       let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
       let displaceY = Math.cos(prevCircle.angle) * (radius + prevCircle.radius);
 
-      cx = cx + displaceX;
-      cy = cy + displaceY;
+      x = x + displaceX;
+      y = y + displaceY;
 
-      textObjectArray.push(new CircleLabel(cx, cy, title, type, textId));
+      textObjectArray.push(new CircleLabel(x, y, title, type, textId));
     }
     console.clear();
     console.log(circleObjectArray);
@@ -453,8 +453,9 @@ $(document).ready(function () {
     const ns = 'http://www.w3.org/2000/svg';
     let cx = 0;
     let cy = 0;
-
+    
     for (let i = 0; i < circleArray.length; i++) {
+      const svgContainer = document.getElementById('svg-container');
       const svgMain = document.getElementById('circle-svg');
       const { radius, id, type, title } = circleArray[i];
       const {x, y} = textArray[i];
@@ -466,20 +467,21 @@ $(document).ready(function () {
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', textArray[i].id);
       textElement.setAttribute('text-decoration', `underline`);
+      textElement.setAttribute('fill', `white`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');
       lineElement.setAttribute('stroke', `white`);
 ////circle element colors
       if (type === 'revenue') {
-        circleElement.setAttribute('fill', 'white');
+        circleElement.setAttribute('fill', "url('#revGradient')");
       } else if (type === 'expense') {
-        circleElement.setAttribute('fill', 'white');
+        circleElement.setAttribute('fill', "url('#expGradient')");
       }
 
       if (i === 0) {
         cx = radius + 100;
-        cy = radius + 100;
+        cy = radius + (svgContainer.clientHeight / 2);
         circleElement.setAttribute('cx', cx);
         circleElement.setAttribute('cy', cy);
         textElement.setAttribute('x', x);
