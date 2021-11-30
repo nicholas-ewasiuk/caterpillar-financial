@@ -18,10 +18,8 @@ $(document).ready(function () {
         </span>
       </aside>
     `)
-
     return newRevenueInputs;
   };
-
 
   const createExpenseInputElements = function (t_id, n_id) {
     const newExpenseInputs = (`
@@ -35,10 +33,8 @@ $(document).ready(function () {
         </span>
       </aside>
     `)
-
     return newExpenseInputs;
   };
-
 
   const appendExpenseInputElements = function (t_id, n_id) {
     $(".expenses").append(createExpenseInputElements(t_id, n_id))
@@ -357,7 +353,7 @@ $(document).ready(function () {
 ///create line svg element
       lineElement = document.createElementNS(ns, 'line');
       lineElement.setAttribute('stroke', `white`);
-      lineElement.setAttribute('stroke-width', `3`);
+      lineElement.setAttribute('stroke-width', `2`);
 
 ///set the id attributes for each element
       circleElement.setAttribute('id', `circ${i}`);
@@ -367,16 +363,14 @@ $(document).ready(function () {
 ///Calculate propotional radius and set for circle element
       if (i < numRevenueArray.length) {
         radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
-        circleElement.setAttribute('fill', '#FFF');
-        circleElement.setAttribute('radial-gradient', '#FFF');
-        
+        circleElement.setAttribute('fill', '#d4fbc4');
       } else {
         radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
-        circleElement.setAttribute('fill', '#D7F205');
+        circleElement.setAttribute('fill', '#ecc5bf');
       }
 
       circleElement.setAttribute('r', `${radius}`);
-      circleElement.setAttribute('fill-opacity', '0.80');
+      circleElement.setAttribute('fill-opacity', '0.85');
 
 //Set the first circle in top left corner
       if (i === 0) {

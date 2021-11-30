@@ -53,6 +53,7 @@ nav {
   color:var(--color-dark);
 }
 body {
+  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
   background-color: var(--color-dark);
   font-family: var(--font-family);
   margin: 0;
@@ -102,13 +103,14 @@ flex-direction: row
 }
 .menu-item {
   list-style: none;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
 }
 /* overflow: hidden; */
 .btn {
   display: block;
   padding: 1rem 1.2rem;
-  background: var(--color-dark);
+  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
+  background-color: var(--color-dark);
   color: var(--color-white);
   position: relative;
   /* border-bottom: 1px solid var(--color-white); */
@@ -135,7 +137,6 @@ flex-direction: row
 .menu-item:target .menu-item__sub {
   max-height: 20em;
 }
-
 .menu-title {
   padding-bottom: 1.5rem; 
 }
@@ -143,7 +144,6 @@ flex-direction: row
   background-color: var(--color-white);
   padding: 1.5rem;
 }
-
 .create-input-ctrls {
   background-color: var(--color-white);
   width: 100%;
@@ -153,12 +153,10 @@ flex-direction: row
   align-items: flex-start;
   justify-content: center;
 }
-
 .create-input-ctrls label {
   display: flex;
   flex-direction: column;
 }
-
 #add-delete {
   font-size: var(--fontsize-sub);
   padding-right: 1.5rem;
@@ -200,7 +198,6 @@ flex-direction: row
   padding-right: 1.5rem;
   margin-left: 1rem;
 }
-
 #dataset-title span {
   display: flex;
   flex-direction: column;
@@ -240,7 +237,6 @@ flex-direction: row
   flex-direction: row;
   justify-content: flex-start;
 }
-
 #revenue-1 aside {
   display: flex;
   flex-direction: row;
@@ -256,9 +252,7 @@ flex-direction: row
   flex-direction: row;
   align-items: center;
   padding-bottom: 1rem;
-
 }
-
 /* Color Theme Swatches in Hex */
 .DK-TALKIES™-1-hex { color: #010440; }
 .DK-TALKIES™-2-hex { color: #D7F205; }
@@ -341,3 +335,9 @@ flex-direction: row
 #delete-previous {
   margin-top: 20px;
 }
+/* conic-gradient(
+ [ from <angle> ]? [ at <position> ]?,
+ <angular-color-stop-list>
+) */
+/* #FFBD93
+#D4FBC4 */
