@@ -157,22 +157,20 @@ a {
 .DK-TALKIES™-5-hex { color: #BFB3A8; }
 
 
-/* .content-side-btn1 {
+/* 
+.button-64 {
   align-items: center;
-  background-color: var(--color-neon-g);
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
   border: 0;
   border-radius: 8px;
-  box-shadow: var(--color-dark) 0 15px 30px -5px;
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: var(--font-fam);
-  font-weight: var(--font-medium);
-  font-size: 12px;
+  font-family: var(--font-family);
+  font-size: 20px;
   justify-content: center;
   line-height: 1em;
   max-width: 100%;
-  min-width: 100px;
   padding: 3px;
   text-decoration: none;
   user-select: none;
@@ -180,70 +178,87 @@ a {
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
-  margin-bottom: 20px;
+}
+#submit-button {
+  margin-top: 20px;
 }
 
-.content-side-btn1:active,
-.content-side-btn1:hover {
+.button-64:active,
+.button-64:hover {
   outline: 0;
-  color: var(--color-dark);
 }
 
-.content-side-btn1 span {
+.button-64 span {
   background-color: var(--color-dark);
-  padding: 12px 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 6px;
   width: 100%;
   height: 100%;
   transition: 300ms;
 }
 
-.content-side-btn1:hover span {
+.button-64:hover span {
   background: none;
 }
 
 @media (min-width: 768px) {
-  .content-side-btn1 {
-    font-size: var(--fontsize-sub);
-    min-width: 196px;
+  .button-64 {
+    font-size: 14px;
   }
 } */
 
-.btn-btn {
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 200;
-  letter-spacing: 1px;
-  padding: 13px 20px 13px;
-  outline: 0;
-  border: 3px solid black;
-  cursor: pointer;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0);
+
+
+/* CSS */
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: lightgrey 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: var(--font-family);
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
-.btn-btn:after {
-  content: "";
-  background-color: var(--color-neon-g);
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: var(--color-dark);
+  padding: 16px 24px;
+  border-radius: 6px;
   width: 100%;
-  z-index: -1;
-  position: absolute;
   height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
+  transition: 300ms;
 }
 
-.btn-btn:hover:after {
-  top: 0px;
-  left: 0px;
+.button-64:hover span {
+  background: none;
 }
 
 @media (min-width: 768px) {
-  .btn-btn {
-    padding: 13px 50px 13px;
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
   }
 }

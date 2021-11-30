@@ -350,11 +350,14 @@ $(document).ready(function () {
 ///create text svg element and assign value from text input field
       textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('text-decoration', `underline`);
+      textElement.setAttribute('fill', `white`);
+      textElement.setAttribute('font-size', `20px`);
       textElement.innerHTML = inputText.value;
 
 ///create line svg element
       lineElement = document.createElementNS(ns, 'line');
-      lineElement.setAttribute('stroke', `black`);
+      lineElement.setAttribute('stroke', `white`);
+      lineElement.setAttribute('stroke-width', `3`);
 
 ///set the id attributes for each element
       circleElement.setAttribute('id', `circ${i}`);
@@ -364,14 +367,14 @@ $(document).ready(function () {
 ///Calculate propotional radius and set for circle element
       if (i < numRevenueArray.length) {
         radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
-        circleElement.setAttribute('fill', 'green');
+        circleElement.setAttribute('fill', '#FFF');
       } else {
         radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
-        circleElement.setAttribute('fill', 'red');
+        circleElement.setAttribute('fill', '#D7F205');
       }
 
       circleElement.setAttribute('r', `${radius}`);
-      circleElement.setAttribute('fill-opacity', '0.5');
+      circleElement.setAttribute('fill-opacity', '1');
 
 //Set the first circle in top left corner
       if (i === 0) {

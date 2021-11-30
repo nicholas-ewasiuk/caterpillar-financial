@@ -31,10 +31,16 @@
 
 <body>
   <nav>
+    <a href="/">
     <h3 class="username">
       <%=username%>
     </h3>
-    <button class="btn-btn" id="submit-button" role="button">Logout</button>
+  </a>
+    <!-- <button class="btn-btn" id="submit-button" role="button">Logout</button> -->
+    <button class="button-64" id="logout" role="button"><span class="text">
+      Logout
+      <i class="fas fa-sign-out-alt"></i>
+    </span></button>
   </nav>
   <!-- ^^ nav ^^  -->
 
@@ -44,7 +50,7 @@
       <li class="menu-item" id="previous-graphs">
         <a href="#previous-graphs" class="btn" id="previous-btn">
           <i class="fas fa-history"></i>
-          Previous
+          Saved
         </a>
         <div class="menu-item__sub" id="previous-menu-item__sub">
           <form action="/users/datasets" method="GET" class="drop-down-form">
@@ -56,8 +62,16 @@
                 </option>
                 <% } %>
             </select>
-            <button type="submit" id="drop-down-button">Load</button>
-            <button type="button" id="delete-previous">Delete</button>
+            <section>
+            <button type="submit" class="button-64" id="drop-down-button">
+              <span class="text">
+                Load
+              </span></button>
+            <button type="button" class="button-64" id="delete-previous">
+              <span class="text">
+              Delete
+            </span></button>
+          </section>
           </form>
         </div>
       </li>
@@ -66,52 +80,51 @@
           <i class="fas fa-plus"></i>
           Create
         </a>
-        <div class="create-input-ctrls">
-          <form action="/users" method="POST" class="user-form">
-            <label for="title" id="cntrl-title">
-              Title
-              <span>
-                <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
-              </span>
-              <span id="add-delete">
-                <i class="fas fa-plus-circle add-revenue"></i>
-              </span>
-            </label>
-
-            <!-- revenue group -->
-            <label for="revenue" class="revenues">
-              Revenue
-              <aside>
+        <section>
+          <div class="create-input-ctrls">
+            <form action="/users" method="POST" class="user-form">
+              <label for="title" id="cntrl-title">
+                Title
                 <span>
-                  <input type="text" placeholder="source of revenue" id="text-revenue0">
-                  <input type="number" placeholder="amount" id="num-revenue0">
-                </span>
-                <span id="add-delete">
+                  <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
                   <i class="fas fa-plus-circle add-revenue"></i>
                 </span>
-              </aside>
+          
+              </label>
+
               <!-- revenue group -->
-            </label>
+              <label for="revenue" class="revenues">
+                Revenue
+                <aside>
+                  <span>
+                    <input type="text" placeholder="source of revenue" id="text-revenue0">
+                    <input type="number" placeholder="amount" id="num-revenue0">
+                  </span>
+                  <span id="add-delete">
+                    <i class="fas fa-plus-circle add-revenue"></i>
+                  </span>
+                </aside>
+                <!-- revenue group -->
+              </label>
 
-            <label for="expense" class="expenses">
-              Expense
-              <aside>
-                <span>
-                  <input type="text" placeholder="source of expenses" id="text-expense0">
-                  <input type="number" placeholder="amount" id="num-expense0">
-                </span>
-                <span id="add-delete">
-                  <i class="fas fa-plus-circle add-expense"></i>
-                </span>
-              </aside>
-              <!-- expense group -->
-            </label>
+              <label for="expense" class="expenses">
+                Expense
+                <aside>
+                  <span>
+                    <input type="text" placeholder="source of expenses" id="text-expense0">
+                    <input type="number" placeholder="amount" id="num-expense0">
+                  </span>
+                  <span id="add-delete">
+                    <i class="fas fa-plus-circle add-expense"></i>
+                  </span>
+                </aside>
+                <!-- expense group -->
+              </label>
       <li class="menu-item" id="Save">
-
-          <button class="btn-btn" id="submit-button" role="button">Save</button>
-          <!-- <i class="fas fa-share-square"></i> -->
-        
-        </button>
+        <!-- <button class="btn-btn" id="submit-button" role="button">Save</button> -->
+        <button class="button-64" id="submit-button" role="button"><span class="text">
+          Save
+        </span></button>
       </li>
       </form>
     </div>
@@ -126,7 +139,6 @@
 
     <!-- onclick create this slides out -->
     <div class="menu" id="graph-controls">
-
       <!-- end of input controls -->
     </div>
   </div>
