@@ -287,9 +287,10 @@ $(document).ready(function () {
   document.addEventListener('input', updateCircleOnInput);
 
   const testButton = document.getElementById('generate-button');
-  testButton.addEventListener('click', function(){intializeCircleArray(circleObjectArray);});
+  testButton.addEventListener('click', function(){intializeCircleArray();});
   
   const circleObjectArray = [];
+  const textObjectArray = [];
 
   function Circle(radius, angle, id, type, amount, title) {
     this.radius = radius || 0;
@@ -300,10 +301,12 @@ $(document).ready(function () {
     this.title = title || 'n/a';
   }
 
-  function CircleLabel(x, y, title) {
+  function CircleLabel(x, y, title, type, id) {
     this.x = x;
     this.y = y;
     this.title = title;
+    this.type = type;
+    this.id = id;
   }
 
   function getTotalRevenue() {
@@ -330,12 +333,14 @@ $(document).ready(function () {
     return totalExpense;
   }
 
-  function intializeCircleArray(targetArray) {
-    targetArray.length = 0;
+  function intializeCircleArray() {
+    circleObjectArray.length = 0;
+    textObjectArray.length = 0;
     const numArray = numRevenueArray.concat(numExpenseArray);
     const totalRevenue = getTotalRevenue();
     const totalExpense = getTotalExpense();
     const totalAmount = totalExpense + totalRevenue;
+    let cx, cy;
 
     for (let i = 0; i < numArray.length; i++) {
       const inputNumber = document.getElementById(`${numArray[i][1]}`);
@@ -345,6 +350,7 @@ $(document).ready(function () {
       
       const scale = 20000;
       const id = `circ${i}`;
+      const textId = `text${i}`;
       let type;
       let radius = 0;
 
@@ -355,12 +361,32 @@ $(document).ready(function () {
         radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
         type = 'expense';
       }
+
       const angle = Math.PI / 4;
-      targetArray.push(new Circle(radius, angle, id, type, amount, title));
+
+      circleObjectArray.push(new Circle(radius, angle, id, type, amount, title));
+      
+      if (i === 0) {
+        cx = (radius * 1.25) + 100;
+        cy = (radius * 0.75) + 100;
+        textObjectArray.push(new CircleLabel(cx, cy, title, type, textId));
+        continue;
+      }
+
+      const prevCircle = circleObjectArray[i-1];
+
+      let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
+      let displaceY = Math.cos(prevCircle.angle) * (radius + prevCircle.radius);
+
+      cx = cx + displaceX;
+      cy = cy + displaceY;
+
+      textObjectArray.push(new CircleLabel(cx, cy, title, type, textId));
     }
     console.clear();
-    console.log(targetArray);
-    displayCircles(targetArray);
+    console.log(circleObjectArray);
+    console.log(textObjectArray);
+    displayCircles(circleObjectArray, textObjectArray);
   }
 
   function updateCircleAmount(event) {
@@ -368,11 +394,11 @@ $(document).ready(function () {
     const amount = target.value;
 
     if (target.id.includes('revenue')) {
-      const index = target.id.slice(-1);
+      const index = target.id.replace('num-revenue', '');
       circleObjectArray[index]['amount'] = amount;
     }
     if (target.id.includes('expense')) {
-      const index = Number(target.id.slice(-1)) + numRevenueArray.length;
+      const index = Number(target.id.replace('num-expense', '')) + numRevenueArray.length;
       circleObjectArray[index]['amount'] = amount;
     }
     updateCircleRadius();
@@ -383,11 +409,11 @@ $(document).ready(function () {
     const title = target.value;
 
     if (target.id.includes('revenue')) {
-      const index = target.id.slice(-1);
+      const index = target.id.replace('text-revenue', '');
       circleObjectArray[index]['title'] = title;
     }
     if (target.id.includes('expense')) {
-      const index = Number(target.id.slice(-1)) + numRevenueArray.length;
+      const index = Number(target.id.replace('text-expense', '')) + numRevenueArray.length;
       circleObjectArray[index]['title'] = title;
     }
   }
@@ -417,12 +443,11 @@ $(document).ready(function () {
       }
       circleObjectArray[i]['radius'] = radius;
     }
-    displayCircles(circleObjectArray);
+    displayCircles(circleObjectArray, textObjectArray);
   }
 
   function displayCircles(circleArray, textArray) {
     $("#circle-svg").empty();
-    console.clear();
     const ns = 'http://www.w3.org/2000/svg';
     let cx = 0;
     let cy = 0;
@@ -438,8 +463,12 @@ $(document).ready(function () {
       circleElement.setAttribute('fill-opacity', '0.5');
 
       const textElement = document.createElementNS(ns, 'text');
+      textElement.setAttribute('id', textArray[i].id);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.innerHTML = title;
+
+      const lineElement = document.createElementNS(ns, 'line');
+      lineElement.setAttribute('stroke', `black`);
 
       if (type === 'revenue') {
         circleElement.setAttribute('fill', 'green');
@@ -452,10 +481,15 @@ $(document).ready(function () {
         cy = radius + 100;
         circleElement.setAttribute('cx', cx);
         circleElement.setAttribute('cy', cy);
-        textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
-        textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
+        textElement.setAttribute('x', x);
+        textElement.setAttribute('y', y);
+        lineElement.setAttribute('x1', `${cx + (radius / 2)}`);
+        lineElement.setAttribute('y1', `${cy - (radius / 2)}`);
+        lineElement.setAttribute('x2', `${x}`);
+        lineElement.setAttribute('y2', `${y + 1}`);
         svgMain.append(circleElement);
         svgMain.append(textElement);
+        svgMain.append(lineElement);
         continue;
       }
 
@@ -469,171 +503,26 @@ $(document).ready(function () {
 
       circleElement.setAttribute('cx', cx);
       circleElement.setAttribute('cy', cy);
-      textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
-      textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
+      textElement.setAttribute('x', x);
+      textElement.setAttribute('y', y);
+      lineElement.setAttribute('x1', `${cx + (radius / 2)}`);
+      lineElement.setAttribute('y1', `${cy - (radius / 2)}`);
+      lineElement.setAttribute('x2', `${x}`);
+      lineElement.setAttribute('y2', `${y + 1}`);
 
       svgMain.append(circleElement);
       svgMain.append(textElement);
+      svgMain.append(lineElement);
     }
-    console.log(circleObjectArray);
   }
-
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
 
   function updateCircleOnInput(event) {
     if (event.target.id.includes('num')) {
-      //updateCircle();
       updateCircleAmount(event);
     }
     if (event.target.id.includes('text')) {
       updateCircleText(event);
     }
-  }
-
-  function updateCircle() {
-    console.clear();
-    
-    console.log(numExpenseArray, numRevenueArray);
-    $("#circle-svg").empty();
-
-    const scale = 20000; //total area of all circles
-
-    const ns = 'http://www.w3.org/2000/svg';
-
-    let totalRevenue = 0;
-    let totalExpense = 0;
-    let totalAmount = 0;
-    let amount = 0;
-
-    let inputNumber, inputText, prevRadius;
-
-    let direction = 0;
-    let directionRate = 0.5;
-
-    let radius, cx, cy, angleX, angleY, newCx, newCy, vecX, vecY, totalDist;
-    let circleElement, textElement, lineElement;
-
-    const svgMain = document.getElementById('circle-svg');
-
-    const numArray = numRevenueArray.concat(numExpenseArray);
-
-
-///Loop through input amounts and get total amounts for each
-    for (let i = 0; i < numArray.length; i++) {
-      inputNumber = document.getElementById(`${numArray[i][1]}`);
-      if (i < numRevenueArray.length) {
-        totalRevenue += Number(inputNumber.value);
-      } else {
-        totalExpense += Number(inputNumber.value);
-      }
-    }
-
-///Get the total $$$ amount
-    totalAmount = totalExpense + totalRevenue;
-
-/////////////////////////////////////////////////////////////////////////////////
-////Create all SVG elements. Proportion the circle radii and place elements//////
-/////////////////////////////////////////////////////////////////////////////////
-
-    for (let i = 0; i < numArray.length; i++) {
-
-///Get values from input fields
-      inputNumber = document.getElementById(`${numArray[i][1]}`);
-      inputText = document.getElementById(`${numArray[i][0]}`);
-
-      amount = Number(inputNumber.value);
-      
-///create circle svg element
-      circleElement = document.createElementNS(ns, 'circle');
-
-///create text svg element and assign value from text input field
-      textElement = document.createElementNS(ns, 'text');
-      textElement.setAttribute('text-decoration', `underline`);
-      textElement.innerHTML = inputText.value;
-
-///create line svg element
-      lineElement = document.createElementNS(ns, 'line');
-      lineElement.setAttribute('stroke', `black`);
-
-///set the id attributes for each element
-      circleElement.setAttribute('id', `${i}`);
-      textElement.setAttribute('id', `text${i}`);
-      lineElement.setAttribute('id', `line${i}`);
-
-///Calculate propotional radius and set for circle element
-      if (i < numRevenueArray.length) {
-        radius = Math.sqrt((amount / totalRevenue) * (totalRevenue / totalAmount) * scale);
-        circleElement.setAttribute('fill', 'green');
-      } else {
-        radius = Math.sqrt((amount / totalExpense) * (totalExpense / totalAmount) * scale);
-        circleElement.setAttribute('fill', 'red');
-      }
-
-      circleElement.setAttribute('r', `${radius}`);
-      circleElement.setAttribute('fill-opacity', '0.5');
-
-//Set the first circle in top left corner
-      if (i === 0) {
-        circleElement.setAttribute('cx', `${radius + 100}`);
-        circleElement.setAttribute('cy', `${radius + 100}`);
-        prevRadius = Number(circleElement.getAttribute('r'));
-        cx = Number(circleElement.getAttribute('cx'));
-        cy = Number(circleElement.getAttribute('cy'));
-
-        textElement.setAttribute('x', `${cx + (radius * 1.25)}`);
-        textElement.setAttribute('y', `${cy - (radius * 1.25)}`);
-
-        lineElement.setAttribute('x1', `${cx + (radius / 2)}`);
-        lineElement.setAttribute('y1', `${cy - (radius / 2)}`);
-        lineElement.setAttribute('x2', `${textElement.getAttribute('x')}`);
-        lineElement.setAttribute('y2', `${Number(textElement.getAttribute('y')) + 1}`);
-
-        ///Append all the elements to the DOM
-        svgMain.append(circleElement);
-        svgMain.append(textElement);
-        svgMain.append(lineElement);
-        continue;
-      }
-///For remaining circles, place each at random angle next to previous
-      direction = Math.random();
-      directionRate += 0.01;
-
-      angleX = Math.sin(direction * Math.PI * directionRate);
-      angleY = Math.cos(direction * Math.PI * directionRate);
-
-      totalDist = radius + prevRadius;
-
-      vecX = angleX * totalDist;
-      vecY = angleY * totalDist;
-
-      newCx = cx + vecX;
-      newCy = cy + vecY;
-
-      circleElement.setAttribute('cx', `${newCx}`);
-      circleElement.setAttribute('cy', `${newCy}`);
-
-      textElement.setAttribute('x', `${newCx + (radius * 1.25)}`);
-      textElement.setAttribute('y', `${newCy - (radius * 1.25)}`);
-
-      lineElement.setAttribute('x1', `${newCx + (radius / 2)}`);
-      lineElement.setAttribute('y1', `${newCy - (radius / 2)}`);
-      lineElement.setAttribute('x2', `${textElement.getAttribute('x')}`);
-      lineElement.setAttribute('y2', `${Number(textElement.getAttribute('y')) + 1}`);
-
-
-      cx = Number(circleElement.getAttribute('cx'));
-      cy = Number(circleElement.getAttribute('cy'));
-
-      prevRadius = Number(circleElement.getAttribute('r'));
-
-///Append all the elements to the DOM
-      svgMain.append(circleElement);
-      svgMain.append(textElement);
-      svgMain.append(lineElement);
-    }
-    console.log(`vecX: ${vecX} vecY: ${vecY} cx: ${newCx} cy: ${newCy}`);
   }
 
   function arrayEquals(a, b) {
@@ -642,6 +531,7 @@ $(document).ready(function () {
       a.length === b.length &&
       a.every((val, index) => val === b[index]);
   }
+
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////Mouse inputs///////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -652,36 +542,31 @@ $(document).ready(function () {
 
   let textPressed = false;
   let circlePressed = false;
-  let clickedText, clickedCircle, previousCircle;
+  let clickedText, previousCircle;
 
   function mouseDownHandler(event) {
     const target = event.target;
-    console.log(target);
     if (target.tagName === 'text') {
       event.preventDefault();
       textPressed = true;
       clickedText = target;
-      console.log(target);
     }
     if (target.tagName === 'circle') {
       circlePressed = true;
-      clickedCircle = target;
-      previousCircle = target.previousElementSibling.previousElementSibling;
+      previousCircle = target.previousElementSibling.previousElementSibling.previousElementSibling;
     }
   }
 
   function mouseMoveHandler(event) {
     if (textPressed) {
-      const lineElement = clickedText.nextElementSibling
-      clickedText.setAttribute('x', event.offsetX);
-      clickedText.setAttribute('y', event.offsetY);
-
-      lineElement.setAttribute('x2', clickedText.getAttribute('x'));
-      lineElement.setAttribute('y2', (Number(clickedText.getAttribute('y')) + 1));
+      const textItem = textObjectArray[clickedText.getAttribute('id').replace('text', '')];
+      textItem.x = event.offsetX;
+      textItem.y = event.offsetY;
+      displayCircles(circleObjectArray, textObjectArray);
     }
     if (circlePressed) {
       console.clear()
-      const circle = circleObjectArray[previousCircle.getAttribute('id').slice(-1)];
+      const circle = circleObjectArray[previousCircle.getAttribute('id').replace('circ', '')];
       const cx = previousCircle.getAttribute('cx');
       const cy = previousCircle.getAttribute('cy');
       const x = event.offsetX - cx;
@@ -698,7 +583,7 @@ $(document).ready(function () {
       circle.angle = angle;
       console.log(circleObjectArray);
       console.log(`x: ${x} y: ${y} angle: ${angle}`);
-      displayCircles(circleObjectArray);
+      displayCircles(circleObjectArray, textObjectArray);
     }
   }
 
@@ -706,129 +591,4 @@ $(document).ready(function () {
     textPressed = false;
     circlePressed = false;
   }
-
-
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-  // document.addEventListener('input', updateCircle);
-
-  // function updateCircle(event) {
-  //   console.clear();
-  //   const scale = 25;
-
-  //   let totalRevenue = 0;
-  //   let totalExpense = 0;
-
-  //   let inputNumber;
-  //   let amount = 0;
-
-  //   let circleRadius;
-  //   const circle = document.getElementById('circle-visual');
-  //   const balance = document.getElementById('balance');
-
-  //   for (let i = 0; i < revenueCounter; i++) {
-  //     inputNumber = document.getElementById(`num-revenue${i}`)
-  //     amount = Number(inputNumber.value);
-  //     totalRevenue += amount;
-  //   }
-
-  //   for (let i = 0; i < expenseCounter; i++) {
-  //     inputNumber = document.getElementById(`num-expense${i}`)
-  //     amount = Number(inputNumber.value);
-  //     totalExpense += amount;
-  //   }
-
-  //   if (totalExpense > totalRevenue) {
-  //     circle.setAttribute('fill', '#ecc5bf');
-  //     balance.innerHTML = (totalExpense - totalRevenue);
-  //     circleRadius = scale * (totalExpense - totalRevenue) / totalExpense;
-  //   } else if (totalRevenue > totalExpense) {
-  //     circle.setAttribute('fill', '#d4fbc4');
-  //     balance.innerHTML = (totalExpense - totalRevenue);
-  //     circleRadius = scale * (totalRevenue - totalExpense) / totalRevenue;
-  //   }
-
-  //   circle.setAttribute('r', `${circleRadius}`);
-
-  //   console.log(`revenue: ${totalRevenue} expense: ${totalExpense} radius: ${circleRadius} revcounter: ${revenueCounter} expcounter: ${expenseCounter}`);
-  // }
-
-
-  // // CANVAS
-  // console.log('canvas reached');
-  // const canvas = document.querySelector('canvas');
-  // // console.log(canvas);
-
-  // canvas.width = window.innerWidth - 150;
-  // canvas.height = window.innerHeight;
-
-  // const c = canvas.getContext('2d');
-
-
-  // $('#num-revenue0').on('keyup', function() {
-  //   let radius = Math.sqrt(Number($('#num-revenue0').val()));
-  //   c.clearRect(0, 0, innerWidth, innerHeight)
-  //   c.beginPath();
-  //   c.arc(500, 300, radius, 0, 2 * Math.PI, false);
-  //   c.fillStyle = "#d4fbc4";
-  //   c.fill();
-  //   c.stroke();
-  //   c.closePath();
-  //   console.log("here",radius);
-  // })
-
-
-  // multiple random circles
-  // for(let i = 0; i < 3; i++){
-  //   const color = ["#d4fbc4", "#d8f1c4", "#e1dec1", "#e6d2c0", "#ecc5bf"];
-  //   const x = Math.random() * window.innerWidth;
-  //   const y = Math.random() * window.innerHeight;
-  //   c.beginPath();
-  //   c.arc(x, y, 100, 0, Math.PI * 2, false);
-  //   c.fillStyle = "#d4fbc4"
-  //   c.fill();
-  // }
-
-
-  // let x = Math.random() * innerWidth;
-  // let y = Math.random() * innerHeight;
-  // // velocity (+ equals right on the x axis - goes right)
-  // // let xVelocity = (Math.random() - 0.5) * 12;
-  // // let yVelocity = (Math.random() - 0.5) * 12;
-  // let radius = 50;
-
-
-  // const randomCircle = function(x, y, xVelocity, yVelocity, radius) {
-  //   this.x = x;
-  //   this.y = y;
-  //   this.xVelocity = xVelocity;
-  //   this.yVelocity = yVelocity;
-  //   this.radius = radius;
-
-  //   this.draw = function() {
-  //     c.beginPath();
-  //     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-  //     c.fillStyle = "#d4fbc4"
-  //     c.fill();
-  //   }
-
-  //   this.update = function(){
-  //     if (this.x + radius > innerWidth || this.x - this.radius < 0) {
-  //       this.xVelocity = - this.xVelocity;
-  //     }
-  //     if (this.y + radius > innerHeight || this.y - this.radius < 0) {
-  //       this.yVelocity = - this.yVelocity;
-  //     }
-  //     x += this.xVelocity;
-  //     y += this.yVelocity;
-
-  //     this.draw();
-  //   }
-  // }
-  // let newCircle = new randomCircle(100, 100, 20, 20, 80);
-
-
 });
-
