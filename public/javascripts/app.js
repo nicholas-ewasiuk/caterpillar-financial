@@ -11,6 +11,7 @@ $(document).ready(function () {
       <aside class="${t_id}">
         <span>
           <input type="text" placeholder="source of revenue" id="${t_id}">
+          <i class="fas fa-dollar-sign" id="dollar-sign"></i>
           <input type="number" placeholder="amount" id="${n_id}">
         </span>
         <span id="add-delete">
@@ -26,6 +27,7 @@ $(document).ready(function () {
       <aside class="${t_id}">
         <span>
           <input type="text" placeholder="source of expense" id="${t_id}">
+          <i class="fas fa-dollar-sign" id="dollar-sign"></i>
           <input type="number" placeholder="amount" id="${n_id}">
         </span>
         <span id="add-delete">
@@ -464,6 +466,7 @@ $(document).ready(function () {
       textElement.setAttribute('id', textArray[i].id);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.setAttribute('fill', `white`);
+      textElement.setAttribute('stroke-width', `2`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');

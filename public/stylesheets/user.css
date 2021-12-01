@@ -4,6 +4,7 @@
   --dur: 0.3s;
   --color-dark: #2f2f2f;
   --color-white: #fff;
+  --color-grey: lightgrey;
   --color-step-one: #d4fbc4;
   --color-step-two: #d8f1c4;
   --color-step-three: #e1dec1;
@@ -12,6 +13,7 @@
   --color-neon-g: #D7F205;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
+  --fontsize-input: 0.7em;
   --fontsize-mega: 80px;
   --font-family: "Poppins", "helvetica", sans-serif;
   --font-regular: 400;
@@ -166,7 +168,7 @@ flex-direction: row
   justify-content: center;
 }
 #add-delete i {
-  color: lightgrey;
+  color: var(--color-grey);
   margin-left: 1rem;
 }
 #add-delete i:hover {
@@ -178,16 +180,22 @@ flex-direction: row
   border-radius: 0px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--color-grey);
   margin-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: var(--font-regular);
+  font-size: var(--fontsize-input);
+
 }
 .create-input-ctrls input:hover {
   border: none;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-dark);
 }
 #cntrl-title {
   padding-bottom: 1rem;
 }
+
 #cntrl-title span {
   display: flex;
   flex-direction: row;
@@ -198,9 +206,8 @@ flex-direction: row
   padding-right: 1.5rem;
   margin-left: 1rem;
 }
-#dataset-title span {
-  display: flex;
-  flex-direction: column;
+#dataset-title {
+  font-size: inherit;
 }
 #dataset-title span {
   display: flex;
@@ -211,6 +218,7 @@ flex-direction: row
   display: flex;
   flex-direction: column;
 }
+
 .revenues i {
   color: var(--color-white);
 }
@@ -227,6 +235,7 @@ flex-direction: row
 .expenses span{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .expenses i {
   color: var(--color-step-one);
@@ -246,6 +255,7 @@ flex-direction: row
 .revenues span {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 #expenses-1 aside {
   display: flex;
@@ -253,6 +263,12 @@ flex-direction: row
   align-items: center;
   padding-bottom: 1rem;
 }
+#dollar-sign {
+color: var(--color-dark);
+opacity: 0.8;
+font-size: 16px;
+}
+
 /* Color Theme Swatches in Hex */
 .DK-TALKIES™-1-hex { color: #010440; }
 .DK-TALKIES™-2-hex { color: #D7F205; }
