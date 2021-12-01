@@ -6,6 +6,9 @@ $(document).ready(function () {
   let numExpenseArray = [["text-expense0","num-expense0"]];
   let numRevenueArray = [["text-revenue0","num-revenue0"]];
 
+  const circleObjectArray = [];
+  const textObjectArray = [];
+
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
       <aside class="${t_id}">
@@ -136,7 +139,7 @@ $(document).ready(function () {
 
     revenuesArray.push(idText, idNum);
     numRevenueArray.push([idText, idNum]);
-    ////////////////////////////////////
+
     const svgContainer = document.getElementById('svg-container');
 
     const angle = Math.PI / 2;
@@ -144,8 +147,8 @@ $(document).ready(function () {
     const type = 'revenue';
     const amount = 0;
     const title = '';
-    const x = (svgContainer.clientWidth / 2) + (Math.random() * 300);
-    const y = (svgContainer.clientHeight / 2) + (Math.random() * 300);
+    const x = (svgContainer.clientWidth / 2) + (Math.random() * (200 - 150) + 150);
+    const y = (svgContainer.clientHeight / 2) + (Math.random() * (200 - 150) + 150);
 
     const circleObjectRevenueArray = circleObjectArray.filter(item => item['type'] === 'revenue');
     const circleObjectExpenseArray = circleObjectArray.filter(item => item['type'] === 'expense');
@@ -185,7 +188,7 @@ $(document).ready(function () {
 
     expensesArray.push(idText, idNum);
     numExpenseArray.push([idText,idNum]);
-    ///////////////////////////////////////////////////////////
+
     const svgContainer = document.getElementById('svg-container');
 
     const angle = Math.PI / 2;
@@ -193,8 +196,8 @@ $(document).ready(function () {
     const type = 'expense';
     const amount = 0;
     const title = '';
-    const x = (svgContainer.clientWidth / 2) + (Math.random() * 300);
-    const y = (svgContainer.clientHeight / 2) + (Math.random() * 300);
+    const x = (svgContainer.clientWidth / 2) + (Math.random() * (200 - 150) + 150);
+    const y = (svgContainer.clientHeight / 2) + (Math.random() * (200 - 150) + 150);
 
     circleObjectArray.push(new Circle(radius, angle, type, amount, title));
     textObjectArray.push(new CircleLabel(x, y, title, type));
@@ -340,7 +343,8 @@ $(document).ready(function () {
       }
 
       $('#dataset-title').val($("#drop-down-datasets").val())
-      
+      intializeCircleArray();
+
     }).catch((err) => {
       console.log("catch error", err)
     })
@@ -387,16 +391,14 @@ $(document).ready(function () {
 
   const testButton = document.getElementById('generate-button');
   testButton.addEventListener('click', function(){intializeCircleArray();});
-  
-  const circleObjectArray = [];
-  const textObjectArray = [];
+
 
   function Circle(radius, angle, type, amount, title) {
     this.radius = radius || 0;
     this.angle = angle || 0;
     this.type = type || 'n/a';
     this.amount = amount || 0;
-    this.title = title || 'n/a';
+    this.title = title || '';
   }
 
   function CircleLabel(x, y, title, type) {
@@ -582,11 +584,12 @@ $(document).ready(function () {
       textElement.setAttribute('id', `text${i}`);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.setAttribute('fill', `#b8b8b8`);
-      textElement.setAttribute('stroke-width', `2`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');
+      if (title !== '') {
       lineElement.setAttribute('stroke', `#b8b8b8`);
+      }
 ////circle element colors
       if (type === 'revenue') {
         circleElement.setAttribute('fill', "url('#revGradient')");
