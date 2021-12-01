@@ -5,12 +5,11 @@
   --color-dark: #2f2f2f;
   --color-white: #fff;
   --color-grey: lightgrey;
-  --color-step-one: #d4fbc4;
-  --color-step-two: #d8f1c4;
-  --color-step-three: #e1dec1;
-  --color-step-four: #e6d2c0;
-  --color-step-five: #ecc5bf;
-  --color-evergreen: #014039;
+  /* --color-step-one: #d4fbc4;
+  --color-step-five: #ecc5bf; */
+  --color-step-one: #65EAD4;
+  --color-step-two: #53D3BA;
+  --color-step-five: #F06A6E;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
   --fontsize-input: 14px;
@@ -70,13 +69,14 @@ a {
 .container {
 width: 100%;
 height: 100%;
-padding-top: 80px;
 display: flex;
 flex-direction: row
 }
 .content {
-  width: 80%;
-  height: 90vh;
+  /* this padding moves the svg container 
+  no padding = fullscreen */
+  width: 100%;
+  height: 100vh;
   font-family: var(--font-family);
 }
 .content h2 {
@@ -89,9 +89,12 @@ flex-direction: row
   font-size: var(--fontsize-sub);
   font-weight: var(--font-bold);
 }
-/* accordion menu */
+
 #menu-slide {
-  margin-top: 30px;
+  margin-top: 100px;
+  width: 600px;
+  left: 0;
+  z-index: 8;
 }
 .menu {
   border-radius: 0.2rem;
@@ -114,7 +117,7 @@ flex-direction: row
   background: transparent;
   color: var(--color-white);
   position: relative;
-  /* border-bottom: 1px solid var(--color-white); */
+  border-bottom: 1px solid var(--color-white);
 }
 .btn i {
   margin-right: 1rem;
@@ -133,7 +136,7 @@ flex-direction: row
   border-bottom: 1px solid var(--color-white);
 }
 .menu-item__sub a:hover {
-  color: var(--color-dark);
+  color: var(--color-step-two);
 }
 .menu-item:target .menu-item__sub {
   max-height: 20em;
@@ -147,7 +150,7 @@ flex-direction: row
 }
 #add-delete {
   font-size: var(--fontsize-sub);
-  padding-right: 1.5rem;
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -158,18 +161,23 @@ flex-direction: row
   margin-left: 1rem;
 }
 #add-delete i:hover {
-  color: var(--color-dark);
+  color: var(--color-step-two);
 }
+/* #remove {
+  color: var(--color-grey);
+}
+#remove:hover {
+  color: var(--color-step-five);
+} */
 .create-input-ctrls {
   background-color: var(--color-white);
-  width: 440px;
   padding: 1.5rem; 
   display: none;
-
 }
 .create-input-ctrls label {
   display: flex;
   flex-direction: column;
+  font-weight: var(--font-medium);
 }
 .create-input-ctrls input {
   height: 30px;
@@ -178,11 +186,8 @@ flex-direction: row
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--color-grey);
-  margin-right: 1.5rem;
-  padding-left: 0.5rem;
   padding-right: 0.5rem;
   font-weight: var(--font-regular);
-
 }
 .create-input-ctrls input:hover {
   border: none;
@@ -190,6 +195,7 @@ flex-direction: row
 }
 #cntrl-title {
   padding-bottom: 1rem;
+  font-weight: var(--font-medium);
 }
 
 #cntrl-title span {
@@ -218,6 +224,8 @@ flex-direction: row
 }
 .revenues aside {
   font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -236,6 +244,8 @@ flex-direction: row
 } */
 .expenses aside {
   font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -259,7 +269,8 @@ flex-direction: row
 }
 #dollar-sign {
 color: var(--color-dark);
-opacity: 0.8;
+margin-left: 20px;
+margin-right: 5px;
 font-size: 16px;
 }
 
@@ -272,7 +283,7 @@ font-size: 16px;
 
 .button-64 {
   align-items: center;
-  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+  background-image: linear-gradient(to right bottom, #65EAD4, #53D3BA, #f05053); 
   border: 0;
   border-radius: 8px;
   box-sizing: border-box;
@@ -346,11 +357,12 @@ font-size: 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   padding-right: 30%;
   margin-top: 20px;
 }
 #view-all {
   border-top: none;
-  width: 440px;
 }
+/* .input-text-field {
+  width: 130%;
+} */

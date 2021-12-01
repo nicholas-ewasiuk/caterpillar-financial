@@ -18,7 +18,7 @@ $(document).ready(function () {
           <input type="number" placeholder="amount" id="${n_id}">
         </span>
         <span id="add-delete">
-          <i class="fas fa-minus-circle" ></i>
+          <i class="fas fa-minus-circle"></i>
         </span>
       </aside>
     `)
@@ -552,12 +552,12 @@ $(document).ready(function () {
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', `text${i}`);
       textElement.setAttribute('text-decoration', `underline`);
-      textElement.setAttribute('fill', `#b8b8b8`);
+      textElement.setAttribute('fill', `#fff`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');
       if (title !== '') {
-      lineElement.setAttribute('stroke', `#b8b8b8`);
+      lineElement.setAttribute('stroke', `#fff`);
       }
 ////circle element colors
       if (type === 'revenue') {
