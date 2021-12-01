@@ -3,9 +3,6 @@
 $(document).ready(function () {
   console.log("interact file init");
 
-
-
-
   $("#toggle").click(function () {
     $(".content-side").animate({
       width: "toggle",
@@ -24,8 +21,9 @@ $(document).ready(function () {
     });
   });
 
-  $("#create-btn").click(function(){
-    $(".user-form").slideToggle(300, function(){
+  $("#create-btn.btn").click(function(e){
+    e.preventDefault();
+    $(".create-input-ctrls").slideToggle(300, function(){
       console.log("slideUp + slideDown");
     });
   });

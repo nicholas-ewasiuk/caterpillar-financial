@@ -111,7 +111,7 @@ flex-direction: row
 .btn {
   display: block;
   padding: 1rem 1.2rem;
-background: transparent;
+  background: transparent;
   color: var(--color-white);
   position: relative;
   /* border-bottom: 1px solid var(--color-white); */
@@ -145,19 +145,6 @@ background: transparent;
   background-color: var(--color-white);
   padding: 1.5rem;
 }
-.create-input-ctrls {
-  background-color: var(--color-white);
-  width: 100%;
-  padding: 1.5rem; 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-.create-input-ctrls label {
-  display: flex;
-  flex-direction: column;
-}
 #add-delete {
   font-size: var(--fontsize-sub);
   padding-right: 1.5rem;
@@ -172,6 +159,17 @@ background: transparent;
 }
 #add-delete i:hover {
   color: var(--color-dark);
+}
+.create-input-ctrls {
+  background-color: var(--color-white);
+  width: 440px;
+  padding: 1.5rem; 
+  display: none;
+
+}
+.create-input-ctrls label {
+  display: flex;
+  flex-direction: column;
 }
 .create-input-ctrls input {
   height: 30px;
@@ -204,9 +202,7 @@ background: transparent;
   padding-right: 1.5rem;
   margin-left: 1rem;
 }
-/* #dataset-title {
-  font-size: var(--fontsize-input);
-} */
+
 #dataset-title span {
   display: flex;
   flex-direction: row;
@@ -295,9 +291,6 @@ font-size: 16px;
   white-space: nowrap;
   cursor: pointer;
 }
-#submit-button {
-  margin-top: 20px;
-}
 
 .button-64:active,
 .button-64:hover {
@@ -349,9 +342,15 @@ font-size: 16px;
 #delete-previous {
   margin-top: 20px;
 }
-/* conic-gradient(
- [ from <angle> ]? [ at <position> ]?,
- <angular-color-stop-list>
-) */
-/* #FFBD93
-#D4FBC4 */
+#save.menu-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 30%;
+  margin-top: 20px;
+}
+#view-all {
+  border-top: none;
+  width: 440px;
+}
