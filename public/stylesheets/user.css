@@ -10,10 +10,10 @@
   --color-step-three: #e1dec1;
   --color-step-four: #e6d2c0;
   --color-step-five: #ecc5bf;
-  --color-neon-g: #D7F205;
+  --color-evergreen: #014039;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
-  --fontsize-input: 0.7em;
+  --fontsize-input: 14px;
   --fontsize-mega: 80px;
   --font-family: "Poppins", "helvetica", sans-serif;
   --font-regular: 400;
@@ -111,8 +111,7 @@ flex-direction: row
 .btn {
   display: block;
   padding: 1rem 1.2rem;
-  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
-  background-color: var(--color-dark);
+background: transparent;
   color: var(--color-white);
   position: relative;
   /* border-bottom: 1px solid var(--color-white); */
@@ -185,7 +184,7 @@ flex-direction: row
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   font-weight: var(--font-regular);
-  font-size: var(--fontsize-input);
+
 }
 .create-input-ctrls input:hover {
   border: none;
@@ -205,9 +204,9 @@ flex-direction: row
   padding-right: 1.5rem;
   margin-left: 1rem;
 }
-#dataset-title {
-  font-size: inherit;
-}
+/* #dataset-title {
+  font-size: var(--fontsize-input);
+} */
 #dataset-title span {
   display: flex;
   flex-direction: row;
@@ -236,9 +235,9 @@ flex-direction: row
   flex-direction: row;
   align-items: center;
 }
-.expenses i {
+/* .expenses i {
   color: var(--color-step-one);
-}
+} */
 .expenses aside {
   font-size: 20px;
   display: flex;
