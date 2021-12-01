@@ -55,78 +55,47 @@ $(document).ready(function () {
 
   function removeInputField(event) {
     let target = event.target;
-    const numArray = numRevenueArray.concat(numExpenseArray);
-
+    
     if (target.className === 'fas fa-minus-circle') {
+      const numArray = numRevenueArray.concat(numExpenseArray);
       const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+      const filterItem = [textInput.id, numInput.id];
+
       if ( nearestAside.className.includes("revenue")) {
-        const textInput = nearestAside.firstElementChild.firstElementChild;
-        const numInput = nearestAside.firstElementChild.lastElementChild;
-
-        const filterItem = [textInput.id, numInput.id];
-
         const filterArray = numRevenueArray.filter(id => !arrayEquals(id, filterItem));
         numRevenueArray = filterArray;
-
-        for (let i = 0; i < numArray.length; i++) {
-          if (arrayEquals(numArray[i], filterItem)) {
-            const filterCircleObjects = circleObjectArray.filter(item => circleObjectArray.indexOf(item) !== i);
-            circleObjectArray.length = 0;
-
-            const filterTextObjects = textObjectArray.filter(item => textObjectArray.indexOf(item) !== i);
-            textObjectArray.length = 0;
-
-            for (let item of filterCircleObjects) {
-              circleObjectArray.push(item);
-            }
-            for ( let item of filterTextObjects) {
-              textObjectArray.push(item);
-            }
-          }
-        }
-
-        nearestAside.remove();
-        console.clear();
-        console.log(circleObjectArray);
-        console.log(textObjectArray);
-        console.log(numRevenueArray, numExpenseArray);
-        console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
-        displayCircles(circleObjectArray, textObjectArray);
       }
+
       if ( nearestAside.className.includes("expense")) {
-        const textInput = nearestAside.firstElementChild.firstElementChild;
-        const numInput = nearestAside.firstElementChild.lastElementChild;
-
-        const filterItem = [textInput.id, numInput.id];
-
         const filterArray = numExpenseArray.filter(id => !arrayEquals(id, filterItem));
         numExpenseArray = filterArray;
+      }
 
-        for (let i = 0; i < numArray.length; i++) {
-          if (arrayEquals(numArray[i], filterItem)) {
-            const filterCircleObjects = circleObjectArray.filter(item => circleObjectArray.indexOf(item) !== i);
-            circleObjectArray.length = 0;
+      for (let i = 0; i < numArray.length; i++) {
+        if (arrayEquals(numArray[i], filterItem)) {
+          const filterCircleObjects = circleObjectArray.filter(item => circleObjectArray.indexOf(item) !== i);
+          circleObjectArray.length = 0;
 
-            const filterTextObjects = textObjectArray.filter(item => textObjectArray.indexOf(item) !== i);
-            textObjectArray.length = 0;
+          const filterTextObjects = textObjectArray.filter(item => textObjectArray.indexOf(item) !== i);
+          textObjectArray.length = 0;
 
-            for (let item of filterCircleObjects) {
-              circleObjectArray.push(item);
-            }
-            for ( let item of filterTextObjects) {
-              textObjectArray.push(item);
-            }
+          for (let item of filterCircleObjects) {
+            circleObjectArray.push(item);
+          }
+          for ( let item of filterTextObjects) {
+            textObjectArray.push(item);
           }
         }
-
-        nearestAside.remove();
-        console.clear();
-        console.log(circleObjectArray);
-        console.log(textObjectArray);
-        console.log(numRevenueArray, numExpenseArray);
-        console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
-        displayCircles(circleObjectArray, textObjectArray);
       }
+      nearestAside.remove();
+      console.clear();
+      console.log(circleObjectArray);
+      console.log(textObjectArray);
+      console.log(numRevenueArray, numExpenseArray);
+      console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
+      displayCircles(circleObjectArray, textObjectArray);
     }
   }
 
