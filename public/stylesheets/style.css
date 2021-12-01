@@ -11,13 +11,13 @@ html {
   --rad: 0.7rem;
   --dur: 0.3s;
   --color-dark: #2f2f2f;
-  --color-white: #fff;
+  --color-white: #F2F2F2;
   --color-step-one: #d4fbc4;
   --color-step-two: #d8f1c4;
   --color-step-three: #e1dec1;
   --color-step-four: #e6d2c0;
   --color-step-five: #ecc5bf;
-  --color-neon-g: #D7F205;
+  --color-neon-g: #d4fbc4;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
   --fontsize-mega: 80px;
@@ -32,7 +32,6 @@ html {
 /* ^ global stuff ^ */
 
 body {
-
   font-family: var(--font-family);
   margin: 0;
   overflow-x: hidden;
@@ -50,7 +49,9 @@ a {
 .container {
   width: 100%;
   height: 100vh;
+  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
   background-color: var(--color-dark);
+  /* background-color: var(--color-white); */
   padding-right: 10%;
   font: var(--font-fam);
   display: flex;
@@ -83,13 +84,10 @@ a {
   font-size: var(--fontsize-sub);
   font-weight: var(--font-bold);
 }
-
-
 .content p {
   color:var(--color-neon-g);
   width: 66%;
 }
-
 #toggle {
  font-size: var(--fontsize-header);
   color: var(var(--color-neon-g));
@@ -105,13 +103,10 @@ a {
     -webkit-transform: translateX(-25px);
   }
 }
-
-
 .fa-times {
   font-size: var(--fontsize-header);
   color: var(--color-neon-g);
 }
-
 .content-side {
   position: fixed;
   right: 0;
@@ -126,6 +121,7 @@ a {
   align-items: center;
   justify-content: center;
 }
+
 /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color]; */
 
 .content-side nav {
@@ -182,12 +178,10 @@ a {
 #submit-button {
   margin-top: 20px;
 }
-
 .button-64:active,
 .button-64:hover {
   outline: 0;
 }
-
 .button-64 span {
   background-color: var(--color-dark);
   padding-top: 10px;
@@ -199,20 +193,15 @@ a {
   height: 100%;
   transition: 300ms;
 }
-
 .button-64:hover span {
   background: none;
 }
-
 @media (min-width: 768px) {
   .button-64 {
     font-size: 14px;
   }
 } */
 
-
-
-/* CSS */
 .button-64 {
   align-items: center;
   background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);

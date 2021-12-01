@@ -31,18 +31,18 @@
 
 <body>
   <nav>
-    <a href="/">
+    <!-- <a href="/"> -->
     <h3 class="username">
       <%=username%>
     </h3>
-  </a>
-    <!-- <button class="btn-btn" id="submit-button" role="button">Logout</button> -->
-    <button class="button-64" id="logout" role="button"><span class="text">
-      Logout
-      <i class="fas fa-sign-out-alt"></i>
-    </span></button>
+    <!-- </a> -->
+    <a href="/">
+      <button class="button-64" id="logout" role="button"><span class="text">
+          Logout
+          <i class="fas fa-sign-out-alt"></i>
+        </span></button></a>
   </nav>
-  <!-- ^^ nav ^^  -->
+  <!-- ^NAV^  -->
 
   <div class="container">
 
@@ -63,15 +63,15 @@
                 <% } %>
             </select>
             <section>
-            <button type="submit" class="button-64" id="drop-down-button">
-              <span class="text">
-                Load
-              </span></button>
-            <button type="button" class="button-64" id="delete-previous">
-              <span class="text">
-              Delete
-            </span></button>
-          </section>
+              <button type="submit" class="button-64" id="drop-down-button">
+                <span class="text">
+                  Load
+                </span></button>
+              <button type="button" class="button-64" id="delete-previous">
+                <span class="text">
+                  Delete
+                </span></button>
+            </section>
           </form>
         </div>
       </li>
@@ -89,15 +89,14 @@
                   <input type="text" placeholder="Title" name="dataset-title" id="dataset-title">
                   <i class="fas fa-plus-circle add-revenue"></i>
                 </span>
-          
               </label>
-
               <!-- revenue group -->
               <label for="revenue" class="revenues">
                 Revenue
                 <aside>
                   <span>
                     <input type="text" placeholder="source of revenue" id="text-revenue0">
+                    <i class="fas fa-dollar-sign" id="dollar-sign"></i>
                     <input type="number" placeholder="amount" id="num-revenue0">
                   </span>
                   <span id="add-delete">
@@ -106,12 +105,12 @@
                 </aside>
                 <!-- revenue group -->
               </label>
-
               <label for="expense" class="expenses">
                 Expense
                 <aside>
                   <span>
-                    <input type="text" placeholder="source of expenses" id="text-expense0">
+                    <input type="text" placeholder="source of expense" id="text-expense0">
+                    <i class="fas fa-dollar-sign" id="dollar-sign"></i></i>
                     <input type="number" placeholder="amount" id="num-expense0">
                   </span>
                   <span id="add-delete">
@@ -120,16 +119,12 @@
                 </aside>
                 <!-- expense group -->
               </label>
-      <li class="menu-item" id="Save">
-        <!-- <button class="btn-btn" id="submit-button" role="button">Save</button> -->
+      <li class="menu-item" id="save">
         <button class="button-64" id="submit-button" role="button"><span class="text">
-          Save
-        </span></button>
+            Save
+          </span></button>
       </li>
       </form>
-      <button id="generate-button">
-        Generate
-        <i class="fas fa-share-square"></i>
     </div>
     </li>
     </li>
@@ -166,21 +161,4 @@
   </div>
 
 </body>
-
 </html>
-
-<!-- 
-make input fields 1 in a row
-border only bottom 
-make it cleaner
-
-move previous above create
-clean up that field
-
-fix content div sizing issue
-review graph colors
-finish the index 
-
-when saved add a feature visual queue
-
-unify ui/colors/design -->

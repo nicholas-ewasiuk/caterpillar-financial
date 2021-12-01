@@ -4,6 +4,7 @@
   --dur: 0.3s;
   --color-dark: #2f2f2f;
   --color-white: #fff;
+  --color-grey: lightgrey;
   --color-step-one: #d4fbc4;
   --color-step-two: #d8f1c4;
   --color-step-three: #e1dec1;
@@ -12,6 +13,7 @@
   --color-neon-g: #D7F205;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
+  --fontsize-input: 0.7em;
   --fontsize-mega: 80px;
   --font-family: "Poppins", "helvetica", sans-serif;
   --font-regular: 400;
@@ -53,6 +55,7 @@ nav {
   color:var(--color-dark);
 }
 body {
+  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
   background-color: var(--color-dark);
   font-family: var(--font-family);
   margin: 0;
@@ -102,13 +105,14 @@ flex-direction: row
 }
 .menu-item {
   list-style: none;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
 }
 /* overflow: hidden; */
 .btn {
   display: block;
   padding: 1rem 1.2rem;
-  background: var(--color-dark);
+  background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
+  background-color: var(--color-dark);
   color: var(--color-white);
   position: relative;
   /* border-bottom: 1px solid var(--color-white); */
@@ -135,7 +139,6 @@ flex-direction: row
 .menu-item:target .menu-item__sub {
   max-height: 20em;
 }
-
 .menu-title {
   padding-bottom: 1.5rem; 
 }
@@ -143,7 +146,6 @@ flex-direction: row
   background-color: var(--color-white);
   padding: 1.5rem;
 }
-
 .create-input-ctrls {
   background-color: var(--color-white);
   width: 100%;
@@ -153,12 +155,10 @@ flex-direction: row
   align-items: flex-start;
   justify-content: center;
 }
-
 .create-input-ctrls label {
   display: flex;
   flex-direction: column;
 }
-
 #add-delete {
   font-size: var(--fontsize-sub);
   padding-right: 1.5rem;
@@ -168,7 +168,7 @@ flex-direction: row
   justify-content: center;
 }
 #add-delete i {
-  color: lightgrey;
+  color: var(--color-grey);
   margin-left: 1rem;
 }
 #add-delete i:hover {
@@ -180,16 +180,21 @@ flex-direction: row
   border-radius: 0px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--color-grey);
   margin-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: var(--font-regular);
+  font-size: var(--fontsize-input);
 }
 .create-input-ctrls input:hover {
   border: none;
-  border-bottom: 1px solid var(--color-white);
+  border-bottom: 1px solid var(--color-dark);
 }
 #cntrl-title {
   padding-bottom: 1rem;
 }
+
 #cntrl-title span {
   display: flex;
   flex-direction: row;
@@ -200,10 +205,8 @@ flex-direction: row
   padding-right: 1.5rem;
   margin-left: 1rem;
 }
-
-#dataset-title span {
-  display: flex;
-  flex-direction: column;
+#dataset-title {
+  font-size: inherit;
 }
 #dataset-title span {
   display: flex;
@@ -214,6 +217,7 @@ flex-direction: row
   display: flex;
   flex-direction: column;
 }
+
 .revenues i {
   color: var(--color-white);
 }
@@ -230,6 +234,7 @@ flex-direction: row
 .expenses span{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .expenses i {
   color: var(--color-step-one);
@@ -240,7 +245,6 @@ flex-direction: row
   flex-direction: row;
   justify-content: flex-start;
 }
-
 #revenue-1 aside {
   display: flex;
   flex-direction: row;
@@ -250,13 +254,18 @@ flex-direction: row
 .revenues span {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 #expenses-1 aside {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-bottom: 1rem;
-
+}
+#dollar-sign {
+color: var(--color-dark);
+opacity: 0.8;
+font-size: 16px;
 }
 
 /* Color Theme Swatches in Hex */
@@ -341,3 +350,9 @@ flex-direction: row
 #delete-previous {
   margin-top: 20px;
 }
+/* conic-gradient(
+ [ from <angle> ]? [ at <position> ]?,
+ <angular-color-stop-list>
+) */
+/* #FFBD93
+#D4FBC4 */

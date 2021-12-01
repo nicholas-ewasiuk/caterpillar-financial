@@ -11,6 +11,7 @@ $(document).ready(function () {
       <aside class="${t_id}">
         <span>
           <input type="text" placeholder="source of revenue" id="${t_id}">
+          <i class="fas fa-dollar-sign" id="dollar-sign"></i>
           <input type="number" placeholder="amount" id="${n_id}">
         </span>
         <span id="add-delete">
@@ -18,16 +19,15 @@ $(document).ready(function () {
         </span>
       </aside>
     `)
-
     return newRevenueInputs;
   };
-
 
   const createExpenseInputElements = function (t_id, n_id) {
     const newExpenseInputs = (`
       <aside class="${t_id}">
         <span>
           <input type="text" placeholder="source of expense" id="${t_id}">
+          <i class="fas fa-dollar-sign" id="dollar-sign"></i>
           <input type="number" placeholder="amount" id="${n_id}">
         </span>
         <span id="add-delete">
@@ -35,10 +35,8 @@ $(document).ready(function () {
         </span>
       </aside>
     `)
-
     return newExpenseInputs;
   };
-
 
   const appendExpenseInputElements = function (t_id, n_id) {
     $(".expenses").append(createExpenseInputElements(t_id, n_id))
@@ -232,6 +230,7 @@ $(document).ready(function () {
     const username = $('.username').text();
     const datasetTitle = $('#dataset-title').val();
 
+
     // save form data
     $.ajax({
       url: 'http://localhost:3001/users/datasets',
@@ -243,14 +242,24 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     }).then((result) => {
-      if (result) {
+      if (result === 'duplicate') {
         // dataset name already exists
         // show error message
 
-        console.log("working?")
-      } else {
-        // show visual queue for when graph is saved
+        $('#save').prepend("<div id='error-message'> Error. Dataset Title in use.</div>");
 
+        setTimeout(function() {
+          $('#error-message').remove()
+          console.log("is it?")
+        }, 2000)
+      } else {
+
+        $('#save').prepend("<p id='save-success'>Saved!</p>");
+
+        setTimeout(function() {
+          $('#save-success').remove()
+          console.log("is it?")
+        }, 1000)
       }
     })
   });
@@ -584,6 +593,7 @@ $(document).ready(function () {
       textElement.setAttribute('id', `text${i}`);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.setAttribute('fill', `#b8b8b8`);
+      textElement.setAttribute('stroke-width', `2`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');

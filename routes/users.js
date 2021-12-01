@@ -29,19 +29,19 @@ module.exports = (db) => {
 
     db.query(`SELECT id FROM users WHERE username=$1`, [username])
       .then(result => {
-        console.log("here-----", result)
+        // console.log("here-----", result)
         const userId = result.rows[0].id
 
         db.query(`SELECT * FROM datasets WHERE user_id=${userId} AND dataset_name=$1`, [datasetName])
           .then(duplicate => {
             if (duplicate.rows[0]) {
-              let duplicateError = true;
+              const duplicateError = 'duplicate';
 
               res.send(duplicateError)
             } else {
 
               db.query(`INSERT INTO datasets (user_id, dataset_name) VALUES (${userId}, $1)`, [datasetName])
-                .then(res => {
+                .then(resu => {
       
                   db.query(`SELECT id FROM datasets WHERE dataset_name=$1`, [datasetName])
                     .then(datasetId => {
@@ -64,7 +64,10 @@ module.exports = (db) => {
                           `, [expData[i], expData[i + 1]])
                         }
                       }
-      
+
+                      const saved = 'no error';
+                      
+                      res.send(saved)
                     })
                 })
             }
