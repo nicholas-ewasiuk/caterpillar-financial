@@ -6,20 +6,20 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
+  /* --color-step-one: #d4fbc4;
+  --color-step-five: #ecc5bf; */
 :root {
   --rad: 0.7rem;
   --dur: 0.3s;
   --color-dark: #2f2f2f;
-  --color-white: #F2F2F2;
-  --color-step-one: #d4fbc4;
-  --color-step-two: #d8f1c4;
-  --color-step-three: #e1dec1;
-  --color-step-four: #e6d2c0;
-  --color-step-five: #ecc5bf;
-  --color-neon-g: #d4fbc4;
+  --color-white: #fff;
+  --color-grey: lightgrey;
+  --color-step-one: #65EAD4;
+  --color-step-two: #53D3BA;
+  --color-step-five: #F06A6E;
   --fontsize-header: 2em;
   --fontsize-sub: 1.3em;
+  --fontsize-input: 14px;
   --fontsize-mega: 80px;
   --font-family: "Poppins", "helvetica", sans-serif;
   --font-regular: 400;
@@ -51,7 +51,6 @@ a {
   height: 100vh;
   background-image: url(http://www.transparenttextures.com/patterns/otis-redding.png);
   background-color: var(--color-dark);
-  /* background-color: var(--color-white); */
   padding-right: 10%;
   font: var(--font-fam);
   display: flex;
@@ -73,24 +72,24 @@ a {
   justify-content: left;
 }
 .content h2 {
-  color: var(--color-neon-g);
+  color: var(--color-step-two);
   font-size: var(--fontsize-mega);
   font-weight: var(--font-black);
   line-height: 96%;
   margin-bottom: 20px;
 }
 .content h3 {
-  color: var(--color-neon-g);
+  color: var(--color-step-two);
   font-size: var(--fontsize-sub);
   font-weight: var(--font-bold);
 }
 .content p {
-  color:var(--color-neon-g);
+  color:var(--color-step-two);
   width: 66%;
 }
 #toggle {
  font-size: var(--fontsize-header);
-  color: var(var(--color-neon-g));
+  color: var(var(--color-step-two));
   animation: bounce 1.5s infinite;
   margin-left: 50px;
 }
@@ -105,7 +104,7 @@ a {
 }
 .fa-times {
   font-size: var(--fontsize-header);
-  color: var(--color-neon-g);
+  color: var(--color-step-two);
 }
 .content-side {
   position: fixed;
@@ -153,58 +152,9 @@ a {
 .DK-TALKIES™-5-hex { color: #BFB3A8; }
 
 
-/* 
 .button-64 {
   align-items: center;
-  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
-  border: 0;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  display: flex;
-  font-family: var(--font-family);
-  font-size: 20px;
-  justify-content: center;
-  line-height: 1em;
-  max-width: 100%;
-  padding: 3px;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  cursor: pointer;
-}
-#submit-button {
-  margin-top: 20px;
-}
-.button-64:active,
-.button-64:hover {
-  outline: 0;
-}
-.button-64 span {
-  background-color: var(--color-dark);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  transition: 300ms;
-}
-.button-64:hover span {
-  background: none;
-}
-@media (min-width: 768px) {
-  .button-64 {
-    font-size: 14px;
-  }
-} */
-
-.button-64 {
-  align-items: center;
-  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+  background-image: linear-gradient(to right bottom, #65EAD4, #53D3BA, #f05053); 
   border: 0;
   border-radius: 8px;
   box-shadow: lightgrey 0 15px 30px -5px;
