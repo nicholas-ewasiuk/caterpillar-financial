@@ -37,6 +37,8 @@ module.exports = (db) => {
             if (duplicate.rows[0]) {
               const duplicateError = 'duplicate';
 
+              console.log("here")
+
               res.send(duplicateError)
             } else {
 
