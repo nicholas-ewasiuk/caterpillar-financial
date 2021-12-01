@@ -457,7 +457,7 @@ $(document).ready(function () {
       const amount = Number(inputNumber.value);
       const title = inputText.value;
       
-      const scale = 20000;
+      const scale = 30000;
       let type;
       let radius = 0;
 
@@ -540,7 +540,7 @@ $(document).ready(function () {
 
     for (let i = 0; i < circleObjectArray.length; i++) {
       let radius = 0;
-      let scale = 20000;
+      let scale = 30000;
       const item = circleObjectArray[i];
       let type = item['type'];
 
