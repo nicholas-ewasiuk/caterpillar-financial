@@ -4,12 +4,7 @@ $(document).ready(function () {
   console.log("interact file init");
 
 
-  // $("#button-to-click").on("click", function () {
-  //   $("#affected-div").get(0).scrollIntoView('swing');
-  // });
-  // $("#clickable").on("mousedown", function () {
-  //   $("affected-div").slideDown('swing');
-  // });
+
 
   $("#toggle").click(function () {
     $(".content-side").animate({
@@ -35,16 +30,13 @@ $(document).ready(function () {
     });
   });
 
-  // $("#graph-controls").hide();
-
-  // $("#create-btn").click(function(){
-  //   $("#menu-slide").slideUp(300)
-  //   $("#graph-controls").slideToggle(300, function(){
-  //     $("#graph-controls").show();
-  //   });
-  // });
-
-  // document.ready
 });
 
 // $(selector).slideToggle(speed,easing,callback)
+
+  // $("#button-to-click").on("click", function () {
+  //   $("#affected-div").get(0).scrollIntoView('swing');
+  // });
+  // $("#clickable").on("mousedown", function () {
+  //   $("affected-div").slideDown('swing');
+  // });
