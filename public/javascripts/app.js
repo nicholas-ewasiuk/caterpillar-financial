@@ -9,6 +9,8 @@ $(document).ready(function () {
   const circleObjectArray = [];
   const textObjectArray = [];
 
+
+
   const createRevenueInputElements = function (t_id, n_id) {
     const newRevenueInputs = (`
       <aside class="${t_id}">
@@ -50,56 +52,6 @@ $(document).ready(function () {
     $(".revenues").append(createRevenueInputElements(t_id, n_id));
   };
 
-  const theContainerForm = document.querySelector(".user-form");
-  theContainerForm.addEventListener('click', removeInputField);
-
-  function removeInputField(event) {
-    let target = event.target;
-    
-    if (target.className === 'fas fa-minus-circle') {
-      const numArray = numRevenueArray.concat(numExpenseArray);
-      const nearestAside = target.closest("aside");
-      const textInput = nearestAside.firstElementChild.firstElementChild;
-      const numInput = nearestAside.firstElementChild.lastElementChild;
-      const filterItem = [textInput.id, numInput.id];
-
-      if ( nearestAside.className.includes("revenue")) {
-        const filterArray = numRevenueArray.filter(id => !arrayEquals(id, filterItem));
-        numRevenueArray = filterArray;
-      }
-
-      if ( nearestAside.className.includes("expense")) {
-        const filterArray = numExpenseArray.filter(id => !arrayEquals(id, filterItem));
-        numExpenseArray = filterArray;
-      }
-
-      for (let i = 0; i < numArray.length; i++) {
-        if (arrayEquals(numArray[i], filterItem)) {
-          const filterCircleObjects = circleObjectArray.filter(item => circleObjectArray.indexOf(item) !== i);
-          circleObjectArray.length = 0;
-
-          const filterTextObjects = textObjectArray.filter(item => textObjectArray.indexOf(item) !== i);
-          textObjectArray.length = 0;
-
-          for (let item of filterCircleObjects) {
-            circleObjectArray.push(item);
-          }
-          for ( let item of filterTextObjects) {
-            textObjectArray.push(item);
-          }
-        }
-      }
-      nearestAside.remove();
-      console.clear();
-      console.log(circleObjectArray);
-      console.log(textObjectArray);
-      console.log(numRevenueArray, numExpenseArray);
-      console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
-      displayCircles(circleObjectArray, textObjectArray);
-    }
-  }
-
-  //////Add revenue and expense fields/////////////
   $(".add-revenue").on("click", function (e) {
     const idText = "text-revenue" + revenueCounter;
     const idNum = "num-revenue" + revenueCounter;
@@ -109,44 +61,7 @@ $(document).ready(function () {
     revenuesArray.push(idText, idNum);
     numRevenueArray.push([idText, idNum]);
 
-    const svgContainer = document.getElementById('svg-container');
-
-    const angle = Math.PI / 2;
-    const radius = 0;
-    const type = 'revenue';
-    const amount = 0;
-    const title = '';
-    const x = (svgContainer.clientWidth / 2) + (Math.random() * (200 - 150) + 150);
-    const y = (svgContainer.clientHeight / 2) + (Math.random() * (200 - 150) + 150);
-
-    const circleObjectRevenueArray = circleObjectArray.filter(item => item['type'] === 'revenue');
-    const circleObjectExpenseArray = circleObjectArray.filter(item => item['type'] === 'expense');
-
-    circleObjectRevenueArray.push(new Circle(radius, angle, type, amount, title));
-    circleObjectArray.length = 0;
-    const newCircleObjectArray = circleObjectRevenueArray.concat(circleObjectExpenseArray);
-    for (let item of newCircleObjectArray) {
-      circleObjectArray.push(item);
-    }
-
-    const textObjectRevenueArray = textObjectArray.filter(item => item['type'] === 'revenue');
-    const textObjectExpenseArray = textObjectArray.filter(item => item['type'] === 'expense');
-
-    textObjectRevenueArray.push(new CircleLabel(x, y, title, type));
-    textObjectArray.length = 0;
-    const newTextObjectArray = textObjectRevenueArray.concat(textObjectExpenseArray);
-    for (let item of newTextObjectArray) {
-      textObjectArray.push(item);
-    }
-
-    revenueCounter++;
-
-    console.clear();
-    console.log(circleObjectArray);
-    console.log(textObjectArray);
-    console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
-    displayCircles(circleObjectArray, textObjectArray);
-    
+    insertNewCircleObjects('revenue');
   });
 
   $(".add-expense").on("click", function (e) {
@@ -158,26 +73,7 @@ $(document).ready(function () {
     expensesArray.push(idText, idNum);
     numExpenseArray.push([idText,idNum]);
 
-    const svgContainer = document.getElementById('svg-container');
-
-    const angle = Math.PI / 2;
-    const radius = 0;
-    const type = 'expense';
-    const amount = 0;
-    const title = '';
-    const x = (svgContainer.clientWidth / 2) + (Math.random() * (200 - 150) + 150);
-    const y = (svgContainer.clientHeight / 2) + (Math.random() * (200 - 150) + 150);
-
-    circleObjectArray.push(new Circle(radius, angle, type, amount, title));
-    textObjectArray.push(new CircleLabel(x, y, title, type));
-
-    expenseCounter++;
-
-    console.clear();
-    console.log(circleObjectArray);
-    console.log(textObjectArray);
-    console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
-    displayCircles(circleObjectArray, textObjectArray);
+    insertNewCircleObjects('expense');
   })
 
 
@@ -360,6 +256,8 @@ $(document).ready(function () {
 
   const testButton = document.getElementById('generate-button');
   testButton.addEventListener('click', function(){intializeCircleArray();});
+  const theContainerForm = document.querySelector(".user-form");
+  theContainerForm.addEventListener('click', removeInputField);
 
 
   function Circle(radius, angle, type, amount, title) {
@@ -377,15 +275,7 @@ $(document).ready(function () {
     this.type = type;
   }
 
-  function updateCircleOnInput(event) {
-    if (event.target.id.includes('num')) {
-      updateCircleAmount(event);
-    }
-    if (event.target.id.includes('text')) {
-      updateCircleText(event);
-    }
-  }
-
+  //Helper function to get total calculated revenue from input fields
   function getTotalRevenue() {
     const numArray = numRevenueArray.concat(numExpenseArray);
     let totalRevenue = 0;
@@ -398,6 +288,7 @@ $(document).ready(function () {
     return totalRevenue;
   }
 
+  //Helper function to get total calculated expenses from input fields
   function getTotalExpense() {
     const numArray = numRevenueArray.concat(numExpenseArray);
     let totalExpense = 0;
@@ -410,6 +301,7 @@ $(document).ready(function () {
     return totalExpense;
   }
 
+  //Initialize the the starting arrays of circle and circle-label objects
   function intializeCircleArray() {
     circleObjectArray.length = 0;
     textObjectArray.length = 0;
@@ -470,6 +362,16 @@ $(document).ready(function () {
     displayCircles(circleObjectArray, textObjectArray);
   }
 
+  //Update object arrays on input event from fields
+  function updateCircleOnInput(event) {
+    if (event.target.id.includes('num')) {
+      updateCircleAmount(event);
+    }
+    if (event.target.id.includes('text')) {
+      updateCircleText(event);
+    }
+  }
+
   function updateCircleAmount(event) {
     const numArray = numRevenueArray.concat(numExpenseArray);
     const target = event.target;
@@ -500,6 +402,7 @@ $(document).ready(function () {
     displayCircles(circleObjectArray, textObjectArray);
   }
 
+  //Updates the circle radius from value at amount
   function updateCircleRadius() {
     const numArray = numRevenueArray.concat(numExpenseArray);
     const totalRevenue = getTotalRevenue();
@@ -530,7 +433,101 @@ $(document).ready(function () {
     displayCircles(circleObjectArray, textObjectArray);
   }
 
-//////////////////Set element styles in here//////////////////////////////////
+  //Delete circle when corresponding input field is removed
+  function removeInputField(event) {
+    let target = event.target;
+    
+    if (target.className === 'fas fa-minus-circle') {
+      const numArray = numRevenueArray.concat(numExpenseArray);
+      const nearestAside = target.closest("aside");
+      const textInput = nearestAside.firstElementChild.firstElementChild;
+      const numInput = nearestAside.firstElementChild.lastElementChild;
+      const filterItem = [textInput.id, numInput.id];
+
+      if ( nearestAside.className.includes("revenue")) {
+        const filterArray = numRevenueArray.filter(id => !arrayEquals(id, filterItem));
+        numRevenueArray = filterArray;
+      }
+
+      if ( nearestAside.className.includes("expense")) {
+        const filterArray = numExpenseArray.filter(id => !arrayEquals(id, filterItem));
+        numExpenseArray = filterArray;
+      }
+
+      for (let i = 0; i < numArray.length; i++) {
+        if (arrayEquals(numArray[i], filterItem)) {
+          const filterCircleObjects = circleObjectArray.filter(item => circleObjectArray.indexOf(item) !== i);
+          circleObjectArray.length = 0;
+
+          const filterTextObjects = textObjectArray.filter(item => textObjectArray.indexOf(item) !== i);
+          textObjectArray.length = 0;
+
+          for (let item of filterCircleObjects) {
+            circleObjectArray.push(item);
+          }
+          for ( let item of filterTextObjects) {
+            textObjectArray.push(item);
+          }
+        }
+      }
+      nearestAside.remove();
+      console.clear();
+      console.log(circleObjectArray);
+      console.log(textObjectArray);
+      console.log(numRevenueArray, numExpenseArray);
+      console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
+      displayCircles(circleObjectArray, textObjectArray);
+    }
+  }
+
+  //Add new circle when new input field added
+  function insertNewCircleObjects(typeEnum) {
+    const svgContainer = document.getElementById('svg-container');
+    const angle = Math.PI / 2;
+    const radius = 0;
+    const type = typeEnum;
+    const amount = 0;
+    const title = '';
+    const x = (svgContainer.clientWidth / 2) + (Math.random() * (200 - 150) + 150);
+    const y = (svgContainer.clientHeight / 2) + (Math.random() * (200 - 150) + 150);
+
+    if (type === 'revenue') {
+      const circleObjectRevenueArray = circleObjectArray.filter(item => item['type'] === 'revenue');
+      const circleObjectExpenseArray = circleObjectArray.filter(item => item['type'] === 'expense');
+
+      circleObjectRevenueArray.push(new Circle(radius, angle, type, amount, title));
+      circleObjectArray.length = 0;
+      const newCircleObjectArray = circleObjectRevenueArray.concat(circleObjectExpenseArray);
+      for (let item of newCircleObjectArray) {
+        circleObjectArray.push(item);
+      }
+
+      const textObjectRevenueArray = textObjectArray.filter(item => item['type'] === 'revenue');
+      const textObjectExpenseArray = textObjectArray.filter(item => item['type'] === 'expense');
+
+      textObjectRevenueArray.push(new CircleLabel(x, y, title, type));
+      textObjectArray.length = 0;
+      const newTextObjectArray = textObjectRevenueArray.concat(textObjectExpenseArray);
+      for (let item of newTextObjectArray) {
+        textObjectArray.push(item);
+      }
+      revenueCounter++;
+    }
+
+    if (type === 'expense') {
+      circleObjectArray.push(new Circle(radius, angle, type, amount, title));
+      textObjectArray.push(new CircleLabel(x, y, title, type));
+
+      expenseCounter++;
+    }
+    console.clear();
+    console.log(circleObjectArray);
+    console.log(textObjectArray);
+    console.log(`revcount: ${revenueCounter}, expcount: ${expenseCounter}`);
+    displayCircles(circleObjectArray, textObjectArray);
+  }
+
+  //Renders the circle, text, and line svg elements from the object arrays
   function displayCircles(circleArray, textArray) {
     $("#circle-svg").empty();
     const ns = 'http://www.w3.org/2000/svg';
@@ -548,24 +545,24 @@ $(document).ready(function () {
       circleElement.setAttribute('id', id);
       circleElement.setAttribute('r', radius);
       circleElement.setAttribute('fill-opacity', "0.9");
-////text element
+
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', `text${i}`);
       textElement.setAttribute('text-decoration', `underline`);
       textElement.setAttribute('fill', `#fff`);
       textElement.innerHTML = title;
-////line element
+
       const lineElement = document.createElementNS(ns, 'line');
       if (title !== '') {
       lineElement.setAttribute('stroke', `#fff`);
       }
-////circle element colors
+
       if (type === 'revenue') {
         circleElement.setAttribute('fill', "url('#revGradient')");
       } else if (type === 'expense') {
         circleElement.setAttribute('fill', "url('#expGradient')");
       }
-
+      //do this stuff for the first circle being rendered
       if (i === 0) {
         cx = radius + 100;
         cy = radius + (svgContainer.clientHeight / 2);
@@ -582,7 +579,7 @@ $(document).ready(function () {
         svgMain.append(lineElement);
         continue;
       }
-
+      //generate remaining circles based on angle, radius of previous
       const prevCircle = circleArray[i-1];
 
       let displaceX = Math.sin(prevCircle.angle) * (radius + prevCircle.radius);
@@ -612,7 +609,7 @@ $(document).ready(function () {
       a.length === b.length &&
       a.every((val, index) => val === b[index]);
   }
-
+  
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////Mouse inputs///////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////
