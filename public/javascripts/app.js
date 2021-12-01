@@ -126,6 +126,7 @@ $(document).ready(function () {
     const username = $('.username').text();
     const datasetTitle = $('#dataset-title').val();
 
+
     // save form data
     $.ajax({
       url: 'http://localhost:3001/users/datasets',
@@ -137,14 +138,24 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     }).then((result) => {
-      if (result) {
+      if (result === 'duplicate') {
         // dataset name already exists
         // show error message
 
-        console.log("working?")
-      } else {
-        // show visual queue for when graph is saved
+        $('#save').prepend("<div id='error-message'> Error. Dataset Title in use.</div>");
 
+        setTimeout(function() {
+          $('#error-message').remove()
+          console.log("is it?")
+        }, 2000)
+      } else {
+
+        $('#save').prepend("<p id='save-success'>Saved!</p>");
+
+        setTimeout(function() {
+          $('#save-success').remove()
+          console.log("is it?")
+        }, 1000)
       }
     })
   });
