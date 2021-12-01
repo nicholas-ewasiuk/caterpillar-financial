@@ -578,7 +578,7 @@ $(document).ready(function () {
       const circleElement = document.createElementNS(ns, 'circle');
       circleElement.setAttribute('id', id);
       circleElement.setAttribute('r', radius);
-      circleElement.setAttribute('fill-opacity', "0.95");
+      circleElement.setAttribute('fill-opacity', "0.9");
 ////text element
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', `text${i}`);
