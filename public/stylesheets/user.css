@@ -186,7 +186,6 @@ flex-direction: row
   padding-right: 0.5rem;
   font-weight: var(--font-regular);
   font-size: var(--fontsize-input);
-
 }
 .create-input-ctrls input:hover {
   border: none;
