@@ -59,7 +59,6 @@ $(document).ready(function () {
     if (target.className === 'fas fa-minus-circle') {
       const nearestAside = target.closest("aside");
       if ( nearestAside.className.includes("revenue")) {
-        revenueCounter--;
         const textInput = nearestAside.firstElementChild.firstElementChild;
         const numInput = nearestAside.firstElementChild.lastElementChild;
 
@@ -94,7 +93,6 @@ $(document).ready(function () {
         displayCircles(circleObjectArray, textObjectArray);
       }
       if ( nearestAside.className.includes("expense")) {
-        expenseCounter--;
         const textInput = nearestAside.firstElementChild.firstElementChild;
         const numInput = nearestAside.firstElementChild.lastElementChild;
 
@@ -344,7 +342,6 @@ $(document).ready(function () {
       }
 
       $('#dataset-title').val($("#drop-down-datasets").val())
-      updateCircle();
       
     }).catch((err) => {
       console.log("catch error", err)
@@ -581,15 +578,16 @@ $(document).ready(function () {
       const circleElement = document.createElementNS(ns, 'circle');
       circleElement.setAttribute('id', id);
       circleElement.setAttribute('r', radius);
+      circleElement.setAttribute('fill-opacity', "0.95");
 ////text element
       const textElement = document.createElementNS(ns, 'text');
       textElement.setAttribute('id', `text${i}`);
       textElement.setAttribute('text-decoration', `underline`);
-      textElement.setAttribute('fill', `white`);
+      textElement.setAttribute('fill', `#b8b8b8`);
       textElement.innerHTML = title;
 ////line element
       const lineElement = document.createElementNS(ns, 'line');
-      lineElement.setAttribute('stroke', `white`);
+      lineElement.setAttribute('stroke', `#b8b8b8`);
 ////circle element colors
       if (type === 'revenue') {
         circleElement.setAttribute('fill', "url('#revGradient')");
