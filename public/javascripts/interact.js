@@ -8,7 +8,19 @@ $(document).ready(function () {
       width: "toggle",
     }, {
       direction: "left",
-      duration: 1500,
+      duration: 600,
+      specialEasing: {
+        width: "linear",
+      }
+    });
+  });
+
+  $(".fa-times").click(function () {
+    $(".content-side").animate({
+      width: "toggle",
+    }, {
+      direction: "left",
+      duration: 600,
       specialEasing: {
         width: "linear",
       }
