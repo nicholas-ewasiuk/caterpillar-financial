@@ -109,10 +109,11 @@ $(document).ready(function () {
         datasetTitle: datasetTitle
       }
     }).then((result) => {
+       /*
       if (result === 'duplicate') {
         // dataset name already exists
         // show error message
-
+   
         $('#save').prepend("<div id='error-message'> Error. Dataset Title in use.</div>");
 
         setTimeout(function() {
@@ -127,13 +128,12 @@ $(document).ready(function () {
           $('#save-success').remove()
           console.log("is it?")
         }, 1000)
-
+        */
         $('#drop-down-datasets').append(`
         <option id="options-id">
           ${$('#dataset-title').val()}
         </option>
         `)
-      }
     })
   });
 
