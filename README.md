@@ -1,7 +1,7 @@
 # Caterpillar-Financial
 
-[![License](https://img.shields.io/crates/l/merkle-distributor)](https://github.com/nicholas-ewasiuk/caterpillar-financial/blob/master/LICENSE.txt)
-[![Contributors](https://img.shields.io/github/contributors/saber-hq/merkle-distributor)](https://github.com/nicholas-ewasiuk/caterpillar-financial/graphs/contributors)
+[![License](https://img.shields.io/crates/l/caterpillar-financial)](https://github.com/nicholas-ewasiuk/caterpillar-financial/blob/master/LICENSE.txt)
+[![Contributors](https://img.shields.io/github/contributors/nicholas-ewasiuk/caterpillar-financial)](https://github.com/nicholas-ewasiuk/caterpillar-financial/graphs/contributors)
 
 <p align="center">
     <img src="/public/images/caterpillar-financial02.png" />
