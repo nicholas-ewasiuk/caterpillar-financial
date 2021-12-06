@@ -4,7 +4,7 @@
 [![Contributors](https://img.shields.io/github/contributors/nicholas-ewasiuk/caterpillar-financial)](https://github.com/nicholas-ewasiuk/caterpillar-financial/graphs/contributors)
 
 <p align="center">
-    <img src="/public/images/caterpillar-financial02.png" />
+    <img src="/public/images/caterpillar-financial002.png" />
 </p>
 
 <p align="center">An interactive visualizer for revenue and expense data.
